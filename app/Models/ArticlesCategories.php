@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class ArticlesCategories extends Model
+{
+    const STATUS_ACTIVE = 1;
+    const STATUS_INACTIVE = 0;
+
+    const TYPE_PROMOTION = 1;
+    const TYPE_ARTICLE = 0;
+
+    protected $table = 'news_categories';
+
+    protected $guarded = ['id'];
+
+//    public function articles()
+//    {
+//        return $this->hasMany(Article::class, 'category_id');
+//    }
+}
