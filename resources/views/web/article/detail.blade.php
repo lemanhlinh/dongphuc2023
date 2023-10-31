@@ -119,12 +119,11 @@
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="banner-list">
 
-                                    <div class="banner_item_0 banner_item" id="banner_item_29">
+                                    <div class="banner_item_0 banner_item" >
                                         <p style="text-align: center;"><a
                                                 href="{{ $item->link }}"><img
                                                     alt="{{ $item->name }}"
-                                                    src="{{ asset($item->image) }}"
-                                                    style="width: 235px; height: 610px;"></a></p>
+                                                    src="{{ asset($item->image) }}"></a></p>
                                     </div>
 
                                 </div>
