@@ -8,7 +8,7 @@
                     @forelse($slider as $item)
                         <div class="item">
                             <a href="{{ $item->url }}">
-                                <img class="owl-lazy" width="1920" height="600" src="{{ asset($item->image) }}" alt="{{ $item->name }}"/>
+                                <img class="img-fluid" width="1920" height="600" src="{{ asset($item->image) }}" alt="{{ $item->name }}"/>
                             </a>
                         </div>
                     @empty

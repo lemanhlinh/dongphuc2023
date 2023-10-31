@@ -47,14 +47,14 @@ class HomeController extends Controller
         $students = Student::where(['published' => 1])->select('id','title','image','content','creator')->get();
         $partner = Partner::where(['published' => 1])->select('id','name','url','image')->get();
         $cats = ProductsCategories::where(['show_in_homepage' => 1,'published' => 1])->select('id','name','alias')
-            ->orderBy('id', 'DESC')->limit(6)->get();
+            ->orderBy('ordering', 'DESC')->limit(6)->get();
         $productsInCategories = [];
         foreach ($cats as $category) {
             $products = Product::where(['published' => 1])->where('category_id_wrapper', 'like', '%' . $category->id . '%')
                 ->select('id','image','alias','image_after','name','category_id')
                 ->with(['category' => function($query){
                     $query->select('id','name','alias');
-                }])
+                }])->orderBy('id','DESC')
                 ->take(10)->get();
             $productsInCategories[$category->id] = $products;
         }
