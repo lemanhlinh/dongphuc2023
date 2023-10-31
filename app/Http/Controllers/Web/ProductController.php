@@ -9,7 +9,6 @@ use App\Models\BookTable;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
-use App\Models\ProductOptions;
 use App\Models\ProductsCategories;
 use App\Models\ProductsImages;
 use Illuminate\Http\Request;
@@ -63,7 +62,7 @@ class ProductController extends Controller
     public function addToCart (Request $req){
         $productId = $req['id'];
         $quantity = $req['quantity'];
-        $product = ProductOptions::where(['id' => $productId])->with(['product'])->first();;
+        $product = Product::where(['id' => $productId])->first();;
 
         if (!$product) {
             abort(404);
@@ -77,7 +76,7 @@ class ProductController extends Controller
         } else {
             // Sản phẩm chưa tồn tại trong giỏ hàng, thêm mới
             $cart[$product->id] = [
-                'name' => $product->title,
+                'name' => $product->name,
                 'price' => $product->price,
                 'quantity' => $quantity,
             ];
@@ -108,12 +107,11 @@ class ProductController extends Controller
             return redirect()->route('home');
         }
         foreach ($cart as $productId => $item) {
-            $product = ProductOptions::where(['id' => $productId])->with(['product'])->first();
+            $product = Product::where(['id' => $productId])->first();
             $quantity = $item['quantity']; // Số lượng
             // Thêm thông tin sản phẩm vào danh sách
             $cartItems[] = [
                 'product' => $product,
-                'image' => json_decode($product->images),
                 'quantity' => $quantity,
                 'subtotal' => $product->price * $quantity, // Tính tổng tiền cho mỗi sản phẩm
             ];
@@ -202,7 +200,7 @@ class ProductController extends Controller
             return redirect()->route('home');
         }
         foreach ($cart as $productId => $item) {
-            $product = ProductOptions::where(['id' => $productId])->with(['product'])->first();
+            $product = Product::where(['id' => $productId])->first();
             $quantity = $item['quantity']; // Số lượng
             // Thêm thông tin sản phẩm vào danh sách
             $cartItems[] = [

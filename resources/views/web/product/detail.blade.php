@@ -96,7 +96,7 @@
                             </div>
                             @include('web.product.related',['product_related' => $product_related,'cat_slug' => $cat_slug])
                             <div class="modal-for-product">
-{{--                                @include('web.product.modal')--}}
+                                @include('web.product.modal')
                             </div>
                             <input type="hidden" value="{{ $product->price_old }}" name='product_price' id='product_price'  />
                         </div>
@@ -130,13 +130,12 @@
                         @forelse($banners as $item)
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="banner-list">
-
-                                    <div class="banner_item_0 banner_item" id="banner_item_29">
-                                        <p style="text-align: center;"><a
-                                                href="{{ $item->link }}"><img
-                                                    alt="{{ $item->name }}"
-                                                    src="{{ asset($item->image) }}"
-                                                    style="width: 235px; height: 610px;"></a></p>
+                                    <div class="banner_item_0 banner_item">
+                                        <p style="text-align: center;">
+                                            <a href="{{ $item->link }}">
+                                                <img alt="{{ $item->name }}" src="{{ asset($item->image) }}" class="img-fluid">
+                                            </a>
+                                        </p>
                                     </div>
 
                                 </div>
@@ -217,22 +216,34 @@
             $(".full").show();
         }
 
-        function order($id_pro) {
-            // $('html,body').animate({scrollTop: '0px'}, 500);
-            var $id = $id_pro;
-            var $quan = $("#quantity").val();
-            var price = $("input#product_price").val();
+        function order(id_prd) {
+            var quantity = $("#quantity").val();
             $.ajax({
                 type: 'POST',
-                dataType: 'html',
-                url: '/index.php?module=products&view=cart&raw=1&task=buy',
-                data: "quantity=" + $quan + "&id=" + $id + "&price="+price,
+                dataType: 'json',
+                url: '{{ route('addToCart') }}',
+                data: {
+                    quantity: quantity?quantity:1,
+                    id: id_prd,
+                    _token: $('meta[name="csrf-token"]').attr("content")
+                },
                 success: function (data) {
-                    $("#cart-top").html(data);
+                    $("#cart-top").html(data.total);
+                    Swal.fire(
+                        'Thành công!',
+                        'Thêm vào giỏ hàng thành công',
+                        'success'
+                    )
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Có lỗi xảy ra, Không thành công',
+                    })
                 }
             });
         }
-
         function ajax_pop_cart(){
             $("#close-cart").click(function(){
                 $(".wrapper-popup-2").hide();

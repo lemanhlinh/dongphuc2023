@@ -56,6 +56,7 @@
     <script src="{{ asset('/js/web/slick.min.js') }}"></script>
     <script src="https://kit.fontawesome.com/6302d443cd.js"></script>
     <script src="{{ asset('/js/web/jquery.mmenu.min.all.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Scripts -->
     <script>
         $(function() {

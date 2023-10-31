@@ -17,6 +17,7 @@ class Product extends Model
 
     protected $appends = [
         'image_resize',
+        'slug_cat',
     ];
 
     protected $guarded = ['id'];
@@ -44,5 +45,11 @@ class Product extends Model
             $array_resize[$k] = str_replace(['.jpg', '.png','.bmp','.gif','.jpeg'],'.webp',$array_resize_);
         }
         return $array_resize;
+    }
+
+    public function getSlugCatAttribute()
+    {
+        $slug_cat = $this->category->alias;
+        return $slug_cat;
     }
 }

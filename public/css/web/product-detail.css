@@ -70,7 +70,6 @@
   text-align: center;
   -webkit-appearance: textfield;
   -moz-appearance: textfield;
-  appearance: textfield;
   background: #F3F3F3;
 }
 .background-detail-product .price_product_pc .quality-product .wrapper-quantity .number-input .quantity::-webkit-inner-spin-button, .background-detail-product .price_product_pc .quality-product .wrapper-quantity .number-input .quantity::-webkit-outer-spin-button {

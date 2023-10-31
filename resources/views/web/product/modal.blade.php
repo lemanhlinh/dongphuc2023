@@ -11,7 +11,7 @@
                     </label>
                 </div>
                 <p class="mb-2">Chọn thêm sản phẩm khác hoặc</p>
-                <a href="<?php echo FSRoute::_('index.php?module=products&view=cart'); ?>" class="d-block text-decoration-none bg-warning text-center">Xem giỏ hàng và hoàn tất</a>
+                <a href="{{ route('showCart') }}" class="d-block text-decoration-none bg-warning text-center">Xem giỏ hàng và hoàn tất</a>
             </div>
         </div>
     </div>
