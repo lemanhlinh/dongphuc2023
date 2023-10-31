@@ -11,6 +11,7 @@ use App\Models\OrderItem;
 use App\Models\Product;
 use App\Models\ProductOptions;
 use App\Models\ProductsCategories;
+use App\Models\ProductsImages;
 use Illuminate\Http\Request;
 use App\Repositories\Contracts\ProductCategoryInterface;
 use App\Repositories\Contracts\ProductInterface;
@@ -41,10 +42,12 @@ class ProductController extends Controller
 
     public function detail ($cat_slug,$slug){
         $product = Product::where(['alias' => $slug])->first();
+        $product_images = ProductsImages::where('record_id', $product->id)->get();
         $product_related = Product::select('id','name','alias', 'category_id' ,'image','category_alias','created_time','image_after')->where(['category_id' => $product->category_id,'published' => 1])->limit(6)->get();
         $cat_product_home = ProductsCategories::where(['published' => 1,'show_in_homepage' => 1])->select('id','name','alias')->withDepth()->defaultOrder()->get()->toTree();
         $banners = Banners::where(['published' => 1])->select('id','name','alias','image','link')->get();
-        return view('web.product.detail',compact('product','cat_product_home','banners','product_related','cat_slug'));
+
+        return view('web.product.detail',compact('product','cat_product_home','banners','product_related','cat_slug','product_images'));
     }
 
     public function is_new(){
@@ -53,7 +56,7 @@ class ProductController extends Controller
             ->with(['productOption' => function($query){
                 $query->where(['is_default' => 1,'active' => 1])
                     ->select('id','sku', 'title', 'parent_id','price','slug','images');
-            }])->limit(10)->paginate(12 ?? config('data.limit', 20));
+            }])->limit(10)->paginate(12);
         return view('web.product.new',compact('products'));
     }
 

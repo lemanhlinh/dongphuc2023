@@ -33,7 +33,7 @@
                                     <div class="all_info_product col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="image-table">
                                             <div class="img_styling clearfix">
-{{--                                                @include('web.components.styling')--}}
+                                                @include('web.components.styling',['product_images' => $product_images, 'image_data' => $product->image])
                                             </div>
                                         </div>
                                     </div>
