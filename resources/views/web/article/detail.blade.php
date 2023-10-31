@@ -120,12 +120,12 @@
                                 <div class="banner-list">
 
                                     <div class="banner_item_0 banner_item" >
-                                        <p style="text-align: center;"><a
-                                                href="{{ $item->link }}"><img
-                                                    alt="{{ $item->name }}"
-                                                    src="{{ asset($item->image) }}"></a></p>
+                                        <p style="text-align: center;">
+                                            <a href="{{ $item->link }}">
+                                                <img alt="{{ $item->name }}" src="{{ asset($item->image) }}" class="img-fluid">
+                                            </a>
+                                        </p>
                                     </div>
-
                                 </div>
                             </div>
                             <div class="clearfix"></div>
