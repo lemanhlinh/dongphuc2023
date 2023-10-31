@@ -42,7 +42,7 @@ class HomeController extends Controller
         $articles = Article::where(['published' => 1])->select('id','title','alias','image','category_id')
             ->with(['category' => function($query){
                 $query->select('id','name','alias');
-            }])->oderBy('id','DESC')->get();
+            }])->orderBy('id','DESC')->get();
         $slider = Sliders::where(['published' => 1])->select('id','name','image','url','summary')->get();
         $students = Student::where(['published' => 1])->select('id','title','image','content','creator')->get();
         $partner = Partner::where(['published' => 1])->select('id','name','url','image')->get();
