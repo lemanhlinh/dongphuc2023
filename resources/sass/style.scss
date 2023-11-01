@@ -223,6 +223,7 @@ body {
                     margin-right: 5px;
                     i{
                         display: block;
+                        line-height: 32px;
                     }
                 }
                 .facebook{
@@ -501,6 +502,129 @@ body {
             a{
                 font-size: 14px;
             }
+        }
+    }
+}
+
+
+//#menu
+#cssmenu{
+    // background: #11b2ec;
+    font-weight: bold;
+    #megamenu{
+        float: right;
+        margin: 0;
+        height: 75px;
+        li{
+            list-style: none;
+        }
+    }
+
+    >ul{
+        > li
+        {
+            float: left;
+            line-height: 73px;
+            position: relative;
+            // border-right: 1px solid #258bcc;
+            >a{
+                color: #fff;
+                text-transform: uppercase;
+                font-weight: normal;
+                font-size: 12px;
+                i{
+                    font-size: 19px;
+                }
+                @media (min-width: 1200px){
+                }
+                @media (max-width: 1199px){
+                }
+            }
+            &:hover{
+                >ul{
+                    left: 0px;
+                    top: 100%;
+                    opacity: 1;
+                    display: block;
+                    padding: 0;
+                    margin: 0;
+                    border: none;
+                }
+            }
+            ul{
+                position: absolute;
+                left: -9999px;
+                top: 70px;
+                opacity: 0;
+                -webkit-transition: opacity .3s ease, top .25s ease;
+                -moz-transition: opacity .3s ease, top .25s ease;
+                -ms-transition: opacity .3s ease, top .25s ease;
+                -o-transition: opacity .3s ease, top .25s ease;
+                transition: opacity .3s ease, top .25s ease;
+                z-index: 1000;
+                li {
+                    position: relative;
+                    a {
+                        font-size: 13px;
+                        line-height: 18px;
+                        display: block;
+                        width: 230px;
+                        padding: 10px 20px !important;
+                        color: #ffffff;
+                        background: #f03e7d;
+                        -webkit-transition: all .35s ease;
+                        -moz-transition: all .35s ease;
+                        -ms-transition: all .35s ease;
+                        -o-transition: all .35s ease;
+                        transition: all .35s ease;
+                        text-transform: none;
+                        i{
+                            font-size: 4px;
+                            vertical-align: middle;
+                            margin-right: 10px;
+                        }
+                    }
+                    &:hover > a {
+                        background: #0072bb;
+                        color: #ffffff;
+                    }
+                    ul{
+                        opacity: 0;
+                    }
+                    &:hover{
+                        ul{
+                            left: 100%;
+                            opacity: 1;
+                            display: block;
+                            padding: 0;
+                            margin: 0;
+                            border: none;
+                            top: 0;
+                        }
+                    }
+                }
+            }
+        }
+        >li{
+            //@media (min-width: 992px){
+            padding: 5px 10px 0px;
+            //}
+            @media (min-width: 1200px){
+                padding: 0px 10px;
+            }
+
+            &:hover{
+                background-color: #f03e7d;
+                >a{
+                    color: #fff;
+                }
+            }
+            &:first-child{
+                >a{
+                    border-bottom: none !important;
+                }
+            }
+
         }
     }
 }

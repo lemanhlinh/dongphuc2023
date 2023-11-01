@@ -163,6 +163,7 @@ body footer .list-connect .connect-social a {
 }
 body footer .list-connect .connect-social a i {
   display: block;
+  line-height: 32px;
 }
 body footer .list-connect .connect-social .facebook {
   background: #0a53be;
@@ -409,4 +410,99 @@ body footer .list-connect .connect-social .instagram {
 }
 .menu-menufocal .menu-focal li a {
   font-size: 14px;
+}
+
+#cssmenu {
+  font-weight: bold;
+}
+#cssmenu #megamenu {
+  float: right;
+  margin: 0;
+  height: 75px;
+}
+#cssmenu #megamenu li {
+  list-style: none;
+}
+#cssmenu > ul > li {
+  float: left;
+  line-height: 73px;
+  position: relative;
+}
+#cssmenu > ul > li > a {
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: normal;
+  font-size: 12px;
+}
+#cssmenu > ul > li > a i {
+  font-size: 19px;
+}
+#cssmenu > ul > li:hover > ul {
+  left: 0px;
+  top: 100%;
+  opacity: 1;
+  display: block;
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+#cssmenu > ul > li ul {
+  position: absolute;
+  left: -9999px;
+  top: 70px;
+  opacity: 0;
+  transition: opacity 0.3s ease, top 0.25s ease;
+  z-index: 1000;
+}
+#cssmenu > ul > li ul li {
+  position: relative;
+}
+#cssmenu > ul > li ul li a {
+  font-size: 13px;
+  line-height: 18px;
+  display: block;
+  width: 230px;
+  padding: 10px 20px !important;
+  color: #ffffff;
+  background: #f03e7d;
+  transition: all 0.35s ease;
+  text-transform: none;
+}
+#cssmenu > ul > li ul li a i {
+  font-size: 4px;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+#cssmenu > ul > li ul li:hover > a {
+  background: #0072bb;
+  color: #ffffff;
+}
+#cssmenu > ul > li ul li ul {
+  opacity: 0;
+}
+#cssmenu > ul > li ul li:hover ul {
+  left: 100%;
+  opacity: 1;
+  display: block;
+  padding: 0;
+  margin: 0;
+  border: none;
+  top: 0;
+}
+#cssmenu > ul > li {
+  padding: 5px 10px 0px;
+}
+@media (min-width: 1200px) {
+  #cssmenu > ul > li {
+    padding: 0px 10px;
+  }
+}
+#cssmenu > ul > li:hover {
+  background-color: #f03e7d;
+}
+#cssmenu > ul > li:hover > a {
+  color: #fff;
+}
+#cssmenu > ul > li:first-child > a {
+  border-bottom: none !important;
 }

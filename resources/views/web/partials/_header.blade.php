@@ -23,11 +23,35 @@
                     @endif
                     <div class="col-lg-10 col-md-10 col-sm-9 col-xs-9 d-none d-sm-none d-md-block">
                         <nav class="row-item" id="nav">
-                            @if(!empty($menus))
-                                @foreach ($menus as $shop)
-                                    @include('web.components.menu.top', ['item'=>$shop])
-                                @endforeach
-                            @endif
+                            <div id="cssmenu" class="row-item">
+                                <ul id="megamenu" class="menu d-flex align-items-center">
+                                    @if(!empty($menus))
+                                        @foreach ($menus as $shop)
+                                            @include('web.components.menu.top', ['item'=>$shop])
+                                        @endforeach
+                                    @endif
+                                    <li class="s-icon d-none ">
+                                        <form class="search-form row-item" action="" name="search_form" id="search_form" method="get" >
+                                            <div class="search-form-new">
+                                                <input type="text" placeholder="Tìm kiếm ..." value="" id="autocomplete" name="keyword" autocomplete="off">
+                                                <button class="btn btn-lg btn-site" type="submit"><i class="fas fa-search"></i></button>
+                                            </div>
+                                        </form>
+                                    </li>
+                                    <li class="">
+                                        <a class="nav-link position-relative" href="{{ route('showCart') }}">
+                                            <span class="position-relative">
+                                                <i class="fas fa-shopping-cart"></i>
+                                                <span id="cart-top">
+                                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" >
+                                                        <span id="total_cart">{{ getCart() }}</span>
+                                                    </span>
+                                                </span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </nav>
                         <!-- END: nav -->
                     </div>
