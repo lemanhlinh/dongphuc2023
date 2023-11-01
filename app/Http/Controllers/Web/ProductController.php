@@ -188,33 +188,6 @@ class ProductController extends Controller
         }
     }
 
-    public function payment()
-    {
-        $cart = Session::get('cart', []);
-
-        // Duyệt qua các sản phẩm trong giỏ hàng để lấy thông tin sản phẩm
-        $cartItems = [];
-        $total_price = 0;
-        if (!$cart){
-            Session::flash('danger', 'Chưa có sản phẩm nào trong giỏ hàng');
-            return redirect()->route('home');
-        }
-        foreach ($cart as $productId => $item) {
-            $product = Product::where(['id' => $productId])->first();
-            $quantity = $item['quantity']; // Số lượng
-            // Thêm thông tin sản phẩm vào danh sách
-            $cartItems[] = [
-                'product' => $product,
-                'image' => json_decode($product->images),
-                'quantity' => $quantity,
-                'subtotal' => $product->price * $quantity, // Tính tổng tiền cho mỗi sản phẩm
-            ];
-            $total_price = $total_price + $product->price * $quantity;
-        }
-
-        return view('web.cart.payment', compact('cart','cartItems','total_price'));
-    }
-
     public function order (CreateOrder $req){
         DB::beginTransaction();
         try {

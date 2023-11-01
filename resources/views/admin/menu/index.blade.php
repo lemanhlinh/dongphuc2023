@@ -34,6 +34,13 @@
                 <li>
                     <input type="checkbox" id="home" value="0" data-link="{{ route('home') }}" data-name="Trang chủ"><label for="home">Trang chủ</label>
                 </li>
+                @if(!empty($pages))
+                    @foreach($pages as $k => $page)
+                        <li>
+                            <input type="checkbox" id="page_{{ $page->id }}" value="{{ $page->id }}"  data-link="{{ route('detailPage',['slug'=>$page->alias]) }}" data-name="{{ $page->title }}"><label for="page_{{ $page->id }}">{{ $page->title }}</label>
+                        </li>
+                    @endforeach
+                @endif
                 @if(!empty($product_categories))
                     @foreach($product_categories as $k => $product)
                         <li>
@@ -48,6 +55,9 @@
                         </li>
                     @endforeach
                 @endif
+                <li>
+                    <input type="checkbox" id="contact" value="0" data-link="{{ route('contact') }}" data-name="Liên hệ"><label for="contact">Liên hệ</label>
+                </li>
                 <li>
                     <input type="checkbox" id="menu_other" value="0" data-link="#" data-name="Link bên ngoài"><label for="menu_other">Link bên ngoài</label>
                 </li>

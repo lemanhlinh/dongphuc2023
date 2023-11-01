@@ -13,7 +13,7 @@
                     @if (request()->is('home'))
                     <h1 class="text-reset d-inline col-lg-2 col-md-2 col-sm-6 col-6 m-0">
                         <a class="logo-image" href="{{ route('home') }}" title="{{ $setting['site_name'] }}">
-                            <img class="img-fluid logo-cati" width="61" height="61" src="{{ route('home') }}" alt="{{ $setting['site_name'] }}" />
+                            <img class="img-fluid logo-cati" width="61" height="61" src="{{ $setting['logo'] }}" alt="{{ $setting['site_name'] }}" />
                         </a>
                     </h1>
                     @else
