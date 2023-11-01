@@ -240,8 +240,9 @@ class ProductController extends Controller
                 ]);
             }
             DB::commit();
+            Session::forget('cart');
             Session::flash('success', trans('message.create_order_success'));
-            return redirect()->route('orderProductSuccess',['id'=>$order->id]);
+            return redirect()->route('home');
         } catch (\Exception $ex) {
             DB::rollBack();
             \Log::info([
@@ -254,13 +255,5 @@ class ProductController extends Controller
             return redirect()->back();
         }
         return redirect()->back();
-    }
-
-
-
-    public function success ($id){
-//        Session::forget('cart');
-//        $order = Order::findOrFail($id);
-        return view('web.cart.register_success');
     }
 }

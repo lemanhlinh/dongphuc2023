@@ -30,7 +30,6 @@ Route::group(['namespace' => 'Web'], function (){
 
     Route::get('/checkout/payment', 'ProductController@payment')->name('payment');
     Route::get('/xoa-san-pham/{id}', 'ProductController@removeItem')->name('removeItem');
-    Route::get('dat-hang-thanh-cong/{id}', 'ProductController@success')->name('orderProductSuccess');
 
 
     Route::post('/them-vao-gio-hang', 'ProductController@addToCart')->name('addToCart');
