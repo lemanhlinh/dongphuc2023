@@ -24,26 +24,23 @@ class CreateOrder extends FormRequest
     public function rules()
     {
         return [
-            'full_name' => 'required',
-            'email' => 'required|email',
-            'phone' => [
+            'sender_name' => 'required',
+            'sender_telephone' => [
                 'required',
                 'regex:/^(0|\+84)[0-9]{9,10}$/'
             ],
-            'address' => 'nullable',
-            'gender' => 'required',
-            'note' => 'nullable'
+            'sender_address' => 'required',
+            'sender_comments' => 'nullable'
         ];
     }
 
     public function messages()
     {
         return [
-            'full_name.required' => 'Vui lòng nhập Họ tên.',
-            'email.required' => 'Vui lòng nhập địa chỉ email.',
-            'email.email' => 'Định dạng email không hợp lệ.',
-            'phone.required' => 'Số điện thoại là bắt buộc.',
-            'phone.regex' => 'Số điện thoại không hợp lệ. Vui lòng nhập số điện thoại bắt đầu bằng số 0 và có 9-10 chữ số.'
+            'sender_name.required' => 'Vui lòng nhập Họ tên.',
+            'sender_address.required' => 'Vui lòng nhập địa chỉ.',
+            'sender_telephone.required' => 'Số điện thoại là bắt buộc.',
+            'sender_telephone.regex' => 'Số điện thoại không hợp lệ. Vui lòng nhập số điện thoại bắt đầu bằng số 0 và có 9-10 chữ số.'
         ];
     }
 }

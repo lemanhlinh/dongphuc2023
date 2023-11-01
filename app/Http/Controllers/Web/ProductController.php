@@ -234,8 +234,9 @@ class ProductController extends Controller
                     'order_id' => $order->id,
                     'product_id' => $productId,
                     'product_title' => $product->title,
-                    'product_number' => $quantity,
-                    'product_price' => $product->price,
+                    'quantity' => $quantity,
+                    'price' => $product->price,
+                    'total' => $product->price*$quantity,
                 ]);
             }
             DB::commit();

@@ -89,20 +89,20 @@
                     <h2 class="title-address">
                         Địa chỉ giao hàng
                     </h2>
-                    <form id="order_form_address" name="order_form_address" method="post" action="{{ route('order') }}}">
+                    <form id="order_form_address" name="order_form_address" method="post" action="{{ route('order') }}">
                         @csrf
                         <input type="hidden" id="method_pay" name="method_pay" value="1" >
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" name="name_customer" value="{{ old('name_customer') }}" placeholder="Họ và tên*" required>
+                            <input type="text" class="form-control" name="sender_name" value="{{ old('sender_name') }}" placeholder="Họ và tên*" required>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" name="phone_customer" value="{{ old('phone_customer') }}" placeholder="Điện thoại*" required>
+                            <input type="text" class="form-control" name="sender_telephone" value="{{ old('sender_telephone') }}" placeholder="Điện thoại*" required>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" name="address_customer" value="{{ old('address_customer') }}" placeholder="Địa chỉ*" required>
+                            <input type="text" class="form-control" name="sender_address" value="{{ old('sender_address') }}" placeholder="Địa chỉ*" required>
                         </div>
                         <div class="form-floating mb-3">
-                            <textarea class="form-control" placeholder="Ghi chú đơn hàng" id="note_order" name="note_order" style="height: 140px">{{ old('note_order') }}</textarea>
+                            <textarea class="form-control" placeholder="Ghi chú đơn hàng" id="sender_comments" name="sender_comments" style="height: 140px">{{ old('sender_comments') }}</textarea>
                             <label for="floatingTextarea">Ghi chú đơn hàng</label>
                         </div>
                         <div class="row">
@@ -112,9 +112,6 @@
                             </div>
                         </div>
                         <input type="hidden" name="total_price" value="{{ $total_price }}">
-                        <input type="hidden" name='module' value='products' />
-                        <input type="hidden" name='view' value='cart' />
-                        <input type="hidden" name='task' value='save' />
                         <input type="text" name="contact_me_by_fax_only" style="opacity: 0 !important" tabindex="-1" autocomplete="off">
                     </form>
                 </div>
@@ -132,7 +129,7 @@
                         </ul>
                     </div>
                     <div class="button-pay text-center">
-                        <a href="#form_order">Tiến hành đặt hàng</a>
+                        <a href="#form_order" id="submit_form">Tiến hành đặt hàng</a>
                     </div>
                 </div>
             </div>
@@ -152,75 +149,7 @@
     <script>
         $(".input-radio").click(function () {
             var id = $(this).val();
-            console.log(id);
             $("#method_pay").val(id);
         });
-        $(".continue-buy").click(function () {
-            document.order_form.submit();
-        });
-        $(".del-pro-link").click(function () {
-            var id = $(this).attr("data-id");
-            var data_model = $(this).attr("data-model");
-
-            $.ajax({
-                type: 'GET',
-                dataType: 'json',
-                url: '/index.php?module=products&view=cart&raw=1&task=edel',
-                data: "id=" + id + "&data_model=" + data_model,
-                success: function () {
-                    window.location.reload(true);
-                }
-            });
-        });
-
-        function validateUpdateCart(){
-            var data = $('form#order_form').serialize();
-            $.ajax({
-                type : 'POST',
-                url : 'index.php?module=products&view=cart&raw=1&task=updateCart',
-                dataType : 'json',
-                data: data,
-                success : function(data){
-                    $("#wrapper-popup").html(data.html).show(500);
-                },
-            });
-            return false;
-        }
-
-        function reloaddistrict($city_id)
-        {
-            $.ajax({
-                type : 'get',
-                url : '/index.php?module=products&view=cart&raw=1&task=ajax_load_district',
-                dataType : 'html',
-                data: {city_id:$city_id},
-                success : function(data){
-                    $("#district").html(data);
-                    $('#district').removeAttr('disabled');
-                    return true;
-                },
-                error : function(XMLHttpRequest, textStatus, errorThrown) {}
-            });
-            return false;
-        }
-
-        function reloadwards($city_id)
-        {
-            console.log($city_id);
-            $.ajax({
-                type : 'get',
-                url : '/index.php?module=products&view=cart&raw=1&task=ajax_load_ward',
-                dataType : 'html',
-                data: {district_id:$city_id},
-                success : function(data){
-
-                    $("#wards").html(data);
-                    $('#wards').removeAttr('disabled');
-                    return true;
-                },
-                error : function(XMLHttpRequest, textStatus, errorThrown) {}
-            });
-            return false;
-        }
     </script>
 @endsection
