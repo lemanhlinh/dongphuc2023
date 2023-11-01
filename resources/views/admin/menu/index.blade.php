@@ -37,14 +37,14 @@
                 @if(!empty($product_categories))
                     @foreach($product_categories as $k => $product)
                         <li>
-                            <input type="checkbox" id="product_{{ $product->id }}" value="{{ $product->id }}"  data-link="" data-name="{{ $product->title }}"><label for="product_{{ $product->id }}">{{ $product->title }}</label>
+                            <input type="checkbox" id="product_{{ $product->id }}" value="{{ $product->id }}"  data-link="{{ route('catProduct',['slug'=>$product->alias]) }}" data-name="{{ $product->name }}"><label for="product_{{ $product->id }}">{{ $product->name }}</label>
                         </li>
                     @endforeach
                 @endif
                 @if(!empty($article_categories))
                     @foreach($article_categories as $k => $article)
                         <li>
-                            <input type="checkbox" id="article_{{ $article->id }}" value="{{ $article->id }}"  data-link="{{ route('catArticle',['slug'=>$article->alias]) }}" data-name="{{ $article->title }}"><label for="article_{{ $article->id }}">{{ $article->title }}</label>
+                            <input type="checkbox" id="article_{{ $article->id }}" value="{{ $article->id }}"  data-link="{{ route('catArticle',['slug'=>$article->alias]) }}" data-name="{{ $article->name }}"><label for="article_{{ $article->id }}">{{ $article->name }}</label>
                         </li>
                     @endforeach
                 @endif
