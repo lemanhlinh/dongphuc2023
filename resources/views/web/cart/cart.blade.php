@@ -94,12 +94,27 @@
                         <input type="hidden" id="method_pay" name="method_pay" value="1" >
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" name="sender_name" value="{{ old('sender_name') }}" placeholder="Họ và tên*" required>
+                            @if ($errors->has('sender_name'))
+                                <p class="help-block text-danger">
+                                    <strong>{{ $errors->first('sender_name') }}</strong>
+                                </p>
+                            @endif
                         </div>
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" name="sender_telephone" value="{{ old('sender_telephone') }}" placeholder="Điện thoại*" required>
+                            @if ($errors->has('sender_telephone'))
+                                <p class="help-block text-danger">
+                                    <strong>{{ $errors->first('sender_telephone') }}</strong>
+                                </p>
+                            @endif
                         </div>
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" name="sender_address" value="{{ old('sender_address') }}" placeholder="Địa chỉ*" required>
+                            @if ($errors->has('sender_address'))
+                                <p class="help-block text-danger">
+                                    <strong>{{ $errors->first('sender_address') }}</strong>
+                                </p>
+                            @endif
                         </div>
                         <div class="form-floating mb-3">
                             <textarea class="form-control" placeholder="Ghi chú đơn hàng" id="sender_comments" name="sender_comments" style="height: 140px">{{ old('sender_comments') }}</textarea>
