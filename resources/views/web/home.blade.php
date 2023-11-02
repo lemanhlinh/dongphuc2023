@@ -83,16 +83,12 @@
                 </div>
                 <div id="block_id_30" class="newslist-content" >
                     <h2 class="titl-newslist">GÓC CHIA SẺ KINH NGHIỆM</h2>
-                    <ul class="list-news-a">
+                    <ul class="list-contract">
                         @forelse($articles as $item)
                         <li class="">
-                            <a href="{{ route('detailArticle',['cat_slug' => $item->category->alias,'slug' => $item->alias]) }}" title="{{ $item->title }}>" >
+                            <a href="{{ route('detailArticle',['cat_slug' => $item->category->alias,'slug' => $item->alias]) }}" title="{{ $item->title }}" >
                                 <img src="{{ asset(str_replace('/original/', '/resized/', $item->image)) }}" class="img-fluid">
                                 <h3 title="{{ $item->title }}">{{ $item->title }}</h3>
-                            </a>
-                            <span class="summary-home-new">{{ $item->summary }}</span>
-                            <a href="{{ route('detailArticle',['cat_slug' => $item->category->alias,'slug' => $item->alias]) }}" title="{{ $item->title }}" >
-                                <p class="text-center phm" style="color: #0067b8;"><i class="fas fa-arrow-right"></i> Xem thêm</p>
                             </a>
                         </li>
                         @empty
@@ -218,10 +214,10 @@
             ]
         });
 
-        $('.list-news-a').slick({
+        $('.list-contract').slick({
             infinite: true,
-            slidesToShow: 4,
-            slidesToScroll: 4,
+            slidesToShow: 5,
+            slidesToScroll: 5,
             arrows: true,
             responsive: [
                 {
