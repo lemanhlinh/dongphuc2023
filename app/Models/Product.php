@@ -20,6 +20,10 @@ class Product extends Model
         'slug_cat',
     ];
 
+    protected $attributes = [
+        'image_size' => 'default',
+    ];
+
     protected $guarded = ['id'];
 
     protected $table = 'products';
