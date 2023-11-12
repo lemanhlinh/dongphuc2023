@@ -22,8 +22,8 @@ class ConvertImages
         $response = $next($request);
 
         // Kiểm tra nếu response là ảnh và chưa phải là WebP
-        if ($response->isSuccessful() && $response->headers->get('content-type') && !str_contains($response->headers->get('content-type'), 'webp')) {
-            $content = $response->getContent();
+         if ($response->isSuccessful() && $response->headers->get('content-type') && \Str::contains($response->headers->get('content-type'), 'image')) {
+			$content = $response->getContent();
             $path = public_path($request->getPathInfo());
             if (!file_exists($path)) {
                 return $response;
@@ -32,6 +32,7 @@ class ConvertImages
 
             // Kiểm tra model và thay đổi kích thước ảnh tương ứng
             $model = $this->getModelFromPath($request->getPathInfo());
+			dd($model);
             $this->resizeImage($image, $model);
 
             $response->headers->set('Content-Type', 'image/webp');
