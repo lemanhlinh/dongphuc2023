@@ -433,6 +433,7 @@ body footer .list-connect .connect-social .instagram {
   text-transform: uppercase;
   font-weight: normal;
   font-size: 12px;
+  padding: 0;
 }
 #cssmenu > ul > li > a i {
   font-size: 19px;
