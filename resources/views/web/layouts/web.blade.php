@@ -39,6 +39,10 @@
                 )
             }
         }
+
+        setTimeout(function(){
+            $('#fs-popup-home').modal('show');
+        },7000);
     </script>
     <div id="fb-root"></div>
     <script>(function(d, s, id) {

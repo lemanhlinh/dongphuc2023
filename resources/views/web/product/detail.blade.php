@@ -187,12 +187,15 @@
 
         function get_info(id){
             $.ajax({
-                type : 'GET',
-                dataType: 'json',
-                url : '/index.php?module=products&view=product&raw=1&task=contact_product',
-                data: 'id='+id,
+                type : 'POST',
+                url : '{{ route('contactProduct') }}',
+                data: {
+                    id: id,
+                    saveQuote: "{{ route('saveQuote') }}",
+                    _token: $('meta[name="csrf-token"]').attr("content")
+                },
                 success : function(data){
-                    $("#wrapper-popup-2").html(data.html);
+                    $("#wrapper-popup-2").html(data);
                     ajax_pop_cart();
                 },
                 error : function(XMLHttpRequest, textStatus, errorThrown) {

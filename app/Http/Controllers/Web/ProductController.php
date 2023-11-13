@@ -10,6 +10,7 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
 use App\Models\ProductsCategories;
+use App\Models\ProductsContacts;
 use App\Models\ProductsImages;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\SEOTools;
@@ -246,6 +247,46 @@ class ProductController extends Controller
             ]);
 
             Session::flash('danger', trans('message.create_order_error'));
+            return redirect()->back();
+        }
+        return redirect()->back();
+    }
+
+    public function contactProduct(Request $request){
+        $product_id = $request->input('id');
+        $router = $request->input('saveQuote');
+        return view('web.product.ajax.formQuote', compact('product_id','router'));
+    }
+
+    public function saveQuote(Request $request)
+    {
+        $id_product =  $request->input('id');
+        $product = Product::findOrFail($id_product);
+        DB::beginTransaction();
+        try {
+            ProductsContacts::create(
+                [
+                    'fullname' => $request->input('name_contact'),
+                    'content' => $request->input('name_contact'),
+                    'telephone' => $request->input('phone_contact'),
+                    'email' => $request->input('email_contact'),
+                    'id_product' => $id_product,
+                    'name_product' => $product->name,
+                    'number_product' => $request->input('number_contact'),
+                ]
+            );
+            DB::commit();
+            Session::flash('success', trans('message.create_contact_success'));
+            return redirect()->back();
+        } catch (\Exception $ex) {
+            DB::rollBack();
+            \Log::info([
+                'message' => $ex->getMessage(),
+                'line' => __LINE__,
+                'method' => __METHOD__
+            ]);
+
+            Session::flash('danger', trans('message.create_contact_error'));
             return redirect()->back();
         }
         return redirect()->back();
