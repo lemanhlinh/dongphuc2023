@@ -62,7 +62,7 @@ class ArticleController extends Controller
      */
     public function detail($cat_slug, $slug)
     {
-        $article = $this->articleRepository->getOneBySlug($slug);
+        $article = Article::where('alias',$slug)->with(['category'])->first();
         if (!$article) {
             abort(404);
         }

@@ -18,7 +18,7 @@
                     </h1>
                     @else
                         <a class="logo-image col-lg-2 col-md-2 col-sm-6 col-6" href="{{ route('home') }}" title="{{ $setting['site_name'] }}">
-                            <img class="img-fluid logo-cati" width="61" height="61" src="{{ $setting['logo'] }}" alt="{{ $setting['site_name'] }}" />
+                            <img class="img-fluid logo-cati" width="61" height="61" src="{{ asset($setting['logo']) }}" alt="{{ $setting['site_name'] }}" />
                         </a>
                     @endif
                     <div class="col-lg-10 col-md-10 col-sm-9 col-xs-9 d-none d-sm-none d-md-block">

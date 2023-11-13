@@ -6,20 +6,7 @@
             <div class="clearfix"></div>
             <section id="main-breadcrumbs" class="main-breadcrumbs">
                 <div class="breadcrumbs row-item">
-                    <ol class="breadcrumb row-item">
-                        <li class="breadcrumb-item breadcumbs-first">
-                            <a title="Đồng Phục Cati - Công Ty May In Đồng Phục Uy Tín Chất Lượng"
-                               href="https://dongphuccati.com/" rel="nofollow">
-                                Trang chủ</a>
-                        </li>
-                        <li class="breadcrumb-item ">
-                            <a href="javascript: void(0)" title="Giới thiệu">
-                                Giới thiệu</a>
-                        </li>
-                        <li class="breadcrumb-item active">
-                            ĐỒNG PHỤC CATI
-                        </li>
-                    </ol><!-- END: .breadcrumb-content -->
+                    {{ Breadcrumbs::render('contact') }}
                 </div><!-- END: .breadcrumb -->
                 <div class="clear"></div>
             </section>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Models\Banners;
 use App\Models\Page;
+use App\Models\PageCategories;
 use App\Models\ProductsCategories;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\SEOTools;
@@ -18,6 +19,7 @@ class PageController extends Controller
         if (!$page) {
             abort(404);
         }
+        $cat = PageCategories::where(['published' => 1,'id' => $page->category_id])->select('id','name','alias')->first();
         $banners = Banners::where(['published' => 1])->select('id','name','alias','image','link')->get();
         $cat_product_home = ProductsCategories::where(['published' => 1,'show_in_homepage' => 1])->select('id','name','alias')->withDepth()->defaultOrder()->get()->toTree();
 
@@ -30,6 +32,6 @@ class PageController extends Controller
         SEOTools::twitter()->setSite(\Request::root());
         SEOMeta::setKeywords($page->seo_keyword?$page->seo_keyword:$page->title);
 
-        return view('web.page.home', compact('page','banners','cat_product_home'));
+        return view('web.page.home', compact('page','banners','cat_product_home','cat'));
     }
 }
