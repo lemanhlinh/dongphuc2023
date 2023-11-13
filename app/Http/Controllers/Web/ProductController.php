@@ -11,6 +11,8 @@ use App\Models\OrderItem;
 use App\Models\Product;
 use App\Models\ProductsCategories;
 use App\Models\ProductsImages;
+use Artesaos\SEOTools\Facades\SEOMeta;
+use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Http\Request;
 use App\Repositories\Contracts\ProductCategoryInterface;
 use App\Repositories\Contracts\ProductInterface;
@@ -36,6 +38,16 @@ class ProductController extends Controller
             ->limit(10)->paginate(30 ?? config('data.limit', 20));
         $cat_product_home = ProductsCategories::where(['published' => 1,'show_in_homepage' => 1])->select('id','name','alias')->withDepth()->defaultOrder()->get()->toTree();
         $banners = Banners::where(['published' => 1])->select('id','name','alias','image','link')->get();
+
+        SEOTools::setTitle($cat->seo_title?$cat->seo_title:$cat->name);
+        SEOTools::setDescription($cat->seo_description?$cat->seo_description:$cat->description);
+        SEOTools::addImages($cat->image?asset($cat->image):null);
+        SEOTools::setCanonical(url()->current());
+        SEOTools::opengraph()->setUrl(url()->current());
+        SEOTools::opengraph()->addProperty('type', 'articles');
+        SEOTools::twitter()->setSite(\Request::root());
+        SEOMeta::setKeywords($cat->seo_keyword?$cat->seo_keyword:$cat->name);
+
         return view('web.product.cat',compact('cat','products','cat_product_home','banners'));
     }
 
@@ -45,6 +57,15 @@ class ProductController extends Controller
         $product_related = Product::select('id','name','alias', 'category_id' ,'image','category_alias','created_time','image_after')->where(['category_id' => $product->category_id,'published' => 1])->limit(6)->get();
         $cat_product_home = ProductsCategories::where(['published' => 1,'show_in_homepage' => 1])->select('id','name','alias')->withDepth()->defaultOrder()->get()->toTree();
         $banners = Banners::where(['published' => 1])->select('id','name','alias','image','link')->get();
+
+        SEOTools::setTitle($product->seo_title?$product->seo_title:$product->name);
+        SEOTools::setDescription($product->seo_description?$product->seo_description:$product->name);
+        SEOTools::addImages($product->image?asset($product->image):null);
+        SEOTools::setCanonical(url()->current());
+        SEOTools::opengraph()->setUrl(url()->current());
+        SEOTools::opengraph()->addProperty('type', 'articles');
+        SEOTools::twitter()->setSite(\Request::root());
+        SEOMeta::setKeywords($product->seo_keyword?$product->seo_keyword:$product->name);
 
         return view('web.product.detail',compact('product','cat_product_home','banners','product_related','cat_slug','product_images'));
     }
