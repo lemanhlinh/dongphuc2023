@@ -8,8 +8,11 @@ use App\Models\AttributeValues;
 use App\Models\Banners;
 use App\Models\Partner;
 use App\Models\Product;
+use App\Models\Setting;
 use App\Models\Sliders;
 use App\Models\Student;
+use Artesaos\SEOTools\Facades\SEOMeta;
+use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Http\Request;
 use App\Repositories\Contracts\ArticleInterface;
 use App\Repositories\Contracts\SlideInterface;
@@ -39,6 +42,20 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $logo = Setting::where('name', 'logo')->first();
+        $title = Setting::where('name', 'title')->first();
+        $meta_des = Setting::where('name', 'meta_des')->first();
+        $meta_key = Setting::where('name', 'meta_key')->first();
+
+        SEOTools::setTitle($title->value);
+        SEOTools::setDescription($meta_des->value);
+        SEOMeta::setKeywords($meta_key->value);
+        SEOTools::addImages(asset($logo->value));
+        SEOTools::setCanonical(url()->current());
+        SEOTools::opengraph()->setUrl(url()->current());
+        SEOTools::opengraph()->addProperty('type', 'articles');
+        SEOTools::twitter()->setSite(\Request::root());
+
         $articles = Article::where(['published' => 1])->select('id','title','alias','image','category_id')
             ->with(['category' => function($query){
                 $query->select('id','name','alias');
