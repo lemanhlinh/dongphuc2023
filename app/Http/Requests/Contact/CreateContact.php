@@ -26,7 +26,6 @@ class CreateContact extends FormRequest
         return [
             'full_name' => 'required',
             'phone' => 'required',
-            'title' => 'required',
             'content' => 'required',
             'email' => 'required'
         ];

@@ -57,9 +57,8 @@ class ContactController extends Controller
                 [
                     'full_name' => $data['full_name'],
                     'content' => $data['content'],
-                    'phone' => $data['phone'],
+                    'telephone' => $data['phone'],
                     'email' => $data['email'],
-                    'title' =>  $data['title'],
                 ]
             );
             DB::commit();

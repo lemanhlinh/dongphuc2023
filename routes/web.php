@@ -31,7 +31,7 @@ Route::group(['namespace' => 'Web'], function (){
     Route::post('/them-vao-gio-hang', 'ProductController@addToCart')->name('addToCart');
     Route::post('/update-gio-hang', 'ProductController@updateCart')->name('updateCart');
     Route::post('/order', 'ProductController@order')->name('order');
-
+    Route::post('/lien-he', 'ContactController@store')->name('detailContactStore');
 });
 
 //Route::any('/ckfinder/connector', '\CKSource\CKFinderBridge\Controller\CKFinderController@requestAction')
