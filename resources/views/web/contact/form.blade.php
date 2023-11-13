@@ -1,5 +1,6 @@
 <div class="contact_form row-item">
     <form method="post" action="{{ route('detailContactStore') }}" name="contact" class="form" enctype="multipart/form-data">
+        @csrf
         <div class="row">
             <div class="col-12">
                 <input type="text" maxlength="255"  name="full_name" placeholder='Họ và tên' id="full_name" value="" class="form_control" required/>
