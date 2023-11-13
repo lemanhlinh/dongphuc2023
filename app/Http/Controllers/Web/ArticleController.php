@@ -38,7 +38,6 @@ class ArticleController extends Controller
         if (!$category) {
             abort(404);
         }
-        $article = $this->articleRepository->paginate(10,['id','alias','image','summary','title','published','created_at'],['published'=>1,'category_id'=>$category->id],['category']);
         $article = Article::select('id','alias','image','summary','title','published','created_at')->where(['published'=>1,'category_id'=>$category->id])->orderBy('id','DESC')->with(['category'])->paginate(10);
         $cat_product_home = ProductsCategories::where(['published' => 1,'show_in_homepage' => 1])->select('id','name','alias')->withDepth()->defaultOrder()->get()->toTree();
         $banners = Banners::where(['published' => 1])->select('id','name','alias','image','link')->get();
