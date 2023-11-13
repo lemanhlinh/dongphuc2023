@@ -32,7 +32,6 @@ class ConvertImages
 
             // Kiểm tra model và thay đổi kích thước ảnh tương ứng
             $model = $this->getModelFromPath($request->getPathInfo());
-			dd($model);
             $this->resizeImage($image, $model);
 
             $response->headers->set('Content-Type', 'image/webp');

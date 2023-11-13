@@ -32,31 +32,31 @@
         <div class="col-sm-6">
             <ul id="item-list">
                 <li>
-                    <input type="checkbox" id="home" value="0" data-link="{{ route('home') }}" data-name="Trang chủ"><label for="home">Trang chủ</label>
+                    <input type="checkbox" id="home" value="0" data-link="{{ route('home') }}" data-name="Trang chủ" data-name-url="home" data-name-att=""><label for="home">Trang chủ</label>
                 </li>
                 @if(!empty($pages))
                     @foreach($pages as $k => $page)
                         <li>
-                            <input type="checkbox" id="page_{{ $page->id }}" value="{{ $page->id }}"  data-link="{{ route('detailPage',['slug'=>$page->alias]) }}" data-name="{{ $page->title }}"><label for="page_{{ $page->id }}">{{ $page->title }}</label>
+                            <input type="checkbox" id="page_{{ $page->id }}" value="{{ $page->id }}" data-link="{{ route('detailPage',['slug'=>$page->alias]) }}" data-name-url="detailPage" data-name-att="slug:{{ $page->alias }}" data-name="{{ $page->title }}"><label for="page_{{ $page->id }}">{{ $page->title }}</label>
                         </li>
                     @endforeach
                 @endif
                 @if(!empty($product_categories))
                     @foreach($product_categories as $k => $product)
                         <li>
-                            <input type="checkbox" id="product_{{ $product->id }}" value="{{ $product->id }}"  data-link="{{ route('catProduct',['slug'=>$product->alias]) }}" data-name="{{ $product->name }}"><label for="product_{{ $product->id }}">{{ $product->name }}</label>
+                            <input type="checkbox" id="product_{{ $product->id }}" value="{{ $product->id }}"  data-link="{{ route('catProduct',['slug'=>$product->alias]) }}" data-name-url="catProduct" data-name-att="slug:{{ $product->alias }}" data-name="{{ $product->name }}"><label for="product_{{ $product->id }}">{{ $product->name }}</label>
                         </li>
                     @endforeach
                 @endif
                 @if(!empty($article_categories))
                     @foreach($article_categories as $k => $article)
                         <li>
-                            <input type="checkbox" id="article_{{ $article->id }}" value="{{ $article->id }}"  data-link="{{ route('catArticle',['slug'=>$article->alias]) }}" data-name="{{ $article->name }}"><label for="article_{{ $article->id }}">{{ $article->name }}</label>
+                            <input type="checkbox" id="article_{{ $article->id }}" value="{{ $article->id }}"  data-link="{{ route('catArticle',['slug'=>$article->alias]) }}" data-name-url="catArticle" data-name-att="slug:{{ $article->slug }}" data-name="{{ $article->name }}"><label for="article_{{ $article->id }}">{{ $article->name }}</label>
                         </li>
                     @endforeach
                 @endif
                 <li>
-                    <input type="checkbox" id="contact" value="0" data-link="{{ route('contact') }}" data-name="Liên hệ"><label for="contact">Liên hệ</label>
+                    <input type="checkbox" id="contact" value="0" data-link="{{ route('contact') }}" data-name="Liên hệ" data-name-url="detailContact" data-name-att=""><label for="contact">Liên hệ</label>
                 </li>
                 <li>
                     <input type="checkbox" id="menu_other" value="0" data-link="#" data-name="Link bên ngoài"><label for="menu_other">Link bên ngoài</label>
@@ -186,6 +186,8 @@
                     data: {
                         name: item.getAttribute("data-name"),
                         link: item.getAttribute("data-link"),
+                        name_url: item.getAttribute("data-name-url"),
+                        name_att: item.getAttribute("data-name-att"),
                         category_id: $('#category_id').val(),
                         _token : $('meta[name="csrf-token"]').attr("content")
                     },
