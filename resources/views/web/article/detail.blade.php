@@ -106,7 +106,7 @@
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="banner-list">
                                     <div class="banner_item_0 banner_item" >
-                                        @if($item->image)
+                                        @if($item->type == 1)
                                         <p style="text-align: center;">
                                             <a href="{{ $item->link }}">
                                                 <img alt="{{ $item->name }}" src="{{ asset($item->image) }}" class="img-fluid">

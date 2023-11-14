@@ -72,15 +72,17 @@
                         @forelse($banners as $item)
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="banner-list">
-
                                     <div class="banner_item_0 banner_item" id="banner_item_29">
-                                        <p style="text-align: center;"><a
-                                                href="{{ $item->link }}"><img
-                                                    alt="{{ $item->name }}"
-                                                    src="{{ asset($item->image) }}"
-                                                    style="width: 235px; height: 610px;"></a></p>
+                                        @if($item->type == 1)
+                                        <p style="text-align: center;">
+                                            <a href="{{ $item->link }}">
+                                                <img alt="{{ $item->name }}" src="{{ asset($item->image) }}" class="img-fluid">
+                                            </a>
+                                        </p>
+                                        @else
+                                            {!! $item->content !!}
+                                        @endif
                                     </div>
-
                                 </div>
                             </div>
                             <div class="clearfix"></div>

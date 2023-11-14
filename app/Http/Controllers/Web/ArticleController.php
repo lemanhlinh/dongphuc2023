@@ -40,7 +40,7 @@ class ArticleController extends Controller
         }
         $article = Article::select('id','alias','image','summary','title','published','created_at')->where(['published'=>1,'category_id'=>$category->id])->orderBy('id','DESC')->with(['category'])->paginate(10);
         $cat_product_home = ProductsCategories::where(['published' => 1,'show_in_homepage' => 1])->select('id','name','alias')->withDepth()->defaultOrder()->get()->toTree();
-        $banners = Banners::where(['published' => 1])->select('id','name','alias','image','link')->get();
+        $banners = Banners::where(['published' => 1])->select('id','name','alias','image','link','content','type')->get();
 
         SEOTools::setTitle($category->seo_title?$category->seo_title:$category->name);
         SEOTools::setDescription($category->seo_description?$category->seo_description:$category->name);
@@ -66,7 +66,7 @@ class ArticleController extends Controller
             abort(404);
         }
         $cat_product_home = ProductsCategories::where(['published' => 1,'show_in_homepage' => 1])->select('id','name','alias')->withDepth()->defaultOrder()->get()->toTree();
-        $banners = Banners::where(['published' => 1])->select('id','name','alias','image','link')->get();
+        $banners = Banners::where(['published' => 1])->select('id','name','alias','image','link','content','type')->get();
         $relate_news_list = Article::where(['published' => 1,'category_id' => $article->category_id])->select('id','title','alias','image')->limit(4)->get();
 
         SEOTools::setTitle($article->seo_title?$article->seo_title:$article->title);
