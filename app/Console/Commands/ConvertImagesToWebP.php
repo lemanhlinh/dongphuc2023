@@ -45,7 +45,8 @@ class ConvertImagesToWebP extends Command
 
         foreach ($images as $image) {
             $path = public_path($image->image);
-            $webpPath = public_path(pathinfo($image->image, PATHINFO_FILENAME) . '.webp');
+            $urlPath = pathinfo($image->image, PATHINFO_DIRNAME);
+            $webpPath = public_path($urlPath.pathinfo($image->image, PATHINFO_FILENAME) . '.webp');
 
             if (File::exists($path)) {
                 $thumbnail = Image::make($path)->resize(400, null,function ($constraint) {
