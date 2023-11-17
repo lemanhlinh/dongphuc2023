@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\Product;
 use App\Models\Sliders;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 
 class ConvertImagesToWebP extends Command
