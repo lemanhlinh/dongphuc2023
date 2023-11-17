@@ -113,7 +113,7 @@
                                             </a>
                                         </p>
                                         @else
-                                            {{ $item->content }}
+                                            {!! $item->content !!}
                                         @endif
                                     </div>
                                 </div>
