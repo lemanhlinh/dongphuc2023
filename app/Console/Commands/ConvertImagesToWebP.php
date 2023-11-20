@@ -44,7 +44,7 @@ class ConvertImagesToWebP extends Command
      */
     public function handle()
     {
-        $images = Student::select('id','image')->get();
+        $images = Partner::select('id','image')->get();
 
         foreach ($images as $image) {
             if ($image->image){
