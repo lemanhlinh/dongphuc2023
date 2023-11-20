@@ -50,7 +50,7 @@ class ConvertImagesToWebP extends Command
             if ($image->image){
                 $path = public_path($image->image);
                 $urlPath = pathinfo($image->image, PATHINFO_DIRNAME);
-                $webpPath = public_path($urlPath.'/'.pathinfo($image->image_after, PATHINFO_FILENAME) . '.webp');
+                $webpPath = public_path($urlPath.'/'.pathinfo($image->image, PATHINFO_FILENAME) . '.webp');
 
                 if (File::exists($path)) {
 //                $thumbnail = Image::make($path)->encode('webp', 75);
