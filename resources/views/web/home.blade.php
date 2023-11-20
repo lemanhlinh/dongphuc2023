@@ -48,7 +48,7 @@
                         @forelse($productsInCategories[$cat->id] as $item)
                         <div class="image-check">
                             <figure class="imghvr-flip-vert">
-                                <img src="{{ asset(replace_image_to_webp($item->image)) }}" class="img-fluid" >
+                                <img src="{{ asset(replace_image_to_webp($item->image)) }}" class="img-fluid" width="216px" height="270px" >
                                 <figcaption>
                                     @if($item->image_after)
                                         <img src="{{ asset(replace_image_to_webp($item->image_after)) }}" class="img-fluid" width="216px" height="270px" >
