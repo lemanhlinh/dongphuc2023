@@ -374,3 +374,7 @@ function getCategoriesTree($categories, $parentId = null)
 
     return $tree;
 }
+
+function replace_image_to_webp($image) {
+    return str_replace(['jpg', 'jpeg', 'png', 'gif', 'bmp'],'webp',$image);
+}
