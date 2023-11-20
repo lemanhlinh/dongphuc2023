@@ -45,22 +45,25 @@ class ConvertImagesToWebP extends Command
         $images = Article::select('id','image')->get();
 
         foreach ($images as $image) {
-            $path = public_path($image->image);
-            $urlPath = pathinfo($image->image, PATHINFO_DIRNAME);
-            $webpPath = public_path($urlPath.'/'.pathinfo($image->image, PATHINFO_FILENAME) . '.webp');
+            if ($image->image){
+                $path = public_path($image->image);
+                $urlPath = pathinfo($image->image, PATHINFO_DIRNAME);
+                $webpPath = public_path($urlPath.'/'.pathinfo($image->image, PATHINFO_FILENAME) . '.webp');
 
-            if (File::exists($path)) {
+                if (File::exists($path)) {
 //                $thumbnail = Image::make($path)->encode('webp', 75);
 
-                $thumbnail = Image::make($path)->resize(400, null,function ($constraint) {
-                    $constraint->aspectRatio();
-                })->encode('webp', 75);
-                $thumbnail->save($webpPath);
+                    $thumbnail = Image::make($path)->resize(400, null,function ($constraint) {
+                        $constraint->aspectRatio();
+                    })->encode('webp', 75);
+                    $thumbnail->save($webpPath);
 
-                $this->info('Converted: ' . $image->image);
-            } else {
-                $this->warn('Image not found: ' . $image->image);
+                    $this->info('Converted: ' . $image->image);
+                } else {
+                    $this->warn('Image not found: ' . $image->image);
+                }
             }
+
         }
     }
 }
