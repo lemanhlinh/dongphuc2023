@@ -53,12 +53,12 @@
                         @forelse($productsInCategories[$cat->id] as $item)
                         <div class="image-check">
                             <figure class="imghvr-flip-vert">
-                                <img src="{{ asset(replace_image_to_webp($item->image)) }}" class="img-fluid" width="216px" height="270px" >
+                                <img src="{{ asset(replace_image_to_webp($item->image)) }}" class="img-fluid" width="216px" height="270px" alt="{{ $item->name }}" >
                                 <figcaption>
                                     @if($item->image_after)
-                                        <img src="{{ asset(replace_image_to_webp($item->image_after)) }}" class="img-fluid" width="216px" height="270px" >
+                                        <img src="{{ asset(replace_image_to_webp($item->image_after)) }}" class="img-fluid" width="216px" height="270px" alt="{{ $item->name }}" >
                                     @else
-                                        <img src="{{ asset(replace_image_to_webp($item->image)) }}" class="img-fluid" width="216px" height="270px" >
+                                        <img src="{{ asset(replace_image_to_webp($item->image)) }}" class="img-fluid" width="216px" height="270px" alt="{{ $item->name }}" >
                                     @endif
                                 </figcaption>
                                 <a href="{{ route('detailProduct',['cat_slug'=>$item->category->alias, 'slug' => $item->alias]) }}"></a>
@@ -92,7 +92,7 @@
                         @forelse($articles as $item)
                         <li class="">
                             <a href="{{ route('detailArticle',['cat_slug' => $item->category->alias,'slug' => $item->alias]) }}" title="{{ $item->title }}" >
-                                <img src="{{ asset(replace_image_to_webp($item->image)) }}" class="img-fluid" width="220px" height="150px">
+                                <img src="{{ asset(replace_image_to_webp($item->image)) }}" alt="{{ $item->title }}" class="img-fluid" width="220px" height="150px">
                                 <h3 title="{{ $item->title }}">{{ $item->title }}</h3>
                             </a>
                         </li>

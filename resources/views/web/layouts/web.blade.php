@@ -19,7 +19,6 @@
 @endsection
 
 @section('script')
-    <!-- Bootstrap -->
     <script>
         let toastrSuccsee = '{{ Session::get('success') }}';
         let toastrDanger = '{{ Session::get('danger') }}';
@@ -52,7 +51,6 @@
             js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.1&appId=106623403474888&autoLogAppEvents=1';
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));</script>
-    <!--Start of Tawk.to Script-->
     <script type="text/javascript">
         var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
         (function(){
@@ -64,5 +62,4 @@
             s0.parentNode.insertBefore(s1,s0);
         })();
     </script>
-    <!--End of Tawk.to Script-->
 @endsection
