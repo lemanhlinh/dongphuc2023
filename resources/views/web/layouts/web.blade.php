@@ -20,7 +20,7 @@
 
 @section('script')
     <!-- Bootstrap -->
-    <script>
+    <script defer>
         let toastrSuccsee = '{{ Session::get('success') }}';
         let toastrDanger = '{{ Session::get('danger') }}';
         if (toastrDanger.length > 0 || toastrSuccsee.length > 0) {
