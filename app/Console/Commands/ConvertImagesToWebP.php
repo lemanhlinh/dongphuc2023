@@ -42,13 +42,13 @@ class ConvertImagesToWebP extends Command
      */
     public function handle()
     {
-        $images = Article::select('id','image')->get();
+        $images = Product::select('id','image','image_after')->get();
 
         foreach ($images as $image) {
-            if ($image->image){
-                $path = public_path($image->image);
-                $urlPath = pathinfo($image->image, PATHINFO_DIRNAME);
-                $webpPath = public_path($urlPath.'/'.pathinfo($image->image, PATHINFO_FILENAME) . '.webp');
+            if ($image->image_after){
+                $path = public_path($image->image_after);
+                $urlPath = pathinfo($image->image_after, PATHINFO_DIRNAME);
+                $webpPath = public_path($urlPath.'/'.pathinfo($image->image_after, PATHINFO_FILENAME) . '.webp');
 
                 if (File::exists($path)) {
 //                $thumbnail = Image::make($path)->encode('webp', 75);
