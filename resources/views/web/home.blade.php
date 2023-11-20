@@ -110,7 +110,7 @@
                     <img src="{{ asset('images/close-modal.png') }}">
                 </button>
                 <div class="form-bao-gia">
-                    <img class="img-fluid logo-cati-popup" src="{{ asset('images/logo-mk.png') }}" alt="{{ $setting['site_name'] }}" />
+                    <img class="img-fluid logo-cati-popup" src="{{ asset('images/logo-mk.png') }}" alt="{{ $setting['site_name'] }}" width="90px" height="85px" />
                     <div class="text-center">Báo giá trong 5 phút</div>
                     <form method="post" action="{{ route('saveQuote') }}" name="contact_home" class="form">
                         <input type="text" name="phone_contact" id="phone_contact" placeholder="Số điện thoại" class="form-control" required >

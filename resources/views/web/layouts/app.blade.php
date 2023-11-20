@@ -52,7 +52,7 @@
 <body>
     @yield('page')
     <!-- jQuery -->
-    <script src="{{ asset('/js/web/jquery-1.12.4.min.js') }}"></script>
+    <script src="{{ asset('/js/jquery.min.js') }}"></script>
     <script src="{{ asset('/js/web/bootstrap.min.js') }}"></script>
     <script src="{{ asset('/js/web/slick.min.js') }}"></script>
     <script src="https://kit.fontawesome.com/6302d443cd.js"></script>
