@@ -23,7 +23,7 @@
                                         <a class="item small" href="{{ route('detailArticle',['cat_slug' => $category->alias,'slug' => $item->alias]) }}" title="{{ $item->title }}">
                                             <div class="row">
                                                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                    <img class="img-fluid" src="{{ asset($item->image) }}" alt="{{ $item->title }}">
+                                                    <img class="img-fluid" src="{{ asset(replace_image_to_webp($item->image)) }}" alt="{{ $item->title }}">
                                                 </div>
                                                 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                                                     <div class="content-item">

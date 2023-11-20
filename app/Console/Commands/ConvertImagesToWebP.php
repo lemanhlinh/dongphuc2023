@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Article;
 use App\Models\Product;
 use App\Models\Sliders;
 use Illuminate\Console\Command;
@@ -41,7 +42,7 @@ class ConvertImagesToWebP extends Command
      */
     public function handle()
     {
-        $images = Product::select('id','image')->get();
+        $images = Article::select('id','image')->get();
 
         foreach ($images as $image) {
             $path = public_path($image->image);

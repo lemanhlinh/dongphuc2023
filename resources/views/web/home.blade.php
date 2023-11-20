@@ -48,12 +48,12 @@
                         @forelse($productsInCategories[$cat->id] as $item)
                         <div class="image-check">
                             <figure class="imghvr-flip-vert">
-                                <img src="{{ asset(str_replace('original', 'resized', $item->image)) }}" class="img-fluid" >
+                                <img src="{{ asset(replace_image_to_webp($item->image)) }}" class="img-fluid" >
                                 <figcaption>
                                     @if($item->image_after)
-                                        <img data-src="{{ asset(str_replace('original', 'resized', $item->image_after)) }}" class="img-fluid" >
+                                        <img data-src="{{ asset(replace_image_to_webp($item->image_after)) }}" class="img-fluid" >
                                     @else
-                                        <img data-src="{{ asset(str_replace('original', 'resized', $item->image)) }}" class="img-fluid" >
+                                        <img data-src="{{ asset(replace_image_to_webp($item->image)) }}" class="img-fluid" >
                                     @endif
                                 </figcaption>
                                 <a href="{{ route('detailProduct',['cat_slug'=>$item->category->alias, 'slug' => $item->alias]) }}"></a>
@@ -87,7 +87,7 @@
                         @forelse($articles as $item)
                         <li class="">
                             <a href="{{ route('detailArticle',['cat_slug' => $item->category->alias,'slug' => $item->alias]) }}" title="{{ $item->title }}" >
-                                <img src="{{ asset(str_replace('/original/', '/resized/', $item->image)) }}" class="img-fluid">
+                                <img src="{{ asset(replace_image_to_webp($item->image)) }}" class="img-fluid">
                                 <h3 title="{{ $item->title }}">{{ $item->title }}</h3>
                             </a>
                         </li>

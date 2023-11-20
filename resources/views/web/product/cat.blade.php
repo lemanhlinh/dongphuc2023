@@ -23,12 +23,12 @@
                                             @forelse($products as $item)
                                             <div class="col-lg-4 col-md-4 col-sm-6 col-6">
                                                 <figure class="imghvr-flip-vert">
-                                                    <img src="{{ asset(str_replace('original', 'resized', $item->image)) }}" class="img-fluid" >
+                                                    <img src="{{ asset(replace_image_to_webp($item->image)) }}" class="img-fluid" >
                                                     <figcaption>
                                                         @if($item->image_after)
-                                                        <img src="{{ asset(str_replace('original', 'resized', $item->image_after)) }}" alt="{{ $item->name }}" class="img-fluid" >
+                                                        <img src="{{ asset(replace_image_to_webp($item->image_after)) }}" alt="{{ $item->name }}" class="img-fluid" >
                                                         @else
-                                                        <img src="{{ asset(str_replace('original', 'resized', $item->image)) }}" alt="{{ $item->name }}" class="img-fluid" >
+                                                        <img src="{{ asset(replace_image_to_webp($item->image)) }}" alt="{{ $item->name }}" class="img-fluid" >
                                                         @endif
                                                     </figcaption><a href="{{ route('detailProduct', ['cat_slug' => $cat->alias, 'slug' => $item->alias])  }}"></a>
                                                 </figure>
