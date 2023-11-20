@@ -6,6 +6,7 @@ use App\Models\Article;
 use App\Models\Partner;
 use App\Models\Product;
 use App\Models\Sliders;
+use App\Models\Student;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
@@ -43,7 +44,7 @@ class ConvertImagesToWebP extends Command
      */
     public function handle()
     {
-        $images = Partner::select('id','image')->get();
+        $images = Student::select('id','image')->get();
 
         foreach ($images as $image) {
             if ($image->image){

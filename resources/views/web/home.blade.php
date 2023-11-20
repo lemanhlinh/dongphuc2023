@@ -31,7 +31,7 @@
                             @forelse($students as $item)
                             <div class="swiper-slide box-partners">
                                 <div class="vn-testimonies-avatar">
-                                    <img class="img-fluid border-img-show" width="120" height="120" alt="{{ $item->title }}" src="{{ asset(str_replace('/original/', '/small/', $item->image)) }}" >
+                                    <img class="img-fluid border-img-show" width="120" height="120" alt="{{ $item->title }}" src="{{ asset(replace_image_to_webp($item->image)) }}" >
                                     <p class="name-title-studen">{{ $item->title }}</br>{{ $item->creator }}</p>
                                 </div>
                                 <div class="comment-studen">{!! $item->content !!}</div>
@@ -74,7 +74,7 @@
                         @forelse($partner as $item)
                         <li>
                             <a href="{{ $item->url }}">
-                                <img src="{{ asset($item->image) }}" width="120" height="120" alt="{{ $item->name }}" title="{{ $item->name }}">
+                                <img src="{{ asset(replace_image_to_webp($item->image)) }}" width="120" height="120" alt="{{ $item->name }}" title="{{ $item->name }}">
                             </a>
                         </li>
                         @empty
