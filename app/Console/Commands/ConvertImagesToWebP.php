@@ -44,25 +44,31 @@ class ConvertImagesToWebP extends Command
      */
     public function handle()
     {
-        $images = Sliders::select('id','image')->get();
+        $images = Student::select('id','image')->get();
 
         foreach ($images as $image) {
             if ($image->image){
                 $path = public_path($image->image);
                 $urlPath = pathinfo($image->image, PATHINFO_DIRNAME);
                 $webpPath = public_path($urlPath.'/'.pathinfo($image->image, PATHINFO_FILENAME) . '.webp');
-                $webpPath2 = public_path($urlPath.'/'.pathinfo($image->image, PATHINFO_FILENAME) . '-small.webp');
+//                $webpPath2 = public_path($urlPath.'/'.pathinfo($image->image, PATHINFO_FILENAME) . '-small.webp');
 
                 if (File::exists($path)) {
-                    $thumbnail = Image::make($path)->resize(1920, null,function ($constraint) {
-                        $constraint->aspectRatio();
-                    })->encode('webp', 75);
+                    //for slider
+//                    $thumbnail = Image::make($path)->resize(1920, null,function ($constraint) {
+//                        $constraint->aspectRatio();
+//                    })->encode('webp', 75);
+//
+//                    $thumbnail_small = Image::make($path)->resize(600, null,function ($constraint) {
+//                        $constraint->aspectRatio();
+//                    })->encode('webp', 75);
+//                    $thumbnail->save($webpPath);
+//                    $thumbnail_small->save($webpPath2);
 
-                    $thumbnail_small = Image::make($path)->resize(600, null,function ($constraint) {
+                    $thumbnail = Image::make($path)->resize(120, null,function ($constraint) {
                         $constraint->aspectRatio();
                     })->encode('webp', 75);
                     $thumbnail->save($webpPath);
-                    $thumbnail_small->save($webpPath2);
 
                     $this->info('Converted: ' . $image->image);
                 } else {
