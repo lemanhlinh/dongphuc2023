@@ -308,3 +308,36 @@
         }
     }
 }
+.form-bao-gia{
+    padding: 60px 100px;
+    background: #00000054;
+    @media (max-width: 576px){
+        padding: 30px;
+    }
+    .logo-cati-popup{
+        width: 90px !important;
+        height: auto;
+        display: block;
+        margin: 0 auto 15px;
+    }
+    .text-center{
+        margin-bottom: 20px;
+        text-align: center;
+        font-size: 30px;
+        line-height: 34px;
+        color: #fff;
+    }
+    .buttom-contact{
+        width: 100%;
+        display: block;
+        margin: 0;
+        color: #fff;
+        background-color: #5cb85c;
+        border-color: #4cae4c;
+    }
+    input{
+        margin-bottom: 10px;
+        height: 40px;
+        border: 1px solid #5cb85c;
+    }
+}
