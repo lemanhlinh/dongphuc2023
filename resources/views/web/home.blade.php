@@ -31,7 +31,9 @@
                             @forelse($students as $item)
                             <div class="swiper-slide box-partners">
                                 <div class="vn-testimonies-avatar">
-                                    <img class="img-fluid border-img-show" width="120" height="120" alt="{{ $item->title }}" src="{{ asset(replace_image_to_webp($item->image)) }}" >
+                                    <div class="image-student-b">
+                                        <img class="img-fluid border-img-show" width="120" height="120" alt="{{ $item->title }}" src="{{ asset(replace_image_to_webp($item->image)) }}" >
+                                    </div>
                                     <p class="name-title-studen">{{ $item->title }}</br>{{ $item->creator }}</p>
                                 </div>
                                 <div class="comment-studen">{!! $item->content !!}</div>
@@ -51,9 +53,9 @@
                                 <img src="{{ asset(replace_image_to_webp($item->image)) }}" class="img-fluid" >
                                 <figcaption>
                                     @if($item->image_after)
-                                        <img data-src="{{ asset(replace_image_to_webp($item->image_after)) }}" class="img-fluid" >
+                                        <img src="{{ asset(replace_image_to_webp($item->image_after)) }}" class="img-fluid" >
                                     @else
-                                        <img data-src="{{ asset(replace_image_to_webp($item->image)) }}" class="img-fluid" >
+                                        <img src="{{ asset(replace_image_to_webp($item->image)) }}" class="img-fluid" >
                                     @endif
                                 </figcaption>
                                 <a href="{{ route('detailProduct',['cat_slug'=>$item->category->alias, 'slug' => $item->alias]) }}"></a>
