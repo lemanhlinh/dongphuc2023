@@ -26,9 +26,8 @@
                 </div>
                 <div id="block_id_34" class="vn-sidebar-widget testimonials-list">
                     <h2 class="sidebar-widget-title text-center"><span>Ý kiến khách hàng</span></h2>
-                    <div class="swiper-container">
-                        <div class="swiper-wrapper">
-                            @forelse($students as $item)
+                    <div class="swiper-wrapper">
+                        @forelse($students as $item)
                             <div class="swiper-slide box-partners">
                                 <div class="vn-testimonies-avatar">
                                     <div class="image-student-b">
@@ -38,9 +37,8 @@
                                 </div>
                                 <div class="comment-studen">{!! $item->content !!}</div>
                             </div>
-                            @empty
-                            @endforelse
-                        </div>
+                        @empty
+                        @endforelse
                     </div>
                 </div>
                 @forelse($cats as $cat)
@@ -112,7 +110,7 @@
                     <img src="{{ asset('images/close-modal.png') }}">
                 </button>
                 <div class="form-bao-gia">
-                    <img class="img-responsive logo-cati-popup" src="{{ asset('images/logo-mk.png') }}" alt="{{ $setting['site_name'] }}" />
+                    <img class="img-fluid logo-cati-popup" src="{{ asset('images/logo-mk.png') }}" alt="{{ $setting['site_name'] }}" />
                     <div class="text-center">Báo giá trong 5 phút</div>
                     <form method="post" action="{{ route('saveQuote') }}" name="contact_home" class="form">
                         <input type="text" name="phone_contact" id="phone_contact" placeholder="Số điện thoại" class="form-control" required >
@@ -161,6 +159,7 @@
         });
 
         $('.swiper-wrapper').slick({
+            lazyLoad: 'ondemand',
             infinite: true,
             slidesToShow: 3,
             slidesToScroll: 1,
@@ -187,6 +186,7 @@
             ]
         });
         $('.sider-slick-add').not('.slick-initialized').slick({
+            lazyLoad: 'ondemand',
             infinite: true,
             slidesToShow: 5,
             slidesToScroll: 5,
@@ -212,6 +212,7 @@
         });
 
         $('.sun-group').slick({
+            lazyLoad: 'ondemand',
             infinite: true,
             slidesToShow: 5,
             slidesToScroll: 5,
@@ -237,6 +238,7 @@
         });
 
         $('.list-contract').slick({
+            lazyLoad: 'ondemand',
             infinite: true,
             slidesToShow: 5,
             slidesToScroll: 5,
