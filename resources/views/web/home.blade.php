@@ -186,7 +186,6 @@
                 }
             ]
         });
-
         $('.sider-slick-add').not('.slick-initialized').slick({
             infinite: true,
             slidesToShow: 5,

@@ -52,6 +52,12 @@
   background: #ed1b68;
 }
 
+.swiper-wrapper {
+  visibility: hidden;
+}
+.swiper-wrapper.slick-initialized {
+  visibility: visible;
+}
 .swiper-wrapper .swiper-slide {
   padding: 0 15px;
 }
@@ -165,6 +171,12 @@
   padding: 10px 30px;
   font-weight: normal;
 }
+.list_products_cat .sider-slick-add {
+  visibility: hidden;
+}
+.list_products_cat .sider-slick-add.slick-initialized {
+  visibility: visible;
+}
 .list_products_cat .image-check {
   margin-bottom: 45px;
   padding: 15px 12px;
@@ -226,6 +238,10 @@
   padding-left: 0px;
   overflow: hidden;
   margin-bottom: 0px;
+  visibility: hidden;
+}
+.fo-top .sun-group.slick-initialized {
+  visibility: visible;
 }
 .fo-top .sun-group li {
   float: left;
@@ -249,6 +265,12 @@
   text-align: center;
   margin: 40px 0 30px 0;
   font-size: 25px;
+}
+.newslist-content .list-contract {
+  visibility: hidden;
+}
+.newslist-content .list-contract.slick-initialized {
+  visibility: visible;
 }
 .newslist-content ul {
   padding: 0;
