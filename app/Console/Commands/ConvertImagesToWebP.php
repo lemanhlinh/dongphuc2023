@@ -54,7 +54,9 @@ class ConvertImagesToWebP extends Command
                 $webpPath2 = public_path($urlPath.'/'.pathinfo($image->image, PATHINFO_FILENAME) . '-small.webp');
 
                 if (File::exists($path)) {
-                    $thumbnail = Image::make($path)->encode('webp', 75);
+                    $thumbnail = Image::make($path)->resize(1920, null,function ($constraint) {
+                        $constraint->aspectRatio();
+                    })->encode('webp', 75);
 
                     $thumbnail_small = Image::make($path)->resize(600, null,function ($constraint) {
                         $constraint->aspectRatio();
