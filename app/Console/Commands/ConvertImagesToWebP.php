@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Article;
+use App\Models\Partner;
 use App\Models\Product;
 use App\Models\Sliders;
 use Illuminate\Console\Command;
@@ -42,12 +43,12 @@ class ConvertImagesToWebP extends Command
      */
     public function handle()
     {
-        $images = Product::select('id','image','image_after')->get();
+        $images = Partner::select('id','image')->get();
 
         foreach ($images as $image) {
-            if ($image->image_after){
-                $path = public_path($image->image_after);
-                $urlPath = pathinfo($image->image_after, PATHINFO_DIRNAME);
+            if ($image->image){
+                $path = public_path($image->image);
+                $urlPath = pathinfo($image->image, PATHINFO_DIRNAME);
                 $webpPath = public_path($urlPath.'/'.pathinfo($image->image_after, PATHINFO_FILENAME) . '.webp');
 
                 if (File::exists($path)) {
