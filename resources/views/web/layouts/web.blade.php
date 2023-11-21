@@ -19,7 +19,7 @@
 @endsection
 
 @section('script')
-    <script async defer>
+    <script defer>
         let toastrSuccsee = "{{ Session::get('success') }}";
         let toastrDanger = "{{ Session::get('danger') }}";
         if (toastrDanger.length > 0 || toastrSuccsee.length > 0) {
