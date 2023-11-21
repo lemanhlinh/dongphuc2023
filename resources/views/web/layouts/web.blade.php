@@ -20,8 +20,8 @@
 
 @section('script')
     <script>
-        let toastrSuccsee = '{{ Session::get('success') }}';
-        let toastrDanger = '{{ Session::get('danger') }}';
+        let toastrSuccsee = "{{ Session::get('success') }}";
+        let toastrDanger = "{{ Session::get('danger') }}";
         if (toastrDanger.length > 0 || toastrSuccsee.length > 0) {
             if (toastrDanger.length > 0){
                 Swal.fire({
