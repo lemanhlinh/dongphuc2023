@@ -60,15 +60,13 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Scripts -->
     <script defer>
-        (function() {
-            document.addEventListener('touchstart', function(e) {
-            }, { passive: true });
-            document.addEventListener('wheel', function(e) {
-            }, { passive: true });
-        })();
-    </script>
-    <script defer>
         window.onload = function() {
+            (function() {
+                document.addEventListener('touchstart', function(e) {
+                }, { passive: true });
+                document.addEventListener('wheel', function(e) {
+                }, { passive: true });
+            })();
             $(function () {
                 $('nav#navigation-menu').mmenu({
                     classes: 'mm-white mm-slide',
