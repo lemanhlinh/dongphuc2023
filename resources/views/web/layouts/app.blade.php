@@ -59,7 +59,7 @@
     <script src="{{ asset('/js/web/jquery.mmenu.min.all.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Scripts -->
-    <script>
+    <script async defer>
         (function() {
             document.addEventListener('touchstart', function(e) {
             }, { passive: true });
@@ -67,7 +67,7 @@
             }, { passive: true });
         })();
     </script>
-    <script>
+    <script async defer>
         $(function() {
             $('nav#navigation-menu').mmenu({
                 classes			: 'mm-white mm-slide',

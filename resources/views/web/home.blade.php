@@ -138,7 +138,7 @@
 @section('script')
     @parent
     <script src="{{ asset('/js/web/OwlCarousel2-2.2.1/owl.carousel.min.js') }}"></script>
-    <script>
+    <script async defer>
         $("#owl-demo").owlCarousel({
             autoplay: true, //Set AutoPlay to 3 seconds
             autoplaySpeed: 500,
