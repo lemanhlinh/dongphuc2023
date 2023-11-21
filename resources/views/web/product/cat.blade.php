@@ -110,7 +110,7 @@
 
 @section('link')
     @parent
-    <link rel="stylesheet" href="{{ asset('/css/web/product-cat.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/web/product-cat.css') }}" media="screen">
 @endsection
 
 @section('script')

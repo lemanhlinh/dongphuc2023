@@ -144,8 +144,8 @@
 
 @section('link')
     @parent
-    <link rel="stylesheet" href="{{ asset('/js/web/magiczoomplus/magiczoomplus.css') }}">
-    <link rel="stylesheet" href="{{ asset('/css/web/product-detail.css') }}">
+    <link rel="stylesheet" href="{{ asset('/js/web/magiczoomplus/magiczoomplus.css') }}" media="screen">
+    <link rel="stylesheet" href="{{ asset('/css/web/product-detail.css') }}" media="screen">
 @endsection
 
 @section('script')

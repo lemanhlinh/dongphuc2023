@@ -131,7 +131,7 @@
 
 @section('link')
     @parent
-    <link rel="stylesheet" href="{{ asset('/css/web/article-detail.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/web/article-detail.css') }}" media="screen">
     <style>
         .stacktable { width: 100%; }
         .st-head-row { padding-top: 1em; font-weight: normal;}
