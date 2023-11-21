@@ -28,7 +28,7 @@
                     icon: 'error',
                     title: 'Oops...',
                     text: toastrDanger,
-                })
+                });
                 toastr["error"](toastrDanger)
             } else {
                 Swal.fire(
