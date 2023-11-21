@@ -68,14 +68,16 @@
         })();
     </script>
     <script defer>
-        $(function() {
-            $('nav#navigation-menu').mmenu({
-                classes			: 'mm-white mm-slide',
-                searchfield		: false,
-                counters		: false,
-                header                  : false,
+        window.onload = function() {
+            $(function () {
+                $('nav#navigation-menu').mmenu({
+                    classes: 'mm-white mm-slide',
+                    searchfield: false,
+                    counters: false,
+                    header: false,
+                });
             });
-        });
+        };
     </script>
     @yield('script')
 </body>

@@ -139,133 +139,135 @@
     @parent
     <script src="{{ asset('/js/web/OwlCarousel2-2.2.1/owl.carousel.min.js') }}"></script>
     <script defer>
-        $("#owl-demo").owlCarousel({
-            autoplay: true, //Set AutoPlay to 3 seconds
-            autoplaySpeed: 500,
-            autoHeight: true,
-            loop: true,
-            autoplayTimeout: 3000,
-            autoplayHoverPause: true,
-            items: 1,
-            lazyLoad: true,
-            nav: false,
-            dots: true,
-            responsive: {
-                0: {
-                    autoplay: false
-                },
-                480: {
-                    autoplay: false
-                },
-                768: {
-                    autoplay: true
+        window.onload = function() {
+            $("#owl-demo").owlCarousel({
+                autoplay: true, //Set AutoPlay to 3 seconds
+                autoplaySpeed: 500,
+                autoHeight: true,
+                loop: true,
+                autoplayTimeout: 3000,
+                autoplayHoverPause: true,
+                items: 1,
+                lazyLoad: true,
+                nav: false,
+                dots: true,
+                responsive: {
+                    0: {
+                        autoplay: false
+                    },
+                    480: {
+                        autoplay: false
+                    },
+                    768: {
+                        autoplay: true
+                    }
                 }
-            }
-        });
+            });
 
-        $('.swiper-wrapper').slick({
-            lazyLoad: 'ondemand',
-            infinite: true,
-            slidesToShow: 3,
-            slidesToScroll: 1,
-            adaptiveHeight: true,
-            arrows: true,
-            dots: true,
-            responsive: [
-                {
-                    breakpoint: 767,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 2,
-                        // dots: true,
+            $('.swiper-wrapper').slick({
+                lazyLoad: 'ondemand',
+                infinite: true,
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                adaptiveHeight: true,
+                arrows: true,
+                dots: true,
+                responsive: [
+                    {
+                        breakpoint: 767,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 2,
+                            // dots: true,
+                        }
+                    },
+                    {
+                        breakpoint: 900,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 1,
+                            // dots: true,
+                        }
                     }
-                },
-                {
-                    breakpoint: 900,
-                    settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 1,
-                        // dots: true,
+                ]
+            });
+            $('.sider-slick-add').not('.slick-initialized').slick({
+                lazyLoad: 'ondemand',
+                infinite: true,
+                slidesToShow: 5,
+                slidesToScroll: 5,
+                arrows: true,
+                responsive: [
+                    {
+                        breakpoint: 767,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 2,
+                            // dots: true,
+                        }
+                    },
+                    {
+                        breakpoint: 900,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 3,
+                            // dots: true,
+                        }
                     }
-                }
-            ]
-        });
-        $('.sider-slick-add').not('.slick-initialized').slick({
-            lazyLoad: 'ondemand',
-            infinite: true,
-            slidesToShow: 5,
-            slidesToScroll: 5,
-            arrows: true,
-            responsive: [
-                {
-                    breakpoint: 767,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 2,
-                        // dots: true,
-                    }
-                },
-                {
-                    breakpoint: 900,
-                    settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 3,
-                        // dots: true,
-                    }
-                }
-            ]
-        });
+                ]
+            });
 
-        $('.sun-group').slick({
-            lazyLoad: 'ondemand',
-            infinite: true,
-            slidesToShow: 5,
-            slidesToScroll: 5,
-            arrows: true,
-            responsive: [
-                {
-                    breakpoint: 767,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 2,
-                        // dots: true,
+            $('.sun-group').slick({
+                lazyLoad: 'ondemand',
+                infinite: true,
+                slidesToShow: 5,
+                slidesToScroll: 5,
+                arrows: true,
+                responsive: [
+                    {
+                        breakpoint: 767,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 2,
+                            // dots: true,
+                        }
+                    },
+                    {
+                        breakpoint: 900,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 3,
+                            // dots: true,
+                        }
                     }
-                },
-                {
-                    breakpoint: 900,
-                    settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 3,
-                        // dots: true,
-                    }
-                }
-            ]
-        });
+                ]
+            });
 
-        $('.list-contract').slick({
-            lazyLoad: 'ondemand',
-            infinite: true,
-            slidesToShow: 5,
-            slidesToScroll: 5,
-            arrows: true,
-            responsive: [
-                {
-                    breakpoint: 767,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 2,
-                        // dots: true,
+            $('.list-contract').slick({
+                lazyLoad: 'ondemand',
+                infinite: true,
+                slidesToShow: 5,
+                slidesToScroll: 5,
+                arrows: true,
+                responsive: [
+                    {
+                        breakpoint: 767,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 2,
+                            // dots: true,
+                        }
+                    },
+                    {
+                        breakpoint: 900,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 3,
+                            // dots: true,
+                        }
                     }
-                },
-                {
-                    breakpoint: 900,
-                    settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 3,
-                        // dots: true,
-                    }
-                }
-            ]
-        });
+                ]
+            });
+        };
     </script>
 @endsection
