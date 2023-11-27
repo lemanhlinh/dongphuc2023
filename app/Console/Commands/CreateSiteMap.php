@@ -64,7 +64,7 @@ class CreateSiteMap extends Command
                 $product_site->add(route('catProduct',['slug'=>$sub_cat->alias]), Carbon::now(), 1, 'daily');
             }
             //product in cat
-            $products = Product::select('id', 'alias')->where('published',1)->orderBy('id', 'DESC')->get();
+            $products = Product::select('id', 'alias')->where('published',1)->where('category_id_wrapper', 'LIKE', '%'.$cat->id.'%')->orderBy('id', 'DESC')->get();
             foreach ($products as $item){
                 $product_site->add(route('detailProduct',['cat_slug'=>$cat->alias,'slug'=>$item->alias]), Carbon::now(), 1, 'daily');
             }
@@ -80,7 +80,7 @@ class CreateSiteMap extends Command
         $article_cats = ArticlesCategories::select('id','alias')->where('published', 1)->orderBy('id','DESC')->get();
         foreach ($article_cats as $article_cat){
             $sitemap_blog->add(route('catArticle',['slug'=>$article_cat->alias]), Carbon::now(), 1, 'daily');
-            $articles = Article::select('id','alias')->where('published', 1)->orderBy('id','DESC')->get();
+            $articles = Article::select('id','alias')->where('published', 1)->where('category_id_wrapper', 'LIKE', '%'.$article_cat->id.'%')->orderBy('id','DESC')->get();
             foreach ($articles as $article){
                 $sitemap_blog->add(route('detailArticle',['cat_slug'=>$article_cat->alias,'slug'=>$article->alias]), Carbon::now(), 1, 'daily');
             }
