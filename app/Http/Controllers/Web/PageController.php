@@ -21,7 +21,7 @@ class PageController extends Controller
         }
         $cat = PageCategories::where(['published' => 1,'id' => $page->category_id])->select('id','name','alias')->first();
         $banners = Banners::where(['published' => 1])->select('id','name','alias','image','link','content','type')->get();
-        $cat_product_home = ProductsCategories::where(['published' => 1,'show_in_homepage' => 1])->select('id','name','alias')->withDepth()->defaultOrder()->get()->toTree();
+        $cat_product_home = ProductsCategories::where(['published' => 1,'is_home' => 1])->select('id','name','alias')->withDepth()->defaultOrder()->get()->toTree();
 
         SEOTools::setTitle($page->seo_title?$page->seo_title:$page->title);
         SEOTools::setDescription($page->seo_description?$page->seo_description:$page->description);

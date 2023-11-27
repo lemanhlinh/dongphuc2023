@@ -37,7 +37,7 @@ class ProductController extends Controller
         $products = Product::where(['published' => 1])->where('category_id_wrapper','like','%'.$cat->id.'%')
             ->select('id','name','image','image_after','price','alias')
             ->limit(10)->paginate(30 ?? config('data.limit', 20));
-        $cat_product_home = ProductsCategories::where(['published' => 1,'show_in_homepage' => 1])->select('id','name','alias')->withDepth()->defaultOrder()->get()->toTree();
+        $cat_product_home = ProductsCategories::where(['published' => 1,'is_home' => 1])->select('id','name','alias')->withDepth()->defaultOrder()->get()->toTree();
         $banners = Banners::where(['published' => 1])->select('id','name','alias','image','link','content','type')->get();
 
         SEOTools::setTitle($cat->seo_title?$cat->seo_title:$cat->name);
@@ -56,7 +56,7 @@ class ProductController extends Controller
         $product = Product::where(['alias' => $slug])->with(['category'])->first();
         $product_images = ProductsImages::where('record_id', $product->id)->get();
         $product_related = Product::select('id','name','alias', 'category_id' ,'image','category_alias','created_at','image_after')->where(['category_id' => $product->category_id,'published' => 1])->limit(6)->get();
-        $cat_product_home = ProductsCategories::where(['published' => 1,'show_in_homepage' => 1])->select('id','name','alias')->withDepth()->defaultOrder()->get()->toTree();
+        $cat_product_home = ProductsCategories::where(['published' => 1,'is_home' => 1])->select('id','name','alias')->withDepth()->defaultOrder()->get()->toTree();
         $banners = Banners::where(['published' => 1])->select('id','name','alias','image','link','content','type')->get();
 
         SEOTools::setTitle($product->seo_title?$product->seo_title:$product->name);

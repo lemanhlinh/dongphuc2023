@@ -23,7 +23,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $cat_product_home = ProductsCategories::where(['published' => 1,'show_in_homepage' => 1])->select('id','name','alias')->withDepth()->defaultOrder()->get()->toTree();
+        $cat_product_home = ProductsCategories::where(['published' => 1,'is_home' => 1])->select('id','name','alias')->withDepth()->defaultOrder()->get()->toTree();
         $banners = Banners::where(['published' => 1])->select('id','name','alias','image','link','content','type')->get();
 
         $logo = Setting::where('name', 'logo')->first();
