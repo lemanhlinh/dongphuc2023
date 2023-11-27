@@ -71,7 +71,7 @@ class HomeController extends Controller
                 ->select('id','image','alias','image_after','name','category_id')
                 ->with(['category' => function($query){
                     $query->select('id','name','alias');
-                }])->orderBy('id','DESC')
+                }])->orderBy('ordering','DESC')
                 ->take(10)->get();
             $productsInCategories[$category->id] = $products;
         }
