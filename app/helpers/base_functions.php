@@ -379,7 +379,7 @@ function replace_image_to_webp($image,$small = null) {
     if($small){
         return str_replace(['.jpg', '.jpeg', '.png', '.gif', '.bmp'],'-small.webp',$image);
     }else{
-        return str_replace(['jpg', 'jpeg', 'png', 'gif', 'bmp'],'webp',$image);
+        return str_replace(['.jpg', '.jpeg', '.png', '.gif', '.bmp'],'.webp',$image);
     }
 
 }
