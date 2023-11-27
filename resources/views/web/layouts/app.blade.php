@@ -18,35 +18,6 @@
     <link href="{{ asset('css/web/slick-theme.css') }}" rel="stylesheet" media="screen">
     <link href="{{ asset('css/web/imagehover.css') }}" rel="stylesheet" media="screen">
     <link href="{{ asset('css/web/jquery.mmenu.all.css') }}" rel="stylesheet" media="screen">
-    <style>
-        #navigation-menu {
-            display: none;
-        }
-        .header_menu a {
-            display: block;
-            width: 48px;
-            height: 46px;
-            position: absolute;
-            left: 10px;
-            border-radius: 5px;
-            top: 4px;
-            color: #fff;
-        }
-        .header_menu a i{
-            font-size: 30px;
-            line-height: 54px;
-        }
-        .header_menu {
-            font-size: 16px;
-            font-weight: bold;
-            color: #fff;
-            line-height: 40px;
-            -moz-box-sizing: border-box;
-            box-sizing: border-box;
-            width: 42px;
-            height: 40px;
-        }
-    </style>
     @yield('link')
 </head>
 <body>
@@ -58,23 +29,39 @@
     <script src="https://kit.fontawesome.com/6302d443cd.js"></script>
     <script src="{{ asset('/js/web/jquery.mmenu.min.all.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('/js/web/main.js') }}"></script>
     <!-- Scripts -->
-    <script defer>
+    <script>
         window.onload = function() {
+            let toastrSuccsee = "{{ Session::get('success') }}";
+            let toastrDanger = "{{ Session::get('danger') }}";
+            if (toastrDanger.length > 0 || toastrSuccsee.length > 0) {
+                if (toastrDanger.length > 0) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: toastrDanger,
+                    });
+                    toastr["error"](toastrDanger)
+                } else {
+                    Swal.fire(
+                        'Thành công!',
+                        toastrSuccsee,
+                        'success'
+                    )
+                }
+            }
+
+            setTimeout(function () {
+                $('#fs-popup-home').modal('show');
+            }, 7000);
+
             (function() {
                 document.addEventListener('touchstart', function(e) {
                 }, { passive: true });
                 document.addEventListener('wheel', function(e) {
                 }, { passive: true });
             })();
-            $(function () {
-                $('nav#navigation-menu').mmenu({
-                    classes: 'mm-white mm-slide',
-                    searchfield: false,
-                    counters: false,
-                    header: false,
-                });
-            });
         };
     </script>
     @yield('script')

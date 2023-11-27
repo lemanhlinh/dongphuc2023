@@ -12,6 +12,15 @@
         @include('web.partials._notification')
         @include('web.partials._offcanvas')
     </div>
+    <nav id="navigation-menu">
+        <ul>
+            @if(!empty($menus))
+                @foreach ($menus as $shop)
+                    @include('web.components.menu.mobile', ['item'=>$shop])
+                @endforeach
+            @endif
+        </ul>
+    </nav>
 @endsection
 
 @section('link')
@@ -19,32 +28,6 @@
 @endsection
 
 @section('script')
-    <script defer>
-        window.onload = function() {
-            let toastrSuccsee = "{{ Session::get('success') }}";
-            let toastrDanger = "{{ Session::get('danger') }}";
-            if (toastrDanger.length > 0 || toastrSuccsee.length > 0) {
-                if (toastrDanger.length > 0) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: toastrDanger,
-                    });
-                    toastr["error"](toastrDanger)
-                } else {
-                    Swal.fire(
-                        'Thành công!',
-                        toastrSuccsee,
-                        'success'
-                    )
-                }
-            }
-
-            setTimeout(function () {
-                $('#fs-popup-home').modal('show');
-            }, 7000);
-        };
-    </script>
     <div id="fb-root"></div>
     <script loading="lazy">(function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];

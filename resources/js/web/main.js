@@ -9,4 +9,10 @@ $(document).ready(function() {
     //         $('.navbar-finalstyle').removeClass('active-menu');
     //     }
     // });
+    $('nav#navigation-menu').mmenu({
+        classes: 'mm-white mm-slide',
+        searchfield: false,
+        counters: false,
+        header: false,
+    });
 });
