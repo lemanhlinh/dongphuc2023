@@ -1,2 +1,7 @@
-User-agent: *
-Disallow:
+User-Agent: *
+Allow: /
+Allow: /*.js$
+Allow: /*.css$
+Disallow: /admin_cati/
+Disallow: /tim-kiem
+Sitemap: http://dongphuccati.com/sitemap.xml
