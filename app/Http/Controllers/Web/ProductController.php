@@ -55,7 +55,7 @@ class ProductController extends Controller
     public function detail ($cat_slug,$slug){
         $product = Product::where(['alias' => $slug])->with(['category'])->first();
         $product_images = ProductsImages::where('record_id', $product->id)->get();
-        $product_related = Product::select('id','name','alias', 'category_id' ,'image','category_alias','created_time','image_after')->where(['category_id' => $product->category_id,'published' => 1])->limit(6)->get();
+        $product_related = Product::select('id','name','alias', 'category_id' ,'image','category_alias','created_at','image_after')->where(['category_id' => $product->category_id,'published' => 1])->limit(6)->get();
         $cat_product_home = ProductsCategories::where(['published' => 1,'show_in_homepage' => 1])->select('id','name','alias')->withDepth()->defaultOrder()->get()->toTree();
         $banners = Banners::where(['published' => 1])->select('id','name','alias','image','link','content','type')->get();
 
