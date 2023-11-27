@@ -44,7 +44,7 @@ class ConvertImagesToWebP extends Command
      */
     public function handle()
     {
-        $images = Student::select('id','image')->get();
+        $images = Article::select('id','image')->where('created_time','>','2023-09-04 00:00:00')->get();
 
         foreach ($images as $image) {
             if ($image->image){
@@ -65,7 +65,7 @@ class ConvertImagesToWebP extends Command
 //                    $thumbnail->save($webpPath);
 //                    $thumbnail_small->save($webpPath2);
 
-                    $thumbnail = Image::make($path)->resize(120, null,function ($constraint) {
+                    $thumbnail = Image::make($path)->resize(400, null,function ($constraint) {
                         $constraint->aspectRatio();
                     })->encode('webp', 75);
                     $thumbnail->save($webpPath);

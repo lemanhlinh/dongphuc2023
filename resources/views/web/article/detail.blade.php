@@ -109,7 +109,7 @@
                                         @if($item->type == 1)
                                         <p style="text-align: center;">
                                             <a href="{{ $item->link }}">
-                                                <img alt="{{ $item->name }}" src="{{ asset($item->image) }}" class="img-fluid">
+                                                <img alt="{{ $item->name }}" src="{{ asset(replace_image_to_webp($item->image)) }}" class="img-fluid">
                                             </a>
                                         </p>
                                         @else
