@@ -67,7 +67,7 @@ class HomeController extends Controller
             ->orderBy('ordering', 'ASC')->limit(6)->get();
         $productsInCategories = [];
         foreach ($cats as $category) {
-            $products = Product::where(['published' => 1])->where('category_id_wrapper', 'like', '%' . $category->id . '%')
+            $products = Product::where(['published' => 1, 'show_in_homepage' => 1])->where('category_id_wrapper', 'like', '%' . $category->id . '%')
                 ->select('id','image','alias','image_after','name','category_id')
                 ->with(['category' => function($query){
                     $query->select('id','name','alias');
