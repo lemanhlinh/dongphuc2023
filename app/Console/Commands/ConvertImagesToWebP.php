@@ -44,7 +44,7 @@ class ConvertImagesToWebP extends Command
      */
     public function handle()
     {
-        $images = Product::select('id','image')->where('created_time','>','2023-09-04 00:00:00')->get();
+        $images = Product::select('id','image')->where('updated_at','>','2023-09-04 00:00:00')->get();
 
         foreach ($images as $image) {
             if ($image->image){
