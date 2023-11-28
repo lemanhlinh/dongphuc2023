@@ -19,8 +19,7 @@ class WebPCachePolicy
         $response = $next($request);
 
         // Thêm các headers để cấu hình chính sách bộ nhớ cache
-        $response->header('Cache-Control', 'public, max-age=31536000'); // Có thể điều chỉnh thời gian cache theo nhu cầu
-
-        return $response;
+//        $response->header('Cache-Control', 'public, max-age=31536000'); // Có thể điều chỉnh thời gian cache theo nhu cầu
+        return $response->header('Cache-Control','no-cache, public');
     }
 }
