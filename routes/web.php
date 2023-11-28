@@ -26,7 +26,7 @@ Route::group(['namespace' => 'Web'], function (){
     Route::get('/trang-tinh/{slug}.html', 'PageController@index')->name('detailPage');
     Route::get('/san-pham/{slug}.html', 'ProductController@cat')->name('catProduct');
     Route::get('/san-pham/{cat_slug}/{slug}.html', 'ProductController@detail')->name('detailProduct');
-    Route::get('/gio-hang.html', 'ProductController@showCart')->name('showCart');
+    Route::get('/gio-hang', 'ProductController@showCart')->name('showCart');
     Route::get('/xoa-san-pham/{id}', 'ProductController@removeItem')->name('removeItem');
     Route::post('/them-vao-gio-hang', 'ProductController@addToCart')->name('addToCart');
     Route::post('/update-gio-hang', 'ProductController@updateCart')->name('updateCart');
