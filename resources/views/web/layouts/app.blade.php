@@ -124,17 +124,6 @@
                     )
                 }
             }
-
-            setTimeout(function () {
-                $('#fs-popup-home').modal('show');
-            }, 7000);
-
-            (function() {
-                document.addEventListener('touchstart', function(e) {
-                }, { passive: true });
-                document.addEventListener('wheel', function(e) {
-                }, { passive: true });
-            })();
         };
     </script>
     @yield('script')

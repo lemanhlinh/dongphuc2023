@@ -63,7 +63,7 @@ class HomeController extends Controller
         $slider = Sliders::where(['published' => 1])->select('id','name','image','url','summary')->get();
         $students = Student::where(['published' => 1])->select('id','title','image','content','creator')->get();
         $partner = Partner::where(['published' => 1])->select('id','name','url','image')->get();
-        $cats = ProductsCategories::where(['is_home' => 1,'published' => 1,'level' => 1])->select('id','name','alias')
+        $cats = ProductsCategories::where(['is_home' => 1,'published' => 1])->where('parent_id','!=',null)->select('id','name','alias')
             ->orderBy('ordering', 'ASC')->limit(6)->get();
         $productsInCategories = [];
         foreach ($cats as $category) {
