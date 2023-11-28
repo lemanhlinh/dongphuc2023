@@ -38,7 +38,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            \App\Http\Middleware\WebPCachePolicy::class,
+//            \App\Http\Middleware\WebPCachePolicy::class,
             \RenatoMarinho\LaravelPageSpeed\Middleware\InlineCss::class,
             \RenatoMarinho\LaravelPageSpeed\Middleware\ElideAttributes::class,
             \RenatoMarinho\LaravelPageSpeed\Middleware\InsertDNSPrefetch::class,
