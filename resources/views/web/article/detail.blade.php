@@ -85,12 +85,12 @@
                                 <ul class="product_menuproduct_menu_default">
                                     @forelse($cat_product_home as $item)
                                         <li class="level_0 first-item" >
-                                            <a href="">{{ $item->name }}<i class="fas fa-angle-right"></i></a>
+                                            <a href="{{ route('catProduct',['slug' => $item->alias]) }}">{{ $item->name }}<i class="fas fa-angle-right"></i></a>
                                             @if(count($item->children) > 0)
                                                 <ul class="wrapper_children_level0">
                                                     @forelse($item->children as $val)
                                                         <li class="level_1 first-item">
-                                                            <a href="">{{ $val->name }}</a>
+                                                            <a href="{{ route('catProduct',['slug' => $val->alias]) }}">{{ $val->name }}</a>
                                                         </li>
                                                     @empty
                                                     @endforelse
