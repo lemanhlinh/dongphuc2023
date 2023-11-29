@@ -23,6 +23,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
+                @can(['view_role'])
                 <li class="nav-item @if (request()->is('admin/users*') || request()->is('admin/role*')) menu-open @endif">
                     <a href="#" class="nav-link @if (request()->is('admin/users*') || request()->is('admin/role*')) active @endif">
                         <i class="fas fa-user"></i>
@@ -52,6 +53,7 @@
                         @endcan
                     </ul>
                 </li>
+                @endcan
                 @can(['view_page'])
                     <li class="nav-item">
                         <a href="{{ route('admin.page.index') }}" class="nav-link @if (request()->is('admin/page*')) active @endif">
