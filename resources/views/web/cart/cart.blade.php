@@ -7,8 +7,7 @@
             <div class="col-md-8">
                 <div class="wrapper-tb-pop bg-white border mb-4">
                     <h2 class="title-cart">Giỏ hàng của bạn</h2>
-                    <form id="order_form" name="order_form" method="post"
-                          action="{{ route('order') }}">
+                    <form id="order_form" name="order_form" method="post" action="{{ route('order') }}">
                         <table width="100%" border="0" class="table-product-pack table" cellpadding="6">
                             <thead>
                             <tr class="head-tr">
@@ -79,7 +78,7 @@
                             </div>
                         </li>
                         <li>
-                            <input id="payment_method_cod" type="radio" class="input-radio" name="payment_method" value="2" >
+                            <input id="payment_method_cod" type="radio" class="input-radio" name="payment_method" value="0" >
                             <label for="payment_method_cod">Trả tiền mặt khi nhận hàng </label>
                         </li>
                     </ul>

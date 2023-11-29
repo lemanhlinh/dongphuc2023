@@ -42,11 +42,11 @@
                     <div class="form-group">
                         <div class="icheck-success d-inline">
                             <input class="" type="radio" id="statusRadio1" name="payment" readonly value="{{ \App\Models\Article::STATUS_ACTIVE }}" {{ (isset($order->payment) && $order->payment == \App\Models\Article::STATUS_ACTIVE) ? 'checked' : (old('payment') && (old('payment') == \App\Models\Article::STATUS_ACTIVE)) ? 'checked' : '' }} disabled required>
-                            <label for="statusRadio1" class="custom-control-label">Thanh toán khi nhận hàng&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <label for="statusRadio1" class="custom-control-label">Thanh toán chuyển khoản&nbsp;&nbsp;&nbsp;&nbsp;</label>
                         </div>
                         <div class="icheck-success d-inline">
                             <input class="" type="radio" id="statusRadio2" name="payment" readonly value="{{ \App\Models\Article::STATUS_INACTIVE }}" {{ (isset($order) && $order->payment == \App\Models\Article::STATUS_INACTIVE) ? 'checked' : (old('payment') && (old('payment') == \App\Models\Article::STATUS_INACTIVE)) ? 'checked' : '' }} disabled required>
-                            <label for="statusRadio2" class="custom-control-label">Thanh toán chuyển khoản</label>
+                            <label for="statusRadio2" class="custom-control-label">Thanh toán khi nhận hàng</label>
                         </div>
                     </div>
                     @if ($errors->has('payment'))

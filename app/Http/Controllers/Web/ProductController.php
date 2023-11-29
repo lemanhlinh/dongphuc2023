@@ -214,7 +214,7 @@ class ProductController extends Controller
         DB::beginTransaction();
         try {
             $data = $req->validated();
-            $data['payment'] = $data['payment_method'];
+            $data['payment'] = $data['method_pay'];
             $order = Order::create($data);
 
             $cart = Session::get('cart', []);

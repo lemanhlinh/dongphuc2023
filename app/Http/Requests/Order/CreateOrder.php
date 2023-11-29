@@ -30,7 +30,7 @@ class CreateOrder extends FormRequest
                 'regex:/^(0|\+84)[0-9]{9,10}$/'
             ],
             'sender_address' => 'required',
-            'payment_method' => 'required',
+            'method_pay' => 'nullable',
             'sender_comments' => 'nullable'
         ];
     }
