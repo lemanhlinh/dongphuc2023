@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'final_style' => 'Finalstyle',
+    'final_style' => 'Đồng phục Cati',
     'register' => 'Đăng ký',
     'login' => 'Đăng nhập',
     'logout' => "Đăng xuất",
