@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Article;
 use Illuminate\Http\Request;
 use App\DataTables\ArticleDataTable;
 use App\DataTables\Scopes\ArticleDataTableScope;
@@ -68,13 +69,11 @@ class ArticleController extends Controller
         try {
             $data = $req->validated();
             $image_root = '';
-            $data['slug'] = $req->input('slug')?\Str::slug($req->input('slug'), '-'):\Str::slug($data['title'], '-');
+            $data['alias'] = $req->input('alias')?\Str::slug($req->input('alias'), '-'):\Str::slug($data['title'], '-');
             if (!empty($data['image'])){
                 $image_root = $data['image'];
                 $data['image'] = urldecode($image_root);
             }
-            $category = $this->articleCategoryRepository->getOneById($data['category_id']);
-            $data['type'] = $category->type;
             $model = $this->articleRepository->create($data);
             if (!empty($data['image'])){
                 $this->articleRepository->saveFileUpload($image_root,$this->resizeImage,$model->id,'article');
@@ -136,11 +135,9 @@ class ArticleController extends Controller
                 $this->articleRepository->removeImageResize($data_root->image,$this->resizeImage, $id,'article');
                 $data['image'] = $this->articleRepository->saveFileUpload($data['image'],$this->resizeImage, $id,'article');
             }
-            if (empty($data['slug'])){
-                $data['slug'] = $req->input('slug')?\Str::slug($req->input('slug'), '-'):\Str::slug($data['title'], '-');
+            if (empty($data['alias'])){
+                $data['alias'] = $req->input('alias')?\Str::slug($req->input('alias'), '-'):\Str::slug($data['title'], '-');
             }
-            $category = $this->articleCategoryRepository->getOneById($data['category_id']);
-            $data['type'] = $category->type;
             $article->update($data);
             DB::commit();
             Session::flash('success', trans('message.update_article_success'));
@@ -180,6 +177,34 @@ class ArticleController extends Controller
         return [
             'status' => true,
             'message' => trans('message.delete_article_success')
+        ];
+    }
+
+    /**
+     * @param $id
+     * @return array
+     */
+    public function changeActive($id)
+    {
+        $article = Article::findOrFail($id);
+        $article->update(['active' => !$article->active]);
+        return [
+            'status' => true,
+            'message' => trans('message.change_active_article_success')
+        ];
+    }
+
+    /**
+     * @param $id
+     * @return array
+     */
+    public function changeIsHome($id)
+    {
+        $article = Article::findOrFail($id);
+        $article->update(['is_home' => !$article->is_home]);
+        return [
+            'status' => true,
+            'message' => trans('message.change_active_article_success')
         ];
     }
 }

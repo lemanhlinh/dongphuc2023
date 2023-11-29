@@ -24,15 +24,18 @@ class CreateProduct extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
-            'slug' => 'nullable',
+            'name' => 'required',
+            'alias' => 'nullable',
+            'sku' => 'nullable',
             'category_id' => 'required',
-            'content_include' => 'nullable',
+            'content' => 'nullable',
+            'content_info' => 'nullable',
             'active' => 'required',
             'is_home' => 'nullable',
             'price' => 'nullable',
             'ordering' => 'nullable',
             'image' => 'nullable',
+            'image_after' => 'nullable',
             'seo_title' => 'nullable',
             'seo_keyword' => 'nullable',
             'seo_description' => 'nullable',

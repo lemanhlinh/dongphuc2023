@@ -19,10 +19,10 @@
                 <!-- text input -->
                 <div class="form-group">
                     <label>@lang('form.article.slug')</label> <span class="text-danger">(@lang('form.auto_slug'))</span>
-                    <input type="text" class="form-control" name="slug" value="{{ isset($article) ? $article->slug : old('slug') }}">
-                    @if ($errors->has('slug'))
+                    <input type="text" class="form-control" name="alias" value="{{ isset($article) ? $article->alias : old('alias') }}">
+                    @if ($errors->has('alias'))
                         <span class="help-block text-danger">
-                    <strong>{{ $errors->first('slug') }}</strong>
+                    <strong>{{ $errors->first('alias') }}</strong>
                 </span>
                     @endif
                 </div>
@@ -76,7 +76,7 @@
                     <label>@lang('form.article.category')</label> <span class="text-danger">*</span>
                     <select name="category_id" id="category_id" class="form-control" required>
                         @forelse($categories as $key => $category)
-                            <option value="{{ $category['id'] }}" {{ isset($article->category_id) && $article->category_id == $category['id'] ? 'selected' : old('category_id') == $category['id'] ? 'selected' : '' }}>{{ $category['title'] }}</option>
+                            <option value="{{ $category['id'] }}" {{ isset($article->category_id) && $article->category_id == $category['id'] ? 'selected' : old('category_id') == $category['id'] ? 'selected' : '' }}>{{ $category['name'] }}</option>
                         @empty
                         @endforelse
                     </select>
@@ -171,21 +171,9 @@
 </div>
 @section('script')
     @parent
-    <script src="{{ asset('ckeditor5/ckeditor.js') }}"></script>
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     <script src="{{ asset('ckfinder/ckfinder.js') }}"></script>
     <script>
-        InlineEditor
-            .create( document.querySelector( '#content' ),{
-                ckfinder: {
-                    uploadUrl: '{!! asset('ckfinder/core/connector/php/connector.php').'?command=QuickUpload&type=Images&responseType=json' !!}',
-                    options: {
-                        resourceType: 'Images'
-                    }
-                },
-                mediaEmbed: {previewsInData: true}
-            } )
-            .catch( error => {
-                console.error( error );
-            } );
+        CKEDITOR.replace( 'content' );
     </script>
 @endsection

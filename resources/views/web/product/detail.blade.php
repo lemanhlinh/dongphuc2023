@@ -35,7 +35,7 @@
                                                 </div>
                                                 @endif
                                                 <div class="price_product">
-                                                    <b>Giá:</b> {{ format_money($product->price_old) }}
+                                                    <b>Giá:</b> {{ format_money($product->price) }}
                                                 </div>
                                             </div>
                                             <div class="info-special-book">
@@ -85,7 +85,7 @@
                             <div class="modal-for-product">
                                 @include('web.product.modal')
                             </div>
-                            <input type="hidden" value="{{ $product->price_old }}" name='product_price' id='product_price'  />
+                            <input type="hidden" value="{{ $product->price }}" name='product_price' id='product_price'  />
                         </div>
                     </div>
                     <div class="main-column-left col-lg-3 col-md-3 col-sm-12 col-xs-12 order-md-1">

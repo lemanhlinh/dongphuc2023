@@ -87,8 +87,10 @@ class SettingDataTable extends DataTable
             Column::make('id'),
             Column::make('name'),
             Column::make('key'),
-//            Column::make('value'),
-            Column::make('description'),
+            Column::make('active')->title(trans('form.article.active'))->render([
+                'renderLabelActive(data)'
+            ]),
+//            Column::make('description'),
             Column::make('display'),
             Column::make('created_at'),
             Column::computed('action')

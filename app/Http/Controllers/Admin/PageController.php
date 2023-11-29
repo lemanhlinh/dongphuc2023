@@ -57,19 +57,8 @@ class PageController extends Controller
         try {
             $data = $req->validated();
             $image_root = '';
-            $data['slug'] = $req->input('slug')?\Str::slug($req->input('slug'), '-'):\Str::slug($data['title'], '-');
-            if (!empty($data['image'])){
-                $image_root = $data['image'];
-                $data['image'] = urldecode($image_root);
-            }
-            if (!empty($data['image_title'])){
-                $image_title = $data['image_title'];
-                $data['image_title'] = urldecode($image_title);
-            }
+            $data['alias'] = $req->input('alias')?\Str::slug($req->input('alias'), '-'):\Str::slug($data['title'], '-');
             $model = $this->pageRepository->create($data);
-            if (!empty($data['image'])){
-                $this->pageRepository->saveFileUpload($image_root,$this->resizeImage,$model->id,'page');
-            }
             DB::commit();
             Session::flash('success', trans('message.create_page_success'));
             return redirect()->back();
@@ -122,15 +111,8 @@ class PageController extends Controller
         try {
             $data = $req->validated();
             $page = $this->pageRepository->getOneById($id);
-            if (!empty($data['image']) && $data_root->image != $data['image']){
-                $this->pageRepository->removeImageResize($data_root->image,$this->resizeImage, $id,'page');
-                $data['image'] = $this->pageRepository->saveFileUpload($data['image'],$this->resizeImage, $id,'page');
-            }
-            if (!empty($data['image_title']) && $data_root->image_title != $data['image_title']){
-                $data['image_title'] = rawurldecode($data['image_title']);
-            }
-            if (empty($data['slug'])){
-                $data['slug'] = $req->input('slug')?\Str::slug($req->input('slug'), '-'):\Str::slug($data['title'], '-');
+            if (empty($data['alias'])){
+                $data['alias'] = $req->input('alias')?\Str::slug($req->input('alias'), '-'):\Str::slug($data['title'], '-');
             }
             $page->update($data);
             DB::commit();
@@ -170,6 +152,20 @@ class PageController extends Controller
         return [
             'status' => true,
             'message' => trans('message.delete_page_success')
+        ];
+    }
+
+    /**
+     * @param $id
+     * @return array
+     */
+    public function changeActive($id)
+    {
+        $page = Page::findOrFail($id);
+        $page->update(['active' => !$page->active]);
+        return [
+            'status' => true,
+            'message' => trans('message.change_active_page_success')
         ];
     }
 }

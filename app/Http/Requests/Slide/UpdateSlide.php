@@ -24,7 +24,7 @@ class UpdateSlide extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
+            'name' => 'required',
             'active' => 'required',
             'ordering' => 'nullable',
             'image' => 'nullable',

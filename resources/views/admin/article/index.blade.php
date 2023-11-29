@@ -9,7 +9,7 @@
                 <select name="category" class="form-control">
                     <option value="">@lang('form.article.category')</option>
                     @forelse($categories as $key => $category)
-                        <option value="{{ $category['id'] }}" @if (isset($data['category']) && $data['category'] ==  $category['id']) selected @endif>{{ $category['title'] }}</option>
+                        <option value="{{ $category['id'] }}" @if (isset($data['category']) && $data['category'] ==  $category['id']) selected @endif>{{ $category['name'] }}</option>
                     @empty
                     @endforelse
                 </select>

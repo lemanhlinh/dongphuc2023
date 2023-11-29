@@ -4,11 +4,11 @@
             <div class="col-sm-6">
                 <!-- text input -->
                 <div class="form-group">
-                    <label>@lang('form.product_category.title')</label> <span class="text-danger">*</span>
-                    <input type="text" class="form-control" name="title" value="{{ isset($product_category) ? $product_category->title : old('title') }}" required>
-                    @if ($errors->has('title'))
+                    <label>@lang('form.product_category.name')</label> <span class="text-danger">*</span>
+                    <input type="text" class="form-control" name="name" value="{{ isset($product_category) ? $product_category->name : old('name') }}" required>
+                    @if ($errors->has('name'))
                         <span class="help-block text-danger">
-                    <strong>{{ $errors->first('title') }}</strong>
+                    <strong>{{ $errors->first('name') }}</strong>
                 </span>
                     @endif
                 </div>
@@ -17,10 +17,10 @@
                 <!-- text input -->
                 <div class="form-group">
                     <label>@lang('form.product_category.slug')</label> <span class="text-danger">(@lang('form.auto_slug'))</span>
-                    <input type="text" class="form-control" name="slug" value="{{ isset($product_category) ? $product_category->slug : old('slug') }}">
-                    @if ($errors->has('slug'))
+                    <input type="text" class="form-control" name="alias" value="{{ isset($product_category) ? $product_category->alias : old('alias') }}">
+                    @if ($errors->has('alias'))
                         <span class="help-block text-danger">
-                    <strong>{{ $errors->first('slug') }}</strong>
+                    <strong>{{ $errors->first('alias') }}</strong>
                 </span>
                     @endif
                 </div>
@@ -73,6 +73,27 @@
                     @endif
                 </div>
             </div>
+            <div class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group clearfix">
+                    <label>@lang('form.product_category.is_home')</label> <span class="text-danger">*</span>
+                    <div class="form-group">
+                        <div class="icheck-success d-inline">
+                            <input class="" type="radio" id="homeRadio1" name="is_home" value="{{ \App\Models\productsCategories::IS_HOME }}" {{ (isset($product_category->is_home) && $product_category->is_home == \App\Models\productsCategories::IS_HOME) ? 'checked' : (old('is_home') && (old('is_home') == \App\Models\productsCategories::IS_HOME)) ? 'checked' : '' }}  required>
+                            <label for="homeRadio1" class="custom-control-label">@lang('form.status.is_home')&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                        </div>
+                        <div class="icheck-danger d-inline">
+                            <input class="" type="radio" id="homeRadio2" name="is_home" value="{{ \App\Models\productsCategories::IS_NOT_HOME }}" {{ (isset($product_category) && $product_category->is_home == \App\Models\productsCategories::IS_NOT_HOME) ? 'checked' : (old('is_home') && (old('is_home') == \App\Models\productsCategories::IS_NOT_HOME)) ? 'checked' : '' }}  required>
+                            <label for="homeRadio2" class="custom-control-label">@lang('form.status.is_not_home')</label>
+                        </div>
+                    </div>
+                    @if ($errors->has('is_home'))
+                        <span class="help-block text-danger">
+                    <strong>{{ $errors->first('is_home') }}</strong>
+                </span>
+                    @endif
+                </div>
+            </div>
         </div>
     </div>
     <div class="col-sm-6">
@@ -111,9 +132,25 @@
             </div>
         </div>
     </div>
+    <div class="col-sm-12">
+        <div class="form-group">
+            <label>@lang('form.content')</label>
+            <textarea id="content" name="content" class="form-control" rows="10" >{{ isset($product_category->content) ? $product_category->content : old('content') }}</textarea>
+            @if ($errors->has('content'))
+                <span class="help-block text-danger">
+                    <strong>{{ $errors->first('content') }}</strong>
+                </span>
+            @endif
+            <div class="editor"></div>
+        </div>
+    </div>
 </div>
 
 @section('script')
     @parent
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     <script src="{{ asset('ckfinder/ckfinder.js') }}"></script>
+    <script>
+        CKEDITOR.replace( 'content' );
+    </script>
 @endsection

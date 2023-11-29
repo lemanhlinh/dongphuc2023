@@ -36,7 +36,7 @@
                                                     <div class="content-item">
                                                         <div class="title">{{ $item->name }}</div>
                                                         <p class="price_product">
-                                                            {{ format_money($item->price_old) }}
+                                                            {{ format_money($item->price) }}
                                                         </p>
                                                     </div>
                                                 </a>

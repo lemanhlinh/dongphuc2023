@@ -23,13 +23,13 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $cat_product_home = ProductsCategories::where(['published' => 1,'is_home' => 1])->select('id','name','alias')->withDepth()->defaultOrder()->get()->toTree();
-        $banners = Banners::where(['published' => 1])->select('id','name','alias','image','link','content','type')->get();
+        $cat_product_home = ProductsCategories::where(['active' => 1,'is_home' => 1])->select('id','name','alias')->withDepth()->defaultOrder()->get()->toTree();
+        $banners = Banners::where(['active' => 1])->select('id','name','alias','image','link','content','type')->get();
 
-        $logo = Setting::where('name', 'logo')->first();
-        $title = Setting::where('name', 'title')->first();
-        $meta_des = Setting::where('name', 'meta_des')->first();
-        $meta_key = Setting::where('name', 'meta_key')->first();
+        $logo = Setting::where('key', 'logo')->first();
+        $title = Setting::where('key', 'title')->first();
+        $meta_des = Setting::where('key', 'meta_des')->first();
+        $meta_key = Setting::where('key', 'meta_key')->first();
 
         SEOTools::setTitle('Liên hệ - '.$title->value);
         SEOTools::setDescription($meta_des->value);

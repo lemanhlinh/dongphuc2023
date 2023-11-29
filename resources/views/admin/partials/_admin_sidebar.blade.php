@@ -180,16 +180,6 @@
                         </a>
                     </li>
                 @endcan
-                @can(['view_store'])
-                    <li class="nav-item">
-                        <a href="{{ route('admin.store.index') }}" class="nav-link @if (request()->is('admin/store')) active @endif">
-                            <i class="nav-icon fas fa-store"></i>
-                            <p>
-                                @lang('form.store.')
-                            </p>
-                        </a>
-                    </li>
-                @endcan
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

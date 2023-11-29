@@ -22,6 +22,24 @@ class ProductCategoryDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
+            ->editColumn('active', function ($q) {
+                $url = route('admin.product-category.changeActive', $q->id);
+                $status = $q->active == ProductsCategories::STATUS_ACTIVE ? 'checked' : null;
+                return view('admin.components.buttons.change_status', [
+                    'url' => $url,
+                    'lowerModelName' => 'products-categories',
+                    'status' => $status,
+                ])->render();
+            })
+            ->editColumn('is_home', function ($q) {
+                $url = route('admin.product-category.changeIsHome', $q->id);
+                $status = $q->is_home == ProductsCategories::IS_HOME ? 'checked' : null;
+                return view('admin.components.buttons.change_status', [
+                    'url' => $url,
+                    'lowerModelName' => 'products-categories',
+                    'status' => $status,
+                ])->render();
+            })
             ->editColumn('created_at', function ($q) {
                 return Carbon::parse($q->created_at)->format('H:i:s Y/m/d');
             })
@@ -33,7 +51,7 @@ class ProductCategoryDataTable extends DataTable
                 $urlDelete = route('admin.product-category.destroy', $q->id);
                 $lowerModelName = strtolower(class_basename(new ProductsCategories()));
                 return view('admin.components.buttons.edit', compact('urlEdit'))->render() . view('admin.components.buttons.delete', compact('urlDelete', 'lowerModelName'))->render();
-            });
+            })->rawColumns(['active','action','is_home']);
     }
 
     /**
@@ -79,7 +97,8 @@ class ProductCategoryDataTable extends DataTable
         return [
             Column::make('id'),
             Column::make('name')->title(trans('form.product_category.title')),
-            Column::make('published')->title(trans('form.product_category.active')),
+            Column::make('active')->title(trans('form.product_category.active')),
+            Column::make('is_home')->title(trans('form.product_category.is_home')),
             Column::make('created_at')->title(trans('form.created_at')),
             Column::make('updated_at')->title(trans('form.updated_at')),
             Column::computed('action')

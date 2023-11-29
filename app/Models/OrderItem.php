@@ -10,4 +10,8 @@ class OrderItem extends Model
 //    use HasFactory;
 protected $guarded = ['id'];
 protected $table = 'order_items';
+    public function product()
+    {
+        return $this->hasOne(Product::class, 'id', 'product_id');
+    }
 }

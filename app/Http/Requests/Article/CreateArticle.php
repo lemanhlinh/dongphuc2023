@@ -25,7 +25,7 @@ class CreateArticle extends FormRequest
     {
         return [
             'title' => 'required',
-            'slug' => 'nullable',
+            'alias' => 'nullable',
             'category_id' => 'required',
             'content' => 'nullable',
             'active' => 'required',

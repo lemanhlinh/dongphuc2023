@@ -24,10 +24,8 @@ class CreateArticleCategory extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
-            'image' => 'nullable',
-            'slug' => 'nullable',
-            'type' => 'required',
+            'name' => 'required',
+            'alias' => 'nullable',
             'active' => 'required|numeric|integer|min:0',
             'seo_title' => 'nullable',
             'seo_keyword' => 'nullable',

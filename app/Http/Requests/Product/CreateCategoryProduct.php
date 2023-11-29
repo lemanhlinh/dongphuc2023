@@ -24,11 +24,13 @@ class CreateCategoryProduct extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
+            'name' => 'required',
             'image' => 'nullable',
-            'slug' => 'nullable',
+            'alias' => 'nullable',
             'ordering' => 'nullable',
             'active' => 'required|numeric|integer|min:0',
+            'is_home' => 'required|numeric|integer|min:0',
+            'content' => 'nullable',
             'seo_title' => 'nullable',
             'seo_keyword' => 'nullable',
             'seo_description' => 'nullable',

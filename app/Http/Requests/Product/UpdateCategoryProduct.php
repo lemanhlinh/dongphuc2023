@@ -24,11 +24,13 @@ class UpdateCategoryProduct extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
-            'slug' => 'nullable',
+            'name' => 'required',
+            'alias' => 'nullable',
             'image' => 'nullable',
             'ordering' => 'nullable',
             'active' => 'required|numeric|integer|min:0',
+            'is_home' => 'required|numeric|integer|min:0',
+            'content' => 'nullable',
             'seo_title' => 'nullable',
             'seo_keyword' => 'nullable',
             'seo_description' => 'nullable',

@@ -42,10 +42,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $logo = Setting::where('name', 'logo')->first();
-        $title = Setting::where('name', 'title')->first();
-        $meta_des = Setting::where('name', 'meta_des')->first();
-        $meta_key = Setting::where('name', 'meta_key')->first();
+        $logo = Setting::where('key', 'logo')->first();
+        $title = Setting::where('key', 'title')->first();
+        $meta_des = Setting::where('key', 'meta_des')->first();
+        $meta_key = Setting::where('key', 'meta_key')->first();
 
         SEOTools::setTitle($title->value);
         SEOTools::setDescription($meta_des->value);
@@ -56,18 +56,18 @@ class HomeController extends Controller
         SEOTools::opengraph()->addProperty('type', 'articles');
         SEOTools::twitter()->setSite(\Request::root());
 
-        $articles = Article::where(['published' => 1])->select('id','title','alias','image','category_id')
+        $articles = Article::where(['active' => 1])->select('id','title','alias','image','category_id')
             ->with(['category' => function($query){
                 $query->select('id','name','alias');
             }])->orderBy('id','DESC')->limit(10)->get();
-        $slider = Sliders::where(['published' => 1])->select('id','name','image','url','summary')->get();
-        $students = Student::where(['published' => 1])->select('id','title','image','content','creator')->get();
-        $partner = Partner::where(['published' => 1])->select('id','name','url','image')->get();
-        $cats = ProductsCategories::where(['is_home' => 1,'published' => 1])->where('parent_id','!=',null)->select('id','name','alias')
+        $slider = Sliders::where(['active' => 1])->select('id','name','image','url','summary')->get();
+        $students = Student::where(['active' => 1])->select('id','title','image','content','creator')->get();
+        $partner = Partner::where(['active' => 1])->select('id','name','url','image')->get();
+        $cats = ProductsCategories::where(['is_home' => 1,'active' => 1])->where('parent_id','!=',null)->select('id','name','alias')
             ->orderBy('ordering', 'ASC')->limit(6)->get();
         $productsInCategories = [];
         foreach ($cats as $category) {
-            $products = Product::where(['published' => 1, 'show_in_homepage' => 1])->where('category_id_wrapper', 'like', '%' . $category->id . '%')
+            $products = Product::where(['active' => 1, 'is_home' => 1])->where('category_id_wrapper', 'like', '%' . $category->id . '%')
                 ->select('id','image','alias','image_after','name','category_id')
                 ->with(['category' => function($query){
                     $query->select('id','name','alias');

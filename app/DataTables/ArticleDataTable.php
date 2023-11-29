@@ -22,6 +22,24 @@ class ArticleDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
+            ->editColumn('active', function ($q) {
+                $url = route('admin.article.changeActive', $q->id);
+                $status = $q->active == Article::STATUS_ACTIVE ? 'checked' : null;
+                return view('admin.components.buttons.change_status', [
+                    'url' => $url,
+                    'lowerModelName' => 'article',
+                    'status' => $status,
+                ])->render();
+            })
+            ->editColumn('is_home', function ($q) {
+                $url = route('admin.article.changeIsHome', $q->id);
+                $status = $q->is_home == Article::IS_HOME ? 'checked' : null;
+                return view('admin.components.buttons.change_status', [
+                    'url' => $url,
+                    'lowerModelName' => 'article',
+                    'status' => $status,
+                ])->render();
+            })
             ->editColumn('created_at', function ($q) {
                 return Carbon::parse($q->created_at)->format('H:i:s Y/m/d');
             })
@@ -29,14 +47,14 @@ class ArticleDataTable extends DataTable
                 return Carbon::parse($q->updated_at)->format('H:i:s Y/m/d');
             })
             ->editColumn('category_id', function ($q) {
-                return optional($q->category)->title;
+                return optional($q->category)->name;
             })
             ->addColumn('action', function ($q) {
                 $urlEdit = route('admin.article.edit', $q->id);
                 $urlDelete = route('admin.article.destroy', $q->id);
                 $lowerModelName = strtolower(class_basename(new Article()));
                 return view('admin.components.buttons.edit', compact('urlEdit'))->render() . view('admin.components.buttons.delete', compact('urlDelete', 'lowerModelName'))->render();
-             });
+             })->rawColumns(['active','action','is_home']);
     }
 
     /**
@@ -85,13 +103,9 @@ class ArticleDataTable extends DataTable
             Column::make('image')->title(trans('form.article.image'))->render([
                 'renderImage(data)'
             ]),
-            Column::make('category_id')->title(trans('form.article_category.')),
-            Column::make('active')->title(trans('form.article.active'))->render([
-                'renderLabelActive(data)'
-            ]),
-            Column::make('is_home')->title(trans('form.home_page'))->render([
-                'renderLabelShowHomeOrder(data)'
-            ]),
+            Column::make('category_id')->title(trans('form.article_category.'))->searchable(false),
+            Column::make('active')->title(trans('form.article.active')),
+            Column::make('is_home')->title(trans('form.home_page')),
             Column::make('created_at')->title(trans('form.created_at')),
             Column::make('updated_at')->title(trans('form.updated_at')),
             Column::computed('action')

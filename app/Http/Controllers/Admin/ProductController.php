@@ -68,13 +68,21 @@ class ProductController extends Controller
         try {
             $data = $req->validated();
             $image_root = '';
-            $data['slug'] = $req->input('slug')?\Str::slug($req->input('slug'), '-'):\Str::slug($data['title'], '-');
+            $image_after_root = '';
+            $data['alias'] = $req->input('alias')?\Str::slug($req->input('alias'), '-'):\Str::slug($data['name'], '-');
             if (!empty($data['image'])){
                 $image_root = $data['image'];
                 $data['image'] = urldecode($image_root);
             }
+            if (!empty($data['image_after'])){
+                $image_after_root = $data['image_after'];
+                $data['image_after'] = urldecode($image_after_root);
+            }
             $model = $this->productResponstory->create($data);
             if (!empty($data['image'])){
+                $this->productResponstory->saveFileUpload($image_root,$this->resizeImage,$model->id,'product');
+            }
+            if (!empty($data['image_after'])){
                 $this->productResponstory->saveFileUpload($image_root,$this->resizeImage,$model->id,'product');
             }
             DB::commit();
@@ -136,8 +144,15 @@ class ProductController extends Controller
                 }
                 $data['image'] = $this->productResponstory->saveFileUpload($data['image'],$this->resizeImage, $id,'product');
             }
-            if (empty($data['slug'])){
-                $data['slug'] = $req->input('slug')?\Str::slug($req->input('slug'), '-'):\Str::slug($data['title'], '-');
+
+            if (!empty($data['image_after']) && $data_root->image_after != $data['image_after']){
+                if ($data_root->image_after){
+                    $this->productResponstory->removeImageResize($data_root->image_after,$this->resizeImage, $id,'product');
+                }
+                $data['image_after'] = $this->productResponstory->saveFileUpload($data['image_after'],$this->resizeImage, $id,'product');
+            }
+            if (empty($data['alias'])){
+                $data['alias'] = $req->input('alias')?\Str::slug($req->input('alias'), '-'):\Str::slug($data['name'], '-');
             }
             $page->update($data);
             DB::commit();

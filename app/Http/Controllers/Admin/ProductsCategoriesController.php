@@ -56,7 +56,7 @@ class ProductsCategoriesController extends Controller
         DB::beginTransaction();
         try {
             $data = $req->validated();
-            $data['slug'] = $req->input('slug')?\Str::slug($req->input('slug'), '-'):\Str::slug($data['title'], '-');
+            $data['slug'] = $req->input('alias')?\Str::slug($req->input('alias'), '-'):\Str::slug($data['name'], '-');
             if (!empty($data['image'])){
                 $image_root = $data['image'];
                 $data['image'] = urldecode($image_root);
@@ -113,8 +113,8 @@ class ProductsCategoriesController extends Controller
             if (!empty($data['image']) && $data_root->image != $data['image']){
                 $data['image'] = rawurldecode($data['image']);
             }
-            if (empty($data['slug'])){
-                $data['slug'] = $req->input('slug')?\Str::slug($req->input('slug'), '-'):\Str::slug($data['title'], '-');
+            if (empty($data['alias'])){
+                $data['alias'] = $req->input('alias')?\Str::slug($req->input('alias'), '-'):\Str::slug($data['name'], '-');
             }
             $page->update($data);
             DB::commit();
@@ -159,5 +159,33 @@ class ProductsCategoriesController extends Controller
         $data = $request->data;
         $this->productCategoryRepository->updateTreeRebuild('id', $data);
         return response()->json($data);
+    }
+
+    /**
+     * @param $id
+     * @return array
+     */
+    public function changeActive($id)
+    {
+        $product_category = ProductsCategories::findOrFail($id);
+        $product_category->update(['active' => !$product_category->active]);
+        return [
+            'status' => true,
+            'message' => trans('message.change_active_product_category_success')
+        ];
+    }
+
+    /**
+     * @param $id
+     * @return array
+     */
+    public function changeIsHome($id)
+    {
+        $product_category = ProductsCategories::findOrFail($id);
+        $product_category->update(['is_home' => !$product_category->is_home]);
+        return [
+            'status' => true,
+            'message' => trans('message.change_active_product_category_success')
+        ];
     }
 }

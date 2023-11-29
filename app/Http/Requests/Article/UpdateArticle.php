@@ -26,7 +26,7 @@ class UpdateArticle extends FormRequest
         return [
             'title' => 'required',
             'category_id' => 'required',
-            'slug' => 'nullable',
+            'alias' => 'nullable',
             'content' => 'nullable',
             'active' => 'required',
             'is_home' => 'required',

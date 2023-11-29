@@ -34,7 +34,7 @@ class AppServiceProvider extends ServiceProvider
         $setting = null;
         if (!Request::is('admin/*')) {
             if (Schema::hasTable('config')) {
-                $setting = $settingRepository->getAll()->pluck('value', 'name');
+                $setting = $settingRepository->getAll()->pluck('value', 'key');
             }
             if (Schema::hasTable('menu')) {
                 $menu = $menuRepository->getMenusByCategoryId(1)->toTree();

@@ -6,11 +6,11 @@
             <div class="col-sm-6">
                 <!-- text input -->
                 <div class="form-group">
-                    <label>@lang('form.product.title')</label> <span class="text-danger">*</span>
-                    <input type="text" class="form-control" name="title" value="{{ isset($product) ? $product->title : old('title') }}" required>
-                    @if ($errors->has('title'))
+                    <label>@lang('form.product.name')</label> <span class="text-danger">*</span>
+                    <input type="text" class="form-control" name="name" value="{{ isset($product) ? $product->name : old('name') }}" required>
+                    @if ($errors->has('name'))
                         <span class="help-block text-danger">
-                    <strong>{{ $errors->first('title') }}</strong>
+                    <strong>{{ $errors->first('name') }}</strong>
                 </span>
                     @endif
                 </div>
@@ -18,11 +18,11 @@
             <div class="col-sm-6">
                 <!-- text input -->
                 <div class="form-group">
-                    <label>@lang('form.product.slug')</label> <span class="text-danger">(@lang('form.auto_slug'))</span>
-                    <input type="text" class="form-control" name="slug" value="{{ isset($product) ? $product->slug : old('slug') }}">
-                    @if ($errors->has('slug'))
+                    <label>@lang('form.product.alias')</label> <span class="text-danger">(@lang('form.auto_slug'))</span>
+                    <input type="text" class="form-control" name="alias" value="{{ isset($product) ? $product->alias : old('alias') }}">
+                    @if ($errors->has('alias'))
                         <span class="help-block text-danger">
-                    <strong>{{ $errors->first('slug') }}</strong>
+                    <strong>{{ $errors->first('alias') }}</strong>
                 </span>
                     @endif
                 </div>
@@ -69,27 +69,53 @@
                     @endif
                 </div>
             </div>
-        </div>
-        <div class="row">
+            <div class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>@lang('form.product.sku')</label>
+                    <input type="text" class="form-control" name="sku" value="{{ isset($product) ? $product->sku : old('sku') }}">
+                    @if ($errors->has('sku'))
+                        <span class="help-block text-danger">
+                    <strong>{{ $errors->first('sku') }}</strong>
+                </span>
+                    @endif
+                </div>
+            </div>
             <div class="col-sm-6">
                 <div class="form-group">
                     <label>@lang('form.product.category')</label> <span class="text-danger">*</span>
                     <select name="category_id" id="category_id" class="form-control" required>
                         @forelse($categories as $key => $category)
-                            <option value="{{ $category['id'] }}" {{ isset($product->category_id) && $product->category_id == $category['id'] ? 'selected' : old('category_id') == $category['id'] ? 'selected' : '' }}>{{ $category['title'] }}</option>
+                            <option value="{{ $category['id'] }}" {{ isset($product->category_id) && $product->category_id == $category['id'] ? 'selected' : old('category_id') == $category['id'] ? 'selected' : '' }}>{{ $category['name'] }}</option>
                         @empty
                         @endforelse
                     </select>
                 </div>
             </div>
+        </div>
+        <div class="row">
+
             <div class="col-sm-6">
                 <div class="form-group">
-                    <label>@lang('form.product.image')</label> <span class="text-danger">*</span>
+                    <label>Ảnh trước</label> <span class="text-danger">*</span>
                     <div class="input-group">
                         @include('admin.components.buttons.image',['src' => isset($product->image) ? $product->image : old('image'),'name' => 'image'])
                         @if ($errors->has('image'))
                             <span class="help-block text-danger">
                                 <strong>{{ $errors->first('image') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Ảnh sau</label> <span class="text-danger">*</span>
+                    <div class="input-group">
+                        @include('admin.components.buttons.image',['src' => isset($product->image_after) ? $product->image_after : old('image_after'),'name' => 'image_after'])
+                        @if ($errors->has('image_after'))
+                            <span class="help-block text-danger">
+                                <strong>{{ $errors->first('image_after') }}</strong>
                             </span>
                         @endif
                     </div>
@@ -117,18 +143,6 @@
                     <strong>{{ $errors->first('price') }}</strong>
                 </span>
                     @endif
-                </div>
-            </div>
-            <div class="col-sm-12">
-                <div class="form-group">
-                    <label>@lang('form.content_include')</label> <span class="text-danger">*</span>
-                    <textarea id="content_include" name="content_include" class="form-control" rows="10" >{{ isset($product->content_include) ? $product->content_include : old('content_include') }}</textarea>
-                    @if ($errors->has('content_include'))
-                        <span class="help-block text-danger">
-                    <strong>{{ $errors->first('content_include') }}</strong>
-                </span>
-                    @endif
-                    <div class="editor"></div>
                 </div>
             </div>
         </div>
@@ -169,24 +183,37 @@
             </div>
         </div>
     </div>
+    <div class="col-sm-12">
+        <div class="form-group">
+            <label>Mô tả ngắn</label> <span class="text-danger">*</span>
+            <textarea id="content_info" name="content_info" class="form-control" rows="10" >{{ isset($product->content_info) ? $product->content_info : old('content_info') }}</textarea>
+            @if ($errors->has('content_info'))
+                <span class="help-block text-danger">
+                    <strong>{{ $errors->first('content_info') }}</strong>
+                </span>
+            @endif
+            <div class="editor"></div>
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <div class="form-group">
+            <label>Thông tin sản phẩm</label> <span class="text-danger">*</span>
+            <textarea id="content" name="content" class="form-control" rows="10" >{{ isset($product->content) ? $product->content : old('content') }}</textarea>
+            @if ($errors->has('content'))
+                <span class="help-block text-danger">
+                    <strong>{{ $errors->first('content') }}</strong>
+                </span>
+            @endif
+            <div class="editor"></div>
+        </div>
+    </div>
 </div>
 @section('script')
     @parent
-    <script src="{{ asset('ckeditor5/ckeditor.js') }}"></script>
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     <script src="{{ asset('ckfinder/ckfinder.js') }}"></script>
     <script>
-        InlineEditor
-            .create( document.querySelector( '#content_include' ),{
-                ckfinder: {
-                    uploadUrl: '{!! asset('ckfinder/core/connector/php/connector.php').'?command=QuickUpload&type=Images&responseType=json' !!}',
-                    options: {
-                        resourceType: 'Images'
-                    }
-                },
-                mediaEmbed: {previewsInData: true}
-            } )
-            .catch( error => {
-                console.error( error );
-            } );
+        CKEDITOR.replace( 'content' );
+        CKEDITOR.replace( 'content_info' );
     </script>
 @endsection

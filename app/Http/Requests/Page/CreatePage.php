@@ -25,14 +25,9 @@ class CreatePage extends FormRequest
     {
         return [
             'title' => 'required',
-            'slug' => 'nullable',
+            'alias' => 'nullable',
             'active' => 'nullable',
-            'is_home' => 'nullable',
             'content' => 'nullable',
-            'description' => 'nullable',
-            'image' => 'nullable',
-            'image_title' => 'nullable',
-            'ordering' => 'nullable',
             'seo_title' => 'nullable',
             'seo_keyword' => 'nullable',
             'seo_description' => 'nullable',

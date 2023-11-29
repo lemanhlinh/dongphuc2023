@@ -22,18 +22,30 @@ class ProductDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
+            ->editColumn('active', function ($q) {
+                $url = route('admin.article.changeActive', $q->id);
+                $status = $q->active == Product::STATUS_ACTIVE ? 'checked' : null;
+                return view('admin.components.buttons.change_status', [
+                    'url' => $url,
+                    'lowerModelName' => 'article',
+                    'status' => $status,
+                ])->render();
+            })
             ->editColumn('created_at', function ($q) {
                 return Carbon::parse($q->created_at)->format('H:i:s Y/m/d');
             })
             ->editColumn('updated_at', function ($q) {
                 return Carbon::parse($q->updated_at)->format('H:i:s Y/m/d');
             })
+            ->editColumn('category_id', function ($q) {
+                return optional($q->category)->name;
+            })
             ->addColumn('action', function ($q) {
                 $urlEdit = route('admin.product.edit', $q->id);
                 $urlDelete = route('admin.product.destroy', $q->id);
                 $lowerModelName = strtolower(class_basename(new Product()));
                 return view('admin.components.buttons.edit', compact('urlEdit'))->render() . view('admin.components.buttons.delete', compact('urlDelete', 'lowerModelName'))->render();
-            });
+            })->rawColumns(['active','action']);
     }
 
     /**
@@ -78,7 +90,12 @@ class ProductDataTable extends DataTable
     {
         return [
             Column::make('id'),
-            Column::make('title'),
+            Column::make('name'),
+            Column::make('image')->title(trans('form.product.image'))->render([
+                'renderImage(data)'
+            ]),
+            Column::make('category_id')->title(trans('form.product_category.'))->searchable(false),
+            Column::make('active')->title(trans('form.article.active')),
             Column::make('created_at'),
             Column::make('updated_at'),
             Column::computed('action')
