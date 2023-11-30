@@ -118,18 +118,6 @@
                     @endif
                 </div>
             </div>
-            <div class="col-sm-12">
-                <div class="form-group">
-                    <label>@lang('form.content')</label> <span class="text-danger">*</span>
-                    <textarea id="content" name="content" class="form-control" rows="10" >{{ isset($article->content) ? $article->content : old('content') }}</textarea>
-                    @if ($errors->has('content'))
-                        <span class="help-block text-danger">
-                    <strong>{{ $errors->first('content') }}</strong>
-                </span>
-                    @endif
-                    <div class="editor"></div>
-                </div>
-            </div>
         </div>
     </div>
     <div class="col-sm-5">
@@ -166,6 +154,18 @@
                     @endif
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <div class="form-group">
+            <label>@lang('form.content')</label> <span class="text-danger">*</span>
+            <textarea id="content" name="content" class="form-control" rows="10" >{{ isset($article->content) ? $article->content : old('content') }}</textarea>
+            @if ($errors->has('content'))
+                <span class="help-block text-danger">
+                    <strong>{{ $errors->first('content') }}</strong>
+                </span>
+            @endif
+            <div class="editor"></div>
         </div>
     </div>
 </div>
