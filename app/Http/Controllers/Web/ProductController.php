@@ -271,7 +271,6 @@ class ProductController extends Controller
             ProductsContacts::create(
                 [
                     'fullname' => $request->input('name_contact'),
-                    'content' => $request->input('name_contact'),
                     'telephone' => $request->input('phone_contact'),
                     'email' => $request->input('email_contact'),
                     'id_product' => $id_product?$id_product:null,

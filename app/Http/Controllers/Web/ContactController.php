@@ -55,7 +55,7 @@ class ContactController extends Controller
             $data = $req->validated();
             Contact::create(
                 [
-                    'full_name' => $data['full_name'],
+                    'fullname' => $data['full_name'],
                     'content' => $data['content'],
                     'telephone' => $data['phone'],
                     'email' => $data['email'],

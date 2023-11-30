@@ -172,6 +172,26 @@
                         </a>
                     </li>
                 @endcan
+                @can(['view_product_contact'])
+                    <li class="nav-item">
+                        <a href="{{ route('admin.product-contact.index') }}" class="nav-link @if (request()->is('admin/product-contact*')) active @endif">
+                            <i class="nav-icon fas fa-file-signature"></i>
+                            <p>
+                                Nhận báo giá
+                            </p>
+                        </a>
+                    </li>
+                @endcan
+                @can(['view_contact'])
+                    <li class="nav-item">
+                        <a href="{{ route('admin.contact.index') }}" class="nav-link @if (request()->is('admin/contact*')) active @endif">
+                            <i class="nav-icon fas fa-id-card"></i>
+                            <p>
+                                Liên hệ
+                            </p>
+                        </a>
+                    </li>
+                @endcan
                 @can(['view_slider'])
                     <li class="nav-item">
                         <a href="{{ route('admin.slider.index') }}" class="nav-link @if (request()->is('admin/slider')) active @endif">

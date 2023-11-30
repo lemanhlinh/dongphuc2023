@@ -180,6 +180,15 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
         Route::post('/destroy/{id}', 'SliderController@destroy')->name('destroy')->middleware('permission:delete_slider');
         Route::post('/change-active-slider/{id}', 'SliderController@changeActive')->name('changeActive')->middleware('permission:edit_slider');
     });
+
+    Route::group(['prefix' => 'product-contact', 'as' => 'product-contact.', 'middleware' => ['permission:view_product_contact']], function () {
+        Route::get('', 'ProductsContactsController@index')->name('index');
+        Route::get('/create', 'ProductsContactsController@create')->name('create')->middleware('permission:create_product_contact');
+        Route::post('/store', 'ProductsContactsController@store')->name('store')->middleware('permission:create_product_contact');
+        Route::get('/edit/{id}', 'ProductsContactsController@edit')->name('edit')->middleware('permission:edit_product_contact');
+        Route::post('/update/{id}', 'ProductsContactsController@update')->name('update')->middleware('permission:edit_product_contact');
+        Route::post('/destroy/{id}', 'ProductsContactsController@destroy')->name('destroy')->middleware('permission:delete_product_contact');
+    });
 });
 
 
