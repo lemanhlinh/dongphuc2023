@@ -29,7 +29,7 @@
                                                     <div class="content-item">
                                                         <h2 class="title">{{ $item->title }}</h2>
                                                         <time>{{ $item->created_at }}</time>
-                                                        <summary class="summary">{{ $item->summary }}</summary>
+                                                        <summary class="summary">{{ $item->description }}</summary>
                                                     </div>
                                                 </div>
                                             </div>
