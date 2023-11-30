@@ -262,7 +262,10 @@ class ProductController extends Controller
     public function saveQuote(Request $request)
     {
         $id_product =  $request->input('id');
-        $product = Product::findOrFail($id_product);
+        $product = null;
+        if ($id_product){
+            $product = Product::findOrFail($id_product);
+        }
         DB::beginTransaction();
         try {
             ProductsContacts::create(
@@ -271,8 +274,8 @@ class ProductController extends Controller
                     'content' => $request->input('name_contact'),
                     'telephone' => $request->input('phone_contact'),
                     'email' => $request->input('email_contact'),
-                    'id_product' => $id_product,
-                    'name_product' => $product->name,
+                    'id_product' => $id_product?$id_product:null,
+                    'name_product' => $product?$product->name:null,
                     'number_product' => $request->input('number_contact'),
                 ]
             );
