@@ -33,7 +33,7 @@ class OrderDataTable extends DataTable
                 $urlEdit = route('admin.order-product.edit', $q->id);
                 $urlDelete = route('admin.order-product.destroy', $q->id);
                 $lowerModelName = strtolower(class_basename(new Setting()));
-                return view('admin.components.buttons.edit', compact('urlEdit'))->render();
+                return view('admin.components.buttons.edit', compact('urlEdit'))->render(). view('admin.components.buttons.delete', compact('urlDelete', 'lowerModelName'))->render();
             })->rawColumns(['action']);
     }
 

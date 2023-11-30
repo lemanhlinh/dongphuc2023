@@ -32,7 +32,7 @@ class ProductContactDataTable extends DataTable
                 $urlEdit = route('admin.product-contact.edit', $q->id);
                 $urlDelete = route('admin.product-contact.destroy', $q->id);
                 $lowerModelName = strtolower(class_basename(new ProductsContacts()));
-                return view('admin.components.buttons.edit', compact('urlEdit'))->render();
+                return view('admin.components.buttons.edit', compact('urlEdit'))->render(). view('admin.components.buttons.delete', compact('urlDelete', 'lowerModelName'))->render();
             });
     }
 
