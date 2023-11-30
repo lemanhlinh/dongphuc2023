@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ContactMail;
 use App\Models\Banners;
 use App\Models\ProductsCategories;
 use App\Models\Setting;
@@ -12,6 +13,7 @@ use Illuminate\Http\Request;
 use App\Models\Contact;
 use App\Http\Requests\Contact\CreateContact;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
 class ContactController extends Controller
@@ -62,7 +64,10 @@ class ContactController extends Controller
                 ]
             );
             DB::commit();
-            Session::flash('success', trans('message.create_contact_success'));
+            $getEmail = Setting::where('key', 'admin_email')->first();
+            $listEmail = explode(',',$getEmail->value);
+            Mail::to($data['email'])->cc($listEmail)->send(new ContactMail($data));
+            Session::flash('success', 'Cảm ơn, chúng tôi sẽ liên hệ với bạn sớm nhất có thể!');
             return redirect()->back();
         } catch (\Exception $ex) {
             DB::rollBack();

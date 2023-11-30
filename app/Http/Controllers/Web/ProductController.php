@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Mail\OrderMail;
+use App\Mail\QuoteMail;
 use App\Models\Attribute;
 use App\Models\Banners;
 use App\Models\BookTable;
@@ -12,12 +14,14 @@ use App\Models\Product;
 use App\Models\ProductsCategories;
 use App\Models\ProductsContacts;
 use App\Models\ProductsImages;
+use App\Models\Setting;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Http\Request;
 use App\Repositories\Contracts\ProductCategoryInterface;
 use App\Repositories\Contracts\ProductInterface;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\Order\CreateOrder;
 use App\Http\Requests\BookTable\CreateBookTable;
@@ -237,6 +241,9 @@ class ProductController extends Controller
             }
             DB::commit();
             Session::forget('cart');
+            $getEmail = Setting::where('key', 'admin_email')->first();
+            $listEmail = explode(',',$getEmail->value);
+            Mail::to($listEmail)->send(new OrderMail($data));
             Session::flash('success', trans('message.create_order_success'));
             return redirect()->route('home');
         } catch (\Exception $ex) {
@@ -279,6 +286,9 @@ class ProductController extends Controller
                 ]
             );
             DB::commit();
+            $getEmail = Setting::where('key', 'admin_email')->first();
+            $listEmail = explode(',',$getEmail->value);
+            Mail::to($listEmail)->send(new QuoteMail($request));
             Session::flash('success', trans('message.create_contact_success'));
             return redirect()->back();
         } catch (\Exception $ex) {
