@@ -108,6 +108,11 @@ class PermissionSeeder extends Seeder
             ['name' => 'edit_product_contact', 'display_name' => 'Sửa nhận báo giá', 'guard_name' => 'web'],
             ['name' => 'delete_product_contact', 'display_name' => 'Xóa nhận báo giá', 'guard_name' => 'web'],
 
+            ['name' => 'view_banner', 'display_name' => 'Xem danh sách banner', 'guard_name' => 'web'],
+            ['name' => 'create_banner', 'display_name' => 'Thêm mới banner', 'guard_name' => 'web'],
+            ['name' => 'edit_banner', 'display_name' => 'Sửa banner', 'guard_name' => 'web'],
+            ['name' => 'delete_banner', 'display_name' => 'Xóa banner', 'guard_name' => 'web'],
+
         ];
     }
 }

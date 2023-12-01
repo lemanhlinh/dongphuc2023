@@ -189,6 +189,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
         Route::post('/update/{id}', 'ProductsContactsController@update')->name('update')->middleware('permission:edit_product_contact');
         Route::post('/destroy/{id}', 'ProductsContactsController@destroy')->name('destroy')->middleware('permission:delete_product_contact');
     });
+
+    Route::group(['prefix' => 'banner', 'as' => 'banner.', 'middleware' => ['permission:view_banner']], function () {
+        Route::get('', 'BannerController@index')->name('index');
+        Route::get('/create', 'BannerController@create')->name('create')->middleware('permission:create_banner');
+        Route::post('/store', 'BannerController@store')->name('store')->middleware('permission:create_banner');
+        Route::get('/edit/{id}', 'BannerController@edit')->name('edit')->middleware('permission:edit_banner');
+        Route::post('/update/{id}', 'BannerController@update')->name('update')->middleware('permission:edit_banner');
+        Route::post('/destroy/{id}', 'BannerController@destroy')->name('destroy')->middleware('permission:delete_banner');
+        Route::post('/change-active-slider/{id}', 'BannerController@changeActive')->name('changeActive')->middleware('permission:edit_banner');
+    });
 });
 
 

@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
 
 function format_number($number, $num_decimal = 2, $edit = 0)
@@ -377,9 +378,15 @@ function getCategoriesTree($categories, $parentId = null)
 
 function replace_image_to_webp($image,$small = null) {
     if($small){
-        return str_replace(['.jpg', '.jpeg', '.png', '.gif', '.bmp'],'-small.webp',$image);
+        $img = str_replace(['.jpg', '.jpeg', '.png', '.gif', '.bmp'],'-small.webp',$image);
     }else{
-        return str_replace(['.jpg', '.jpeg', '.png', '.gif', '.bmp'],'.webp',$image);
+        $img = str_replace(['.jpg', '.jpeg', '.png', '.gif', '.bmp'],'.webp',$image);
+    }
+
+    if (File::exists(public_path($img))) {
+        return $img;
+    }else{
+        return $image;
     }
 
 }

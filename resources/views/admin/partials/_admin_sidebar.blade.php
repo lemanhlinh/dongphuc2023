@@ -202,6 +202,16 @@
                         </a>
                     </li>
                 @endcan
+                @can(['view_banner'])
+                    <li class="nav-item">
+                        <a href="{{ route('admin.banner.index') }}" class="nav-link @if (request()->is('admin/banner')) active @endif">
+                            <i class="nav-icon fas fa-images"></i>
+                            <p>
+                                @lang('form.banner.')
+                            </p>
+                        </a>
+                    </li>
+                @endcan
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
