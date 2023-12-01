@@ -7,6 +7,7 @@ use App\Models\Sliders;
 use Illuminate\Http\Request;
 use App\DataTables\SliderDataTable;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\Slide\CreateSlide;
 use App\Http\Requests\Slide\UpdateSlide;
@@ -16,13 +17,11 @@ use Illuminate\Support\Facades\Storage;
 class SliderController extends Controller
 {
     protected $slideRepository;
-    protected $resizeImage;
 
     public function __construct(SlideInterface $slideRepository)
     {
         $this->middleware('auth');
         $this->slideRepository = $slideRepository;
-        $this->resizeImage = $this->slideRepository->resizeImage();
     }
 
     /**
@@ -56,18 +55,13 @@ class SliderController extends Controller
         DB::beginTransaction();
         try {
             $data = $req->validated();
-            $image_root = '';
             if (!empty($data['image'])){
-                $image_root = $data['image'];
-                $data['image'] = urldecode($image_root);
+                $data['image'] = $this->slideRepository->saveFileUpload($data['image'],'slider');
             }
             $model = $this->slideRepository->create($data);
-            if (!empty($data['image'])){
-                $this->slideRepository->saveFileUpload($image_root,$this->resizeImage,$model->id,'slider');
-            }
             DB::commit();
             Session::flash('success', trans('message.create_slide_success'));
-            return redirect()->back();
+            return redirect()->route('admin.slider.edit', $model->id);
         } catch (\Exception $ex) {
             DB::rollBack();
             \Log::info([
@@ -112,14 +106,16 @@ class SliderController extends Controller
      */
     public function update($id, UpdateSlide $req)
     {
-        $data_root = $this->slideRepository->getOneById($id);
         DB::beginTransaction();
         try {
             $data = $req->validated();
             $slider = $this->slideRepository->getOneById($id);
-            if (!empty($data['image']) && $data_root->image != $data['image']){
-                $this->slideRepository->removeImageResize($data_root->image,$this->resizeImage, $id,'slider');
-                $data['image'] = $this->slideRepository->saveFileUpload($data['image'],$this->resizeImage, $id,'slider');
+            if (!empty($data['image']) && $slider->image != $data['image']){
+                if (File::exists(public_path($slider->image))) {
+                    Storage::delete(str_replace('storage','public',$slider->image));
+                    Storage::delete(str_replace('storage','public',str_replace('.webp','-small.webp',$slider->image)));
+                }
+                $data['image'] = $this->slideRepository->saveFileUpload($data['image'],'slider');
             }
             $slider->update($data);
             DB::commit();
@@ -145,16 +141,8 @@ class SliderController extends Controller
     public function destroy($id)
     {
         $data = $this->slideRepository->getOneById($id);
-
-        // Đường dẫn tới tệp tin
-        $resize = $this->resizeImage;
-        $img_path = pathinfo($data->image, PATHINFO_DIRNAME);
-        foreach ($resize as $item){
-            $array_resize_ = str_replace($img_path.'/','/public/slider/'.$item[0].'x'.$item[1].'/'.$data->id.'-',$data->image);
-            $array_resize_ = str_replace(['.jpg', '.png','.bmp','.gif','.jpeg'],'.webp',$array_resize_);
-            Storage::delete($array_resize_);
-        }
-
+        Storage::delete(str_replace('storage','public',$data->image));
+        Storage::delete(str_replace('storage','public',str_replace('.webp','-small.webp',$data->image)));
         $this->slideRepository->delete($id);
 
         return [

@@ -16,8 +16,8 @@ class ArticlesCategories extends Model
 
     protected $guarded = ['id'];
 
-//    public function articles()
-//    {
-//        return $this->hasMany(Article::class, 'category_id');
-//    }
+    public function articles()
+    {
+        return $this->belongsTo(Article::class, 'id','category_id');
+    }
 }

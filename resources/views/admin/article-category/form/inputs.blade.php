@@ -16,7 +16,7 @@
             <div class="col-sm-6">
                 <!-- text input -->
                 <div class="form-group">
-                    <label>@lang('form.article_category.alias')</label> <span class="text-danger">(@lang('form.auto_slug'))</span>
+                    <label>@lang('form.article_category.slug')</label> <span class="text-danger">(@lang('form.auto_slug'))</span>
                     <input type="text" class="form-control" name="alias" value="{{ isset($article_category) ? $article_category->alias : old('alias') }}">
                     @if ($errors->has('alias'))
                         <span class="help-block text-danger">

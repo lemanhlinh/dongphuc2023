@@ -27,7 +27,7 @@ class ArticleCategoryDataTable extends DataTable
                 $status = $q->active == ArticlesCategories::STATUS_ACTIVE ? 'checked' : null;
                 return view('admin.components.buttons.change_status', [
                     'url' => $url,
-                    'lowerModelName' => 'articles-categories',
+                    'lowerModelName' => 'article-category',
                     'status' => $status,
                 ])->render();
             })
@@ -40,7 +40,7 @@ class ArticleCategoryDataTable extends DataTable
             ->addColumn('action', function ($q){
                 $urlEdit = route('admin.article-category.edit', $q->id);
                 $urlDelete = route('admin.article-category.destroy', $q->id);
-                $lowerModelName = strtolower(class_basename(new ArticlesCategories()));
+                $lowerModelName = 'article-category';
                 return view('admin.components.buttons.edit', compact('urlEdit'))->render() . view('admin.components.buttons.delete', compact('urlDelete', 'lowerModelName'))->render();
             })->rawColumns(['active','action']);
     }
@@ -64,7 +64,7 @@ class ArticleCategoryDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('articlecategory-table')
+                    ->setTableId('article-category-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->dom('Bfrtip')

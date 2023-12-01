@@ -17,10 +17,11 @@ class ProductsCategories extends Model
 
     protected $guarded = ['id', '_lft', '_rgt'];
     protected $table = 'products_categories';
-//    public function products()
-//    {
-//        return $this->hasMany(Product::class,'category_id');
-//    }
+
+    public function products()
+    {
+        return $this->belongsTo(Product::class, 'id','category_id');
+    }
 
 //    public function children()
 //    {

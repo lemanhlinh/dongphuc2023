@@ -12,6 +12,7 @@ use App\DataTables\ProductDataTable;
 use App\Http\Requests\Product\CreateProduct;
 use App\Http\Requests\Product\UpdateProduct;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
@@ -19,14 +20,12 @@ class ProductController extends Controller
 {
 
     protected $productResponstory, $productCategoryResponstory;
-    protected $resizeImage;
 
     function __construct(ProductCategoryInterface $productCategoryResponstory,ProductInterface $productResponstory)
     {
         $this->middleware('auth');
         $this->productCategoryResponstory = $productCategoryResponstory;
         $this->productResponstory = $productResponstory;
-        $this->resizeImage = $this->productResponstory->resizeImage();
     }
 
     /**
@@ -67,27 +66,17 @@ class ProductController extends Controller
         DB::beginTransaction();
         try {
             $data = $req->validated();
-            $image_root = '';
-            $image_after_root = '';
-            $data['alias'] = $req->input('alias')?\Str::slug($req->input('alias'), '-'):\Str::slug($data['name'], '-');
+            $data['alias'] = $data['alias']?\Str::slug($data['alias'], '-'):\Str::slug($data['name'], '-');
             if (!empty($data['image'])){
-                $image_root = $data['image'];
-                $data['image'] = urldecode($image_root);
+                $data['image'] = $this->productResponstory->saveFileUpload($data['image'],'products');
             }
             if (!empty($data['image_after'])){
-                $image_after_root = $data['image_after'];
-                $data['image_after'] = urldecode($image_after_root);
+                $data['image_after'] = $this->productResponstory->saveFileUpload($data['image_after'],'products');
             }
             $model = $this->productResponstory->create($data);
-            if (!empty($data['image'])){
-                $this->productResponstory->saveFileUpload($image_root,$this->resizeImage,$model->id,'product');
-            }
-            if (!empty($data['image_after'])){
-                $this->productResponstory->saveFileUpload($image_root,$this->resizeImage,$model->id,'product');
-            }
             DB::commit();
             Session::flash('success', trans('message.create_product_success'));
-            return redirect()->back();
+            return redirect()->route('admin.product.edit', $model->id);
         } catch (\Exception $ex) {
             DB::rollBack();
             \Log::info([
@@ -133,28 +122,28 @@ class ProductController extends Controller
      */
     public function update($id, UpdateProduct $req)
     {
-        $data_root = $this->productResponstory->getOneById($id);
         DB::beginTransaction();
         try {
             $data = $req->validated();
-            $page = $this->productResponstory->getOneById($id);
-            if (!empty($data['image']) && $data_root->image != $data['image']){
-                if ($data_root->image){
-                    $this->productResponstory->removeImageResize($data_root->image,$this->resizeImage, $id,'product');
+            $product = $this->productResponstory->getOneById($id);
+            if (!empty($data['image']) && $product->image != $data['image']){
+                if (File::exists(public_path($product->image))) {
+                    Storage::delete(str_replace('storage','public',$product->image));
                 }
-                $data['image'] = $this->productResponstory->saveFileUpload($data['image'],$this->resizeImage, $id,'product');
+                $data['image'] = $this->productResponstory->saveFileUpload($data['image'],'products');
             }
 
-            if (!empty($data['image_after']) && $data_root->image_after != $data['image_after']){
-                if ($data_root->image_after){
-                    $this->productResponstory->removeImageResize($data_root->image_after,$this->resizeImage, $id,'product');
+            if (!empty($data['image_after']) && $product->image_after != $data['image_after']){
+                if (File::exists(public_path($product->image_after))) {
+                    Storage::delete(str_replace('storage','public',$product->image_after));
                 }
-                $data['image_after'] = $this->productResponstory->saveFileUpload($data['image_after'],$this->resizeImage, $id,'product');
+                $data['image_after'] = $this->productResponstory->saveFileUpload($data['image_after'],'products');
             }
+
             if (empty($data['alias'])){
-                $data['alias'] = $req->input('alias')?\Str::slug($req->input('alias'), '-'):\Str::slug($data['name'], '-');
+                $data['alias'] = $data['alias']?\Str::slug($data['alias'], '-'):\Str::slug($data['name'], '-');
             }
-            $page->update($data);
+            $product->update($data);
             DB::commit();
             Session::flash('success', trans('message.update_product_success'));
             return redirect()->route('admin.product.edit', $id);
@@ -179,18 +168,9 @@ class ProductController extends Controller
     {
 
         $data = $this->productResponstory->getOneById($id);
-
-        // Đường dẫn tới tệp tin
-        $resize = $this->resizeImage;
-        $img_path = pathinfo($data->image, PATHINFO_DIRNAME);
-        foreach ($resize as $item){
-            $array_resize_ = str_replace($img_path.'/','/public/product/'.$item[0].'x'.$item[1].'/'.$data->id.'-',$data->image);
-            $array_resize_ = str_replace(['.jpg', '.png','.bmp','.gif','.jpeg'],'.webp',$array_resize_);
-            Storage::delete($array_resize_);
-        }
-
+        Storage::delete(str_replace('storage','public',$data->image));
+        Storage::delete(str_replace('storage','public',$data->image_after));
         $this->productResponstory->delete($id);
-
         return [
             'status' => true,
             'message' => trans('message.delete_product_success')

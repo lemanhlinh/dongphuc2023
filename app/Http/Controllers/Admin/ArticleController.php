@@ -12,6 +12,7 @@ use App\Repositories\Contracts\ArticleInterface;
 use App\Http\Requests\Article\CreateArticle;
 use App\Http\Requests\Article\UpdateArticle;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
@@ -19,14 +20,12 @@ class ArticleController extends Controller
 {
     protected $articleCategoryRepository;
     protected $articleRepository;
-    protected $resizeImage;
 
     public function __construct(ArticleCategoryInterface $articleCategoryRepository, ArticleInterface $articleRepository)
     {
         $this->middleware('auth');
         $this->articleCategoryRepository = $articleCategoryRepository;
         $this->articleRepository = $articleRepository;
-        $this->resizeImage = $this->articleRepository->resizeImage();
     }
 
     /**
@@ -68,19 +67,14 @@ class ArticleController extends Controller
         DB::beginTransaction();
         try {
             $data = $req->validated();
-            $image_root = '';
-            $data['alias'] = $req->input('alias')?\Str::slug($req->input('alias'), '-'):\Str::slug($data['title'], '-');
+            $data['alias'] = $data['alias']?\Str::slug($data['alias'], '-'):\Str::slug($data['title'], '-');
             if (!empty($data['image'])){
-                $image_root = $data['image'];
-                $data['image'] = urldecode($image_root);
+                $data['image'] = $this->articleRepository->saveFileUpload($data['image'],'article');
             }
             $model = $this->articleRepository->create($data);
-            if (!empty($data['image'])){
-                $this->articleRepository->saveFileUpload($image_root,$this->resizeImage,$model->id,'article');
-            }
             DB::commit();
             Session::flash('success', trans('message.create_article_success'));
-            return redirect()->back();
+            return redirect()->route('admin.article.edit', $model->id);
         } catch (\Exception $ex) {
             DB::rollBack();
             \Log::info([
@@ -126,17 +120,18 @@ class ArticleController extends Controller
      */
     public function update($id, UpdateArticle $req)
     {
-        $data_root = $this->articleRepository->getOneById($id);
         DB::beginTransaction();
         try {
             $data = $req->validated();
             $article = $this->articleRepository->getOneById($id);
-            if (!empty($data['image']) && $data_root->image != $data['image']){
-                $this->articleRepository->removeImageResize($data_root->image,$this->resizeImage, $id,'article');
-                $data['image'] = $this->articleRepository->saveFileUpload($data['image'],$this->resizeImage, $id,'article');
+            if (!empty($data['image']) && $article->image != $data['image']){
+                if (File::exists(public_path($article->image))) {
+                    Storage::delete(str_replace('storage','public',$article->image));
+                }
+                $data['image'] = $this->articleRepository->saveFileUpload($data['image'],'article');
             }
             if (empty($data['alias'])){
-                $data['alias'] = $req->input('alias')?\Str::slug($req->input('alias'), '-'):\Str::slug($data['title'], '-');
+                $data['alias'] = $data['alias']?\Str::slug($data['alias'], '-'):\Str::slug($data['title'], '-');
             }
             $article->update($data);
             DB::commit();
@@ -162,16 +157,7 @@ class ArticleController extends Controller
     public function destroy($id)
     {
         $data = $this->articleRepository->getOneById($id);
-
-        // Đường dẫn tới tệp tin
-        $resize = $this->resizeImage;
-        $img_path = pathinfo($data->image, PATHINFO_DIRNAME);
-        foreach ($resize as $item){
-            $array_resize_ = str_replace($img_path.'/','/public/article/'.$item[0].'x'.$item[1].'/'.$data->id.'-',$data->image);
-            $array_resize_ = str_replace(['.jpg', '.png','.bmp','.gif','.jpeg'],'.webp',$array_resize_);
-            Storage::delete($array_resize_);
-        }
-
+        Storage::delete(str_replace('storage','public',$data->image));
         $this->articleRepository->delete($id);
 
         return [

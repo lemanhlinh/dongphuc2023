@@ -55,14 +55,13 @@ class ArticlesCategoriesController extends Controller
         DB::beginTransaction();
         try {
             $data = $req->validated();
-            $data['slug'] = $req->input('slug')?\Str::slug($req->input('slug'), '-'):\Str::slug($data['title'], '-');
-            if (\request()->hasFile('image')) {
-                $data['image'] = $this->articleCategoryRepository->saveFileUpload($data['image'],'images');
+            if (empty($data['alias'])){
+                $data['alias'] = $data['alias']?\Str::slug($data['alias'], '-'):\Str::slug($data['name'], '-');
             }
-            $this->articleCategoryRepository->create($data);
+            $model = $this->articleCategoryRepository->create($data);
             DB::commit();
             Session::flash('success', trans('message.create_article_category_success'));
-            return redirect()->back();
+            return redirect()->route('admin.article-category.edit', $model->id);
         } catch (\Exception $ex) {
             DB::rollBack();
             \Log::info([
@@ -111,11 +110,9 @@ class ArticlesCategoriesController extends Controller
         try {
             $data = $req->validated();
             $article_category = $this->articleCategoryRepository->getOneById($id);
-
-            if (\request()->hasFile('image')) {
-                $data['image'] = $this->articleCategoryRepository->saveFileUpload($data['image'],'images');
+            if (empty($data['alias'])){
+                $data['alias'] = $data['alias']?\Str::slug($data['alias'], '-'):\Str::slug($data['name'], '-');
             }
-
             $article_category->update($data);
             DB::commit();
             Session::flash('success', trans('message.update_article_category_success'));

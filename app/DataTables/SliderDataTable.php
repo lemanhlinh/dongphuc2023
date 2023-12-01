@@ -27,7 +27,7 @@ class SliderDataTable extends DataTable
                 $status = $q->active == Sliders::STATUS_ACTIVE ? 'checked' : null;
                 return view('admin.components.buttons.change_status', [
                     'url' => $url,
-                    'lowerModelName' => 'article',
+                    'lowerModelName' => 'slider',
                     'status' => $status,
                 ])->render();
             })
@@ -40,7 +40,7 @@ class SliderDataTable extends DataTable
             ->addColumn('action', function ($q) {
                 $urlEdit = route('admin.slider.edit', $q->id);
                 $urlDelete = route('admin.slider.destroy', $q->id);
-                $lowerModelName = strtolower(class_basename(new Sliders()));
+                $lowerModelName = "slider";
                 return view('admin.components.buttons.edit', compact('urlEdit'))->render() . view('admin.components.buttons.delete', compact('urlDelete', 'lowerModelName'))->render();
             })->rawColumns(['active','action']);
     }
@@ -68,7 +68,7 @@ class SliderDataTable extends DataTable
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->dom('Bfrtip')
-                    ->orderBy(1)
+                    ->orderBy(0)
                     ->buttons(
                         Button::make('create'),
                         Button::make('export'),

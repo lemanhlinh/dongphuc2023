@@ -141,54 +141,46 @@ abstract class BaseRepository implements BaseInterface
     }
 
     /**
-     * @return mixed
-     */
-    public function resizeImage()
-    {
-        return $this->model->resizeImage;
-    }
-
-    /**
      * @param string $file
-     * @param array $resizeImage
-     * @param int $id
      * @param string $nameModule
      * @return string
      */
-    public function removeImageResize(string $file,array $resizeImage = null,int $id = null, string $nameModule)
+    public function saveFileUpload(string $file, string $nameModule)
     {
-        $img_path = pathinfo($file, PATHINFO_DIRNAME);
-        if (!empty($resizeImage) && !empty($id)){
-            foreach ($resizeImage as $item){
-                $array_resize_ = str_replace($img_path.'/','/public/'.$nameModule.'/'.$item[0].'x'.$item[1].'/'.$id.'-',$file);
-                $array_resize_ = str_replace(['.jpg', '.png','.bmp','.gif','.jpeg'],'.webp',$array_resize_);
-                Storage::delete($array_resize_);
-            }
-        }
-        return true;
-    }
+        $cyear = date('Y');
+        $cmonth = date('m');
+        $cday = date('d');
+        $img_folder = $nameModule.'/'.$cyear.'/'.$cmonth.'/'.$cday.'/';
 
-    /**
-     * @param string $file
-     * @param array $resizeImage
-     * @param int $id
-     * @param string $nameModule
-     * @return string
-     */
-    public function saveFileUpload(string $file,array $resizeImage = null,int $id = null, string $nameModule)
-    {
         $fileNameWithoutExtension = urldecode(pathinfo($file, PATHINFO_FILENAME));
-        $fileName = $fileNameWithoutExtension. '.webp';
+        $fileName = $fileNameWithoutExtension. '_'.time().'.webp';
+        $fileName_small = $fileNameWithoutExtension. '_'.time().'-small.webp';
 
-        if (!empty($resizeImage) && !empty($id)){
-            foreach ($resizeImage as $item){
-                $thumbnail = Image::make(asset($file))->fit($item[0], $item[1])->encode('webp', 75);
-                $thumbnailPath = 'storage/'.$nameModule.'/'.$item[0].'x'.$item[1].'/' .$id.'-'. $fileName;
-                Storage::makeDirectory('public/'.$nameModule.'/'.$item[0].'x'.$item[1].'/');
-                $thumbnail->save($thumbnailPath);
-            }
+        if ($nameModule == 'slider'){
+            $thumbnail = Image::make(public_path($file))->resize(1920, null,function ($constraint) {
+                $constraint->aspectRatio();
+            })->encode('webp', 75);
+            $thumbnailPath = 'storage/'.$img_folder.$fileName;
+
+            $thumbnail_small = Image::make(public_path($file))->resize(600, null,function ($constraint) {
+                $constraint->aspectRatio();
+            })->encode('webp', 75);
+            $thumbnailPath_small = 'storage/'.$img_folder.$fileName_small;
+
+            Storage::makeDirectory('public/'.$img_folder);
+            $thumbnail->save($thumbnailPath);
+            $thumbnail_small->save($thumbnailPath_small);
+
+        }else{
+            $thumbnail = Image::make(public_path($file))->resize(400, null,function ($constraint) {
+                $constraint->aspectRatio();
+            })->encode('webp', 75);
+            $thumbnailPath = 'storage/'.$img_folder.$fileName;
+            Storage::makeDirectory('public/'.$img_folder);
+            $thumbnail->save($thumbnailPath);
         }
 
-        return urldecode($file);
+
+        return urldecode('/'.$thumbnailPath);
     }
 }

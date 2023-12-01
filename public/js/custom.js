@@ -42,7 +42,7 @@ function Application() {
                         type: 'POST',
                         url: url,
                         success: function (result) {
-                            if (result.status === true) {
+                            if (result.status == true) {
                                 if (tableId == undefined) {
                                     buttonDelete.closest('.col-sm-3').remove();
                                 }
@@ -51,7 +51,7 @@ function Application() {
                                 toastr["success"](result.message);
                             }
 
-                            if (result.status === false) {
+                            if (result.status == false) {
                                 if (tableId == undefined) {
                                     buttonDelete.closest('.col-sm-3').remove();
                                 }

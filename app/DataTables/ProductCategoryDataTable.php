@@ -27,7 +27,7 @@ class ProductCategoryDataTable extends DataTable
                 $status = $q->active == ProductsCategories::STATUS_ACTIVE ? 'checked' : null;
                 return view('admin.components.buttons.change_status', [
                     'url' => $url,
-                    'lowerModelName' => 'products-categories',
+                    'lowerModelName' => 'product-category',
                     'status' => $status,
                 ])->render();
             })
@@ -36,7 +36,7 @@ class ProductCategoryDataTable extends DataTable
                 $status = $q->is_home == ProductsCategories::IS_HOME ? 'checked' : null;
                 return view('admin.components.buttons.change_status', [
                     'url' => $url,
-                    'lowerModelName' => 'products-categories',
+                    'lowerModelName' => 'product-category',
                     'status' => $status,
                 ])->render();
             })
@@ -49,7 +49,7 @@ class ProductCategoryDataTable extends DataTable
             ->addColumn('action', function ($q) {
                 $urlEdit = route('admin.product-category.edit', $q->id);
                 $urlDelete = route('admin.product-category.destroy', $q->id);
-                $lowerModelName = strtolower(class_basename(new ProductsCategories()));
+                $lowerModelName = "product-category";
                 return view('admin.components.buttons.edit', compact('urlEdit'))->render() . view('admin.components.buttons.delete', compact('urlDelete', 'lowerModelName'))->render();
             })->rawColumns(['active','action','is_home']);
     }
@@ -98,7 +98,7 @@ class ProductCategoryDataTable extends DataTable
             Column::make('id'),
             Column::make('name')->title(trans('form.product_category.title')),
             Column::make('active')->title(trans('form.product_category.active')),
-            Column::make('is_home')->title(trans('form.product_category.is_home')),
+            Column::make('is_home')->title("Trang chủ"),
             Column::make('created_at')->title(trans('form.created_at')),
             Column::make('updated_at')->title(trans('form.updated_at')),
             Column::computed('action')

@@ -11,7 +11,9 @@ use App\DataTables\ProductCategoryDataTable;
 use App\Http\Requests\Product\CreateCategoryProduct;
 use App\Http\Requests\Product\UpdateCategoryProduct;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 class ProductsCategoriesController extends Controller
 {
@@ -56,15 +58,14 @@ class ProductsCategoriesController extends Controller
         DB::beginTransaction();
         try {
             $data = $req->validated();
-            $data['slug'] = $req->input('alias')?\Str::slug($req->input('alias'), '-'):\Str::slug($data['name'], '-');
+            $data['alias'] = $data['alias']?\Str::slug($data['alias'], '-'):\Str::slug($data['name'], '-');
             if (!empty($data['image'])){
-                $image_root = $data['image'];
-                $data['image'] = urldecode($image_root);
+                $data['image'] = $this->productCategoryRepository->saveFileUpload($data['image'],'products-categories');
             }
-            $this->productCategoryRepository->create($data);
+            $model = $this->productCategoryRepository->create($data);
             DB::commit();
             Session::flash('success', trans('message.create_product_category_success'));
-            return redirect()->back();
+            return redirect()->route('admin.product-category.edit', $model->id);
         } catch (\Exception $ex) {
             DB::rollBack();
             \Log::info([
@@ -105,18 +106,20 @@ class ProductsCategoriesController extends Controller
      */
     public function update($id, UpdateCategoryProduct $req)
     {
-        $data_root = $this->productCategoryRepository->getOneById($id);
         DB::beginTransaction();
         try {
             $data = $req->validated();
-            $page = $this->productCategoryRepository->getOneById($id);
-            if (!empty($data['image']) && $data_root->image != $data['image']){
-                $data['image'] = rawurldecode($data['image']);
+            $cat = $this->productCategoryRepository->getOneById($id);
+            if (!empty($data['image']) && $cat->image != $data['image']){
+                if (File::exists(public_path($cat->image))) {
+                    Storage::delete(str_replace('storage','public',$cat->image));
+                }
+                $data['image'] = $this->productCategoryRepository->saveFileUpload($data['image'],'products-categories');
             }
             if (empty($data['alias'])){
-                $data['alias'] = $req->input('alias')?\Str::slug($req->input('alias'), '-'):\Str::slug($data['name'], '-');
+                $data['alias'] = $data['alias']?\Str::slug($data['alias'], '-'):\Str::slug($data['name'], '-');
             }
-            $page->update($data);
+            $cat->update($data);
             DB::commit();
             Session::flash('success', trans('message.update_product_category_success'));
             return redirect()->route('admin.product-category.edit', $id);
@@ -139,12 +142,23 @@ class ProductsCategoriesController extends Controller
      */
     public function destroy($id)
     {
-        $this->productCategoryRepository->delete($id);
+        $cat = $this->productCategoryRepository->getOneById($id,['products']);
 
-        return [
-            'status' => true,
-            'message' => trans('message.delete_product_category_success')
-        ];
+        if (!empty($cat->products)){
+            return [
+                'status' => false,
+                'message' => "Danh mục này vẫn còn sản phẩm"
+            ];
+        }else{
+            Storage::delete(str_replace('storage','public',$cat->image));
+            $this->productCategoryRepository->delete($id);
+            return [
+                'status' => true,
+                'message' => trans('message.delete_product_category_success')
+            ];
+        }
+
+
     }
 
     /**

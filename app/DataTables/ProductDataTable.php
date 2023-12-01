@@ -27,7 +27,7 @@ class ProductDataTable extends DataTable
                 $status = $q->active == Product::STATUS_ACTIVE ? 'checked' : null;
                 return view('admin.components.buttons.change_status', [
                     'url' => $url,
-                    'lowerModelName' => 'article',
+                    'lowerModelName' => 'product',
                     'status' => $status,
                 ])->render();
             })
@@ -43,7 +43,7 @@ class ProductDataTable extends DataTable
             ->addColumn('action', function ($q) {
                 $urlEdit = route('admin.product.edit', $q->id);
                 $urlDelete = route('admin.product.destroy', $q->id);
-                $lowerModelName = strtolower(class_basename(new Product()));
+                $lowerModelName = "product";
                 return view('admin.components.buttons.edit', compact('urlEdit'))->render() . view('admin.components.buttons.delete', compact('urlDelete', 'lowerModelName'))->render();
             })->rawColumns(['active','action']);
     }

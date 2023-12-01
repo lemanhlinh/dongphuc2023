@@ -113,8 +113,12 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order $order)
+    public function destroy($id)
     {
-        //
+        Order::destroy($id);
+        return [
+            'status' => true,
+            'message' => trans('message.delete_contact_success')
+        ];
     }
 }

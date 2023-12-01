@@ -83,6 +83,10 @@ class ProductsContactsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        ProductsContacts::destroy($id);
+        return [
+            'status' => true,
+            'message' => trans('message.delete_product_contact_success')
+        ];
     }
 }

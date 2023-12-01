@@ -17,12 +17,10 @@ class PageController extends Controller
 {
 
     protected $pageRepository;
-    protected $resizeImage;
 
     public function __construct(PageInterface $pageRepository)
     {
         $this->pageRepository = $pageRepository;
-        $this->resizeImage = $this->pageRepository->resizeImage();
     }
 
     /**
@@ -56,12 +54,13 @@ class PageController extends Controller
         DB::beginTransaction();
         try {
             $data = $req->validated();
-            $image_root = '';
-            $data['alias'] = $req->input('alias')?\Str::slug($req->input('alias'), '-'):\Str::slug($data['title'], '-');
+            if (empty($data['alias'])){
+                $data['alias'] = $req->input('alias')?\Str::slug($req->input('alias'), '-'):\Str::slug($data['title'], '-');
+            }
             $model = $this->pageRepository->create($data);
             DB::commit();
             Session::flash('success', trans('message.create_page_success'));
-            return redirect()->back();
+            return redirect()->route('admin.page.edit', $model->id);
         } catch (\Exception $ex) {
             DB::rollBack();
             \Log::info([
@@ -106,7 +105,6 @@ class PageController extends Controller
      */
     public function update($id, UpdatePage $req)
     {
-        $data_root = $this->pageRepository->getOneById($id);
         DB::beginTransaction();
         try {
             $data = $req->validated();
@@ -138,15 +136,7 @@ class PageController extends Controller
     public function destroy($id)
     {
         $data = $this->pageRepository->getOneById($id);
-
-        // Đường dẫn tới tệp tin
-        $resize = $this->resizeImage;
-        $img_path = pathinfo($data->image, PATHINFO_DIRNAME);
-        foreach ($resize as $item){
-            $array_resize_ = str_replace($img_path.'/','/public/page/'.$item[0].'x'.$item[1].'/'.$data->id.'-',$data->image);
-            $array_resize_ = str_replace(['.jpg', '.png','.bmp','.gif','.jpeg'],'.webp',$array_resize_);
-            Storage::delete($array_resize_);
-        }
+        Storage::delete(str_replace('storage','public',$data->image));
         $this->pageRepository->delete($id);
 
         return [
