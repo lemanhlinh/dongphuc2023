@@ -23,12 +23,12 @@ Route::get('/san-pham/{slug}.html', function ($slug) {
     // Kiểm tra nếu slug chứa "page" và có chữ số
     if (preg_match('/page(\d+)/', $slug, $matches)) {
         $page = $matches[1];
-        $newUrl = "/san-pham/".$slug.".html?page=$page";
+        $newUrl = "/san-pham/".$matches[0].".html?page=$page";
         return Redirect::to($newUrl, 301);
     }
 
     // Nếu không thì chuyển hướng về URL gốc
-    return Redirect::to('/san-pham/'.$slug.'.html', 301);
+    return Redirect::to('/', 301);
 });
 
 Route::group(['namespace' => 'Web'], function (){
