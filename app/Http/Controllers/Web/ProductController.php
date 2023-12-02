@@ -161,7 +161,12 @@ class ProductController extends Controller
                 'quantity' => $quantity,
                 'subtotal' => $product->price * $quantity, // Tính tổng tiền cho mỗi sản phẩm
             ];
-            $total_price = $total_price + $product->price * $quantity;
+            if (!$product->price){
+                $price = 0;
+            }else{
+                $price = $product->price;
+            }
+            $total_price = $total_price + $price * $quantity;
         }
 
         return view('web.cart.cart', compact('cart','cartItems','total_price'));
