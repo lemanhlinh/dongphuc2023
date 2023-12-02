@@ -6,6 +6,7 @@
 # @Last modified time: 2023-01-01T16:49:02+07:00
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,18 @@ use Illuminate\Http\Request;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/san-pham/{slug}', function ($slug) {
+    // Kiểm tra nếu slug chứa "page" và có chữ số
+    if (preg_match('/page(\d+)/', $slug, $matches)) {
+        $page = $matches[1];
+        $newUrl = "/san-pham/".$slug.".html?page=$page";
+        return Redirect::to($newUrl, 301);
+    }
+
+    // Nếu không thì chuyển hướng về URL gốc
+    return Redirect::to('/san-pham/'.$slug.'.html', 301);
+});
 
 Route::group(['namespace' => 'Web'], function (){
     Route::get('/', 'HomeController@index')->name('home');
