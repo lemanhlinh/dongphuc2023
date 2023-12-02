@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Redirect;
 |
 */
 
-Route::get('/san-pham/{slug}', function ($slug) {
+Route::get('/san-pham/{slug}.html', function ($slug) {
     // Kiểm tra nếu slug chứa "page" và có chữ số
     if (preg_match('/page(\d+)/', $slug, $matches)) {
         $page = $matches[1];
