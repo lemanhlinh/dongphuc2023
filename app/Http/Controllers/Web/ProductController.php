@@ -76,7 +76,7 @@ class ProductController extends Controller
                 'line' => __LINE__,
                 'method' => __METHOD__
             ]);
-            abort(404);
+            return Redirect::route('home');
         }
         $product_images = ProductsImages::where('record_id', $product->id)->get();
         $product_related = Product::select('id','name','alias', 'category_id' ,'image','category_alias','created_at','image_after')->where(['category_id' => $product->category_id,'active' => 1])->limit(6)->get();
