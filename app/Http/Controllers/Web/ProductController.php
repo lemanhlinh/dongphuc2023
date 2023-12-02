@@ -7,7 +7,6 @@ use App\Mail\OrderMail;
 use App\Mail\QuoteMail;
 use App\Models\Attribute;
 use App\Models\Banners;
-use App\Models\BookTable;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
@@ -24,7 +23,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\Order\CreateOrder;
-use App\Http\Requests\BookTable\CreateBookTable;
+use Illuminate\Support\Facades\Redirect;
 
 class ProductController extends Controller
 {
@@ -37,12 +36,11 @@ class ProductController extends Controller
     }
 
     public function cat($slug){
-//        if (preg_match('/^(.+)-page(\d+)/', $slug, $matches)) {
-//            $page = $matches[2];
-//            $slug = $matches[1];
-//            return Redirect::route('catProduct', ['slug' => $slug, 'page' => $page], 301);
-//        }
-
+        if (preg_match('/^(.+)-page(\d+)/', $slug, $matches)) {
+            $page = $matches[2];
+            $slug = $matches[1];
+            return Redirect::route('catProduct', ['slug' => $slug, 'page' => $page], 301);
+        }
         $cat = $this->productCategoryRepository->getOneBySlug($slug);
         if (!$cat) {
             \Log::info([

@@ -6,7 +6,6 @@
 # @Last modified time: 2023-01-01T16:49:02+07:00
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 
 /*
 |--------------------------------------------------------------------------
