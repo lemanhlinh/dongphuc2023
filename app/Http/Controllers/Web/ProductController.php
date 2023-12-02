@@ -38,6 +38,14 @@ class ProductController extends Controller
 
     public function cat($slug){
         $cat = $this->productCategoryRepository->getOneBySlug($slug);
+        if (!$cat) {
+            \Log::info([
+                'message' => 'pro-cat:'.$slug,
+                'line' => __LINE__,
+                'method' => __METHOD__
+            ]);
+            abort(404);
+        }
         $products = Product::where(['active' => 1])->where('category_id_wrapper','like','%'.$cat->id.'%')
             ->select('id','name','image','image_after','price','alias')
             ->limit(10)->paginate(30 ?? config('data.limit', 20));
@@ -58,6 +66,14 @@ class ProductController extends Controller
 
     public function detail ($cat_slug,$slug){
         $product = Product::where(['alias' => $slug])->with(['category'])->first();
+        if (!$product) {
+            \Log::info([
+                'message' => 'pro-detail:'.$slug,
+                'line' => __LINE__,
+                'method' => __METHOD__
+            ]);
+            abort(404);
+        }
         $product_images = ProductsImages::where('record_id', $product->id)->get();
         $product_related = Product::select('id','name','alias', 'category_id' ,'image','category_alias','created_at','image_after')->where(['category_id' => $product->category_id,'active' => 1])->limit(6)->get();
         $cat_product_home = ProductsCategories::where(['active' => 1,'is_home' => 1])->select('id','name','alias')->withDepth()->defaultOrder()->get()->toTree();
