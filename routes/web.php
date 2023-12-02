@@ -199,6 +199,26 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
         Route::post('/destroy/{id}', 'BannerController@destroy')->name('destroy')->middleware('permission:delete_banner');
         Route::post('/change-active-slider/{id}', 'BannerController@changeActive')->name('changeActive')->middleware('permission:edit_banner');
     });
+
+    Route::group(['prefix' => 'student', 'as' => 'student.', 'middleware' => ['permission:view_student']], function () {
+        Route::get('', 'StudentController@index')->name('index');
+        Route::get('/create', 'StudentController@create')->name('create')->middleware('permission:create_student');
+        Route::post('/store', 'StudentController@store')->name('store')->middleware('permission:create_student');
+        Route::get('/edit/{id}', 'StudentController@edit')->name('edit')->middleware('permission:edit_student');
+        Route::post('/update/{id}', 'StudentController@update')->name('update')->middleware('permission:edit_student');
+        Route::post('/destroy/{id}', 'StudentController@destroy')->name('destroy')->middleware('permission:delete_student');
+        Route::post('/change-active-student/{id}', 'StudentController@changeActive')->name('changeActive')->middleware('permission:edit_student');
+    });
+
+    Route::group(['prefix' => 'partner', 'as' => 'partner.', 'middleware' => ['permission:view_partner']], function () {
+        Route::get('', 'PartnerController@index')->name('index');
+        Route::get('/create', 'PartnerController@create')->name('create')->middleware('permission:create_partner');
+        Route::post('/store', 'PartnerController@store')->name('store')->middleware('permission:create_partner');
+        Route::get('/edit/{id}', 'PartnerController@edit')->name('edit')->middleware('permission:edit_partner');
+        Route::post('/update/{id}', 'PartnerController@update')->name('update')->middleware('permission:edit_partner');
+        Route::post('/destroy/{id}', 'PartnerController@destroy')->name('destroy')->middleware('permission:delete_partner');
+        Route::post('/change-active-partner/{id}', 'PartnerController@changeActive')->name('changeActive')->middleware('permission:edit_partner');
+    });
 });
 
 

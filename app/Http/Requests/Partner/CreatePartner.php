@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Media;
+namespace App\Http\Requests\Partner;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateMediaImage extends FormRequest
+class CreatePartner extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +24,10 @@ class CreateMediaImage extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
-            'image' => 'nullable',
-            'is_home' => 'nullable',
-            'active' => 'nullable',
+            'name' => 'required',
+            'active' => 'required',
             'ordering' => 'nullable',
-            'sortedIds' => 'nullable',
+            'image' => 'nullable',
         ];
     }
 }

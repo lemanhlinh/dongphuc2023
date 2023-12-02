@@ -2,35 +2,37 @@
     <div class="col-sm-6">
         <!-- text input -->
         <div class="form-group">
-            <label>@lang('form.banner.name')</label> <span class="text-danger">*</span>
-            <input type="text" class="form-control" name="name" value="{{ isset($banner) ? $banner->name : old('name') }}" required>
-            @if ($errors->has('name'))
+            <label>@lang('form.student.title')</label> <span class="text-danger">*</span>
+            <input type="text" class="form-control" name="title" value="{{ isset($student) ? $student->title : old('title') }}" required>
+            @if ($errors->has('title'))
                 <span class="help-block text-danger">
-                    <strong>{{ $errors->first('name') }}</strong>
+                    <strong>{{ $errors->first('title') }}</strong>
+                </span>
+            @endif
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <!-- text input -->
+        <div class="form-group">
+            <label>Chức vụ</label> <span class="text-danger">*</span>
+            <input type="text" class="form-control" name="creator" value="{{ isset($student) ? $student->creator : old('creator') }}" required>
+            @if ($errors->has('creator'))
+                <span class="help-block text-danger">
+                    <strong>{{ $errors->first('creator') }}</strong>
                 </span>
             @endif
         </div>
     </div>
     <div class="col-sm-3">
-        <div class="form-group">
-            <label>Loại</label>
-            <select class="form-control" id="type" name="type">
-                @foreach($types as $k => $type)
-                    <option value="{{ $k }}" {{ (isset($banner) && $banner->type == $k) ? 'selected' : '' }}>{{ $type }}</option>
-                @endforeach
-            </select>
-        </div>
-    </div>
-    <div class="col-sm-3">
         <div class="form-group clearfix">
-            <label>@lang('form.banner.active')</label> <span class="text-danger">*</span>
+            <label>@lang('form.student.active')</label> <span class="text-danger">*</span>
             <div class="form-group">
                 <div class="icheck-success d-inline">
-                    <input class="" type="radio" id="statusRadio1" name="active" value="{{ \App\Models\Banners::STATUS_ACTIVE }}" {{ isset($banner->active) && $banner->active == \App\Models\Banners::STATUS_ACTIVE ? 'checked' : 'checked' }} required>
+                    <input class="" type="radio" id="statusRadio1" name="active" value="{{ \App\Models\Student::STATUS_ACTIVE }}" {{ isset($student->active) && $student->active == \App\Models\Student::STATUS_ACTIVE ? 'checked' : 'checked' }} required>
                     <label for="statusRadio1" class="custom-control-label">@lang('form.status.active')&nbsp;&nbsp;&nbsp;&nbsp;</label>
                 </div>
                 <div class="icheck-danger d-inline">
-                    <input class="" type="radio" id="statusRadio2" name="active" value="{{ \App\Models\Banners::STATUS_INACTIVE }}" {{ isset($banner->active) && $banner->active == \App\Models\Banners::STATUS_INACTIVE ? 'checked' : '' }} required>
+                    <input class="" type="radio" id="statusRadio2" name="active" value="{{ \App\Models\Student::STATUS_INACTIVE }}" {{ isset($student->active) && $student->active == \App\Models\Student::STATUS_INACTIVE ? 'checked' : '' }} required>
                     <label for="statusRadio2" class="custom-control-label">@lang('form.status.inactive')</label>
                 </div>
             </div>
@@ -44,8 +46,8 @@
     <div class="col-sm-3">
         <!-- text input -->
         <div class="form-group">
-            <label>@lang('form.banner.ordering')</label>
-            <input type="text" class="form-control" name="ordering" value="{{ isset($banner) ? $banner->ordering : (old('ordering') ? old('ordering') : 1) }}" >
+            <label>@lang('form.student.ordering')</label>
+            <input type="text" class="form-control" name="ordering" value="{{ isset($student) ? $student->ordering : (old('ordering') ? old('ordering') : 1) }}" >
             @if ($errors->has('ordering'))
                 <span class="help-block text-danger">
                     <strong>{{ $errors->first('ordering') }}</strong>
@@ -55,9 +57,9 @@
     </div>
     <div class="col-sm-6">
         <div class="form-group">
-            <label>@lang('form.banner.image')</label> <span class="text-danger">*</span>
+            <label>@lang('form.student.image')</label> <span class="text-danger">*</span>
             <div class="input-group">
-                @include('admin.components.buttons.image',['src' => isset($banner->image) ? $banner->image : old('image'),'name' => 'image'])
+                @include('admin.components.buttons.image',['src' => isset($student->image) ? $student->image : old('image'),'name' => 'image'])
                 @if ($errors->has('image'))
                     <span class="help-block text-danger">
                         <strong>{{ $errors->first('image') }}</strong>

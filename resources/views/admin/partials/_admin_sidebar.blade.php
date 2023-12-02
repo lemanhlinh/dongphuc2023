@@ -207,7 +207,27 @@
                         <a href="{{ route('admin.banner.index') }}" class="nav-link @if (request()->is('admin/banner')) active @endif">
                             <i class="nav-icon fas fa-images"></i>
                             <p>
-                                @lang('form.banner.')
+                                Banner
+                            </p>
+                        </a>
+                    </li>
+                @endcan
+                @can(['view_student'])
+                    <li class="nav-item">
+                        <a href="{{ route('admin.student.index') }}" class="nav-link @if (request()->is('admin/student')) active @endif">
+                            <i class="nav-icon fas fa-user-secret"></i>
+                            <p>
+                                Khách hàng
+                            </p>
+                        </a>
+                    </li>
+                @endcan
+                @can(['view_partner'])
+                    <li class="nav-item">
+                        <a href="{{ route('admin.partner.index') }}" class="nav-link @if (request()->is('admin/partner')) active @endif">
+                            <i class="nav-icon far fa-handshake"></i>
+                            <p>
+                                Đối tác
                             </p>
                         </a>
                     </li>

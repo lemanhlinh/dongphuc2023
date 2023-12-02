@@ -35,5 +35,8 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind('App\Repositories\Contracts\ProductInterface', 'App\Repositories\Eloquents\ProductRepository');
         $this->app->bind('App\Repositories\Contracts\ProductCategoryInterface', 'App\Repositories\Eloquents\ProductCategoryRepository');
         $this->app->bind('App\Repositories\Contracts\SlideInterface', 'App\Repositories\Eloquents\SlideRepository');
+        $this->app->bind('App\Repositories\Contracts\PartnerInterface', 'App\Repositories\Eloquents\PartnerRepository');
+        $this->app->bind('App\Repositories\Contracts\StudentInterface', 'App\Repositories\Eloquents\StudentRepository');
+        $this->app->bind('App\Repositories\Contracts\BannerInterface', 'App\Repositories\Eloquents\BannerRepository');
     }
 }

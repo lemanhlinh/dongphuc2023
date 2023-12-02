@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\BookTable;
+namespace App\Http\Requests\Student;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateBookTable extends FormRequest
+class CreateStudent extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +24,12 @@ class CreateBookTable extends FormRequest
     public function rules()
     {
         return [
-            'full_name' => 'required',
-            'email' => 'required',
-            'phone' => 'required',
-            'store_id' => 'required',
-            'book_time' => 'required',
-            'book_hour' => 'required',
-            'number_customers' => 'required',
-            'note' => 'nullable',
+            'title' => 'required',
+            'active' => 'required',
+            'content' => 'nullable',
+            'creator' => 'nullable',
+            'ordering' => 'nullable',
+            'image' => 'nullable',
         ];
     }
 }

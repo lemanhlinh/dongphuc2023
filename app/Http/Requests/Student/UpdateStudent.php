@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Media;
+namespace App\Http\Requests\Student;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateMediaVideo extends FormRequest
+class UpdateStudent extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,11 +25,11 @@ class UpdateMediaVideo extends FormRequest
     {
         return [
             'title' => 'required',
-            'image' => 'nullable',
-            'link_video' => 'nullable',
-            'is_home' => 'required',
-            'active' => 'nullable',
+            'active' => 'required',
+            'content' => 'nullable',
+            'creator' => 'nullable',
             'ordering' => 'nullable',
+            'image' => 'nullable',
         ];
     }
 }

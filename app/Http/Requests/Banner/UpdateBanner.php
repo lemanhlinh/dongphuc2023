@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Media;
+namespace App\Http\Requests\Banner;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateMediaImage extends FormRequest
+class UpdateBanner extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +24,13 @@ class UpdateMediaImage extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
-            'image' => 'nullable',
-            'is_home' => 'nullable',
-            'active' => 'nullable',
+            'name' => 'required',
+            'active' => 'required',
+            'type' => 'required',
+            'link' => 'nullable',
+            'content' => 'nullable',
             'ordering' => 'nullable',
-            'sortedIds' => 'nullable',
+            'image' => 'nullable',
         ];
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Banners;
+use App\Models\Student;
 use Carbon\Carbon;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
@@ -10,7 +10,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class BannerDataTable extends DataTable
+class StudentDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -23,11 +23,11 @@ class BannerDataTable extends DataTable
         return datatables()
             ->eloquent($query)
             ->editColumn('active', function ($q) {
-                $url = route('admin.banner.changeActive', $q->id);
-                $status = $q->active == Banners::STATUS_ACTIVE ? 'checked' : null;
+                $url = route('admin.student.changeActive', $q->id);
+                $status = $q->active == Student::STATUS_ACTIVE ? 'checked' : null;
                 return view('admin.components.buttons.change_status', [
                     'url' => $url,
-                    'lowerModelName' => 'banner',
+                    'lowerModelName' => 'student',
                     'status' => $status,
                 ])->render();
             })
@@ -38,9 +38,9 @@ class BannerDataTable extends DataTable
                 return Carbon::parse($q->updated_at)->format('H:i:s Y/m/d');
             })
             ->addColumn('action', function ($q) {
-                $urlEdit = route('admin.banner.edit', $q->id);
-                $urlDelete = route('admin.banner.destroy', $q->id);
-                $lowerModelName = 'banner';
+                $urlEdit = route('admin.student.edit', $q->id);
+                $urlDelete = route('admin.student.destroy', $q->id);
+                $lowerModelName = 'student';
                 return view('admin.components.buttons.edit', compact('urlEdit'))->render() . view('admin.components.buttons.delete', compact('urlDelete', 'lowerModelName'))->render();
             })->rawColumns(['active','action']);
     }
@@ -48,10 +48,10 @@ class BannerDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Banner $model
+     * @param \App\Models\Student $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Banners $model)
+    public function query(Student $model)
     {
         return $model->newQuery();
     }
@@ -64,7 +64,7 @@ class BannerDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('banner-table')
+                    ->setTableId('student-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->dom('Bfrtip')
@@ -86,8 +86,9 @@ class BannerDataTable extends DataTable
     protected function getColumns()
     {
         return [
+
             Column::make('id'),
-            Column::make('name'),
+            Column::make('title'),
             Column::make('image')->title(trans('form.article.image'))->render([
                 'renderImage(data)'
             ]),
@@ -109,6 +110,6 @@ class BannerDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'Banner_' . date('YmdHis');
+        return 'Student_' . date('YmdHis');
     }
 }

@@ -9,4 +9,7 @@ class Student extends Model
 {
 //    use HasFactory;
 protected $table = 'students';
+    protected $guarded = ['id'];
+    const STATUS_ACTIVE = 1;
+    const STATUS_INACTIVE = 0;
 }

@@ -3,33 +3,31 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Banners;
-use App\Models\Partner;
-use App\Repositories\Contracts\BannerInterface;
+use App\Models\Student;
 use Illuminate\Http\Request;
-use App\DataTables\BannerDataTable;
+use App\DataTables\StudentDataTable;
+use App\Http\Requests\Student\CreateStudent;
+use App\Http\Requests\Student\UpdateStudent;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
+use App\Repositories\Contracts\StudentInterface;
 use Illuminate\Support\Facades\Storage;
-use App\Http\Requests\Banner\CreateBanner;
-use App\Http\Requests\Banner\UpdateBanner;
 
-class BannerController extends Controller
+class StudentController extends Controller
 {
-
-    protected $bannerRepository;
-    public function __construct(BannerInterface $bannerRepository){
-        $this->bannerRepository = $bannerRepository;
+    protected $studentRepository;
+    public function __construct(StudentInterface $studentRepository){
+        $this->studentRepository = $studentRepository;
     }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(BannerDataTable $dataTable)
+    public function index(StudentDataTable $dataTable)
     {
-        return $dataTable->render('admin.banner.index');
+        return $dataTable->render('admin.student.index');
     }
 
     /**
@@ -39,8 +37,7 @@ class BannerController extends Controller
      */
     public function create()
     {
-        $types = Banners::TYPE;
-        return view('admin.banner.create',compact('types'));
+        return view('admin.student.create');
     }
 
     /**
@@ -49,18 +46,18 @@ class BannerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateBanner $req)
+    public function store(CreateStudent $req)
     {
         DB::beginTransaction();
         try {
             $data = $req->validated();
             if (!empty($data['image'])){
-                $data['image'] = $this->bannerRepository->saveFileUpload($data['image'],'banner');
+                $data['image'] = $this->studentRepository->saveFileUpload($data['image'],'student');
             }
-            $model = Banners::create($data);
+            $model = Student::create($data);
             DB::commit();
-            Session::flash('success', trans('message.create_banner_success'));
-            return redirect()->route('admin.banner.edit', $model->id);
+            Session::flash('success', trans('message.create_student_success'));
+            return redirect()->route('admin.student.edit', $model->id);
         } catch (\Exception $ex) {
             DB::rollBack();
             \Log::info([
@@ -68,7 +65,7 @@ class BannerController extends Controller
                 'line' => __LINE__,
                 'method' => __METHOD__
             ]);
-            Session::flash('danger', trans('message.create_banner_error'));
+            Session::flash('danger', trans('message.create_article_error'));
             return redirect()->back();
         }
     }
@@ -76,10 +73,10 @@ class BannerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Banner  $banner
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Banners $banner)
+    public function show($id)
     {
         //
     }
@@ -87,46 +84,45 @@ class BannerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Banner  $banner
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $banner = Banners::findOrFail($id);
-        $types = Banners::TYPE;
-        return view('admin.banner.update', compact('banner','types'));
+        $student = Student::findOrFail($id);
+        return view('admin.student.update', compact('student'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Banner  $banner
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateBanner $req, $id)
+    public function update(UpdateStudent $req, $id)
     {
         DB::beginTransaction();
         try {
             $data = $req->validated();
-            $banner = Banners::findOrFail($id);
-            if (!empty($data['image']) && $banner->image != $data['image']){
-                if (File::exists(public_path($banner->image))) {
-                    Storage::delete(str_replace('storage','public',$banner->image));
+            $student = Student::findOrFail($id);
+            if (!empty($data['image']) && $student->image != $data['image']){
+                if (File::exists(public_path($student->image))) {
+                    Storage::delete(str_replace('storage','public',$student->image));
                 }
-                $data['image'] = $this->bannerRepository->saveFileUpload($data['image'],'banner');
+                $data['image'] = $this->studentRepository->saveFileUpload($data['image'],'student');
             }
-            $banner->update($data);
+            $student->update($data);
             DB::commit();
-            Session::flash('success', trans('message.update_banner_success'));
-            return redirect()->route('admin.banner.edit', $id);
+            Session::flash('success', trans('message.update_student_success'));
+            return redirect()->route('admin.student.edit', $id);
         } catch (\Exception $exception) {
             \Log::info([
                 'message' => $exception->getMessage(),
                 'line' => __LINE__,
                 'method' => __METHOD__
             ]);
-            Session::flash('danger', trans('message.update_banner_error'));
+            Session::flash('danger', trans('message.update_student_error'));
             return back();
         }
     }
@@ -134,18 +130,18 @@ class BannerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Banner  $banner
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $data = Banners::findOrFail($id);
+        $data = Student::findOrFail($id);
         Storage::delete(str_replace('storage','public',$data->image));
-        Banners::destroy($id);
+        Student::destroy($id);
 
         return [
             'status' => true,
-            'message' => trans('message.delete_banner_success')
+            'message' => trans('message.delete_student_success')
         ];
     }
 
@@ -155,11 +151,11 @@ class BannerController extends Controller
      */
     public function changeActive($id)
     {
-        $data = Banners::findOrFail($id);
+        $data = Student::findOrFail($id);
         $data->update(['active' => !$data->active]);
         return [
             'status' => true,
-            'message' => trans('message.change_active_banner_success')
+            'message' => trans('message.change_active_student_success')
         ];
     }
 }
