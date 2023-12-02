@@ -51,7 +51,7 @@
                                     </div>
                                 </td>
                                 <td class="text-center" valign="top">
-                                    <span class="total">{{ format_money($product['product']->price * $product['quantity'], 'đ') }}</span>
+                                    <span class="total">{{ isset($product['product']->price)?format_money($product['product']->price * $product['quantity'], 'đ'):0 }}</span>
                                     <a href="{{ route('removeItem',['id'=>$product["product"]->id]) }}">
                                         <i class="far fa-trash-alt"></i> Xóa
                                     </a>
