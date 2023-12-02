@@ -19,15 +19,11 @@ use Illuminate\Support\Facades\Redirect;
 |
 */
 
-Route::get('/san-pham/{slug}.html', function ($slug) {
-    // Kiểm tra nếu slug chứa "page" và có chữ số
-    if (preg_match('/page(\d+)/', $slug, $matches)) {
-        $page = $matches[1];
-        $newUrl = "/san-pham/".$matches[0].".html?page=$page";
-        return Redirect::to($newUrl, 301);
+Route::get('/san-pham/{slug}', function ($slug) {
+    if (preg_match('/^(.+)-page(\d+)/', $slug, $matches)) {
+        $page = $matches[2];
+        return Redirect::route('catProduct', ['slug' => $matches[1], 'page' => $page], 301);
     }
-
-    // Nếu không thì chuyển hướng về URL gốc
     return Redirect::to('/', 301);
 });
 
