@@ -18,15 +18,6 @@ use Illuminate\Support\Facades\Redirect;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/san-pham/{slug}', function ($slug) {
-    if (preg_match('/^(.+)-page(\d+)/', $slug, $matches)) {
-        $page = $matches[2];
-        return Redirect::route('catProduct', ['slug' => $matches[1], 'page' => $page], 301);
-    }
-    return Redirect::to('/', 301);
-});
-
 Route::group(['namespace' => 'Web'], function (){
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('/danh-muc/{slug}.html', 'ArticleController@cat')->name('catArticle');

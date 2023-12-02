@@ -37,6 +37,12 @@ class ProductController extends Controller
     }
 
     public function cat($slug){
+//        if (preg_match('/^(.+)-page(\d+)/', $slug, $matches)) {
+//            $page = $matches[2];
+//            $slug = $matches[1];
+//            return Redirect::route('catProduct', ['slug' => $slug, 'page' => $page], 301);
+//        }
+
         $cat = $this->productCategoryRepository->getOneBySlug($slug);
         if (!$cat) {
             \Log::info([
