@@ -155,17 +155,19 @@ class ProductController extends Controller
         foreach ($cart as $productId => $item) {
             $product = Product::where(['id' => $productId])->first();
             $quantity = $item['quantity']; // Số lượng
-            // Thêm thông tin sản phẩm vào danh sách
-            $cartItems[] = [
-                'product' => $product,
-                'quantity' => $quantity,
-                'subtotal' => $product->price * $quantity, // Tính tổng tiền cho mỗi sản phẩm
-            ];
             if (!$product->price){
                 $price = 0;
             }else{
                 $price = $product->price;
             }
+
+            // Thêm thông tin sản phẩm vào danh sách
+            $cartItems[] = [
+                'product' => $product,
+                'quantity' => $quantity,
+                'subtotal' => $price * $quantity, // Tính tổng tiền cho mỗi sản phẩm
+            ];
+
             $total_price = $total_price + $price * $quantity;
         }
 
