@@ -13,6 +13,7 @@ use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Http\Request;
 use App\Models\ArticlesCategories;
+use Illuminate\Support\Facades\Redirect;
 
 class ArticleController extends Controller
 {
@@ -32,6 +33,12 @@ class ArticleController extends Controller
      */
     public function cat($slug)
     {
+        if (preg_match('/^(.+)-page(\d+)/', $slug, $matches)) {
+            $page = $matches[2];
+            $slug = $matches[1];
+            return Redirect::route('catArticle', ['slug' => $slug, 'page' => $page], 301);
+        }
+
         $category = ArticlesCategories::where(['alias'=> $slug,'active'=> 1])
             ->select('id','name','alias','seo_title','seo_keyword','seo_description')
             ->first();
