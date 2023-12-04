@@ -52,7 +52,7 @@ class ProductController extends Controller
         }
         $products = Product::where(['active' => 1])->where('category_id_wrapper','like','%'.$cat->id.'%')
             ->select('id','name','image','image_after','price','alias')
-            ->limit(10)->paginate(30 ?? config('data.limit', 20));
+            ->paginate(12 ?? config('data.limit', 20));
         $cat_product_home = ProductsCategories::where(['active' => 1,'is_home' => 1])->select('id','name','alias')->withDepth()->defaultOrder()->get()->toTree();
         $banners = Banners::where(['active' => 1])->select('id','name','alias','image','link','content','type')->get();
 
