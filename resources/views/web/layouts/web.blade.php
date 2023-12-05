@@ -24,7 +24,6 @@
 @endsection
 
 @section('link')
-    <link rel="stylesheet" href="{{ asset('/css/web/style.css') }}" media="screen" rel="preload" as="style">
     <link rel="stylesheet" href="{{ asset('/css/web/style.css') }}" media="screen">
 @endsection
 
