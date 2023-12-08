@@ -11,7 +11,7 @@
                                 <picture>
                                     <source srcset="{{ asset(replace_image_to_webp($item->image,'small')) }}" media="(max-width: 600px)">
                                     <source srcset="{{ asset(replace_image_to_webp($item->image)) }}">
-                                    <img class="img-fluid" width="1920" height="600" src="{{ asset(replace_image_to_webp($item->image)) }}" alt="{{ $item->name }}"/>
+                                    <img class="img-fluid" width="1920" height="600" src="{{ asset(replace_image_to_webp($item->image)) }}" loading="lazy" alt="{{ $item->name }}"/>
                                 </picture>
 
                             </a>
@@ -36,7 +36,7 @@
                             <div class="swiper-slide box-partners">
                                 <div class="vn-testimonies-avatar">
                                     <div class="image-student-b">
-                                        <img class="img-fluid border-img-show" width="120" height="120" alt="{{ $item->title }}" data-lazy="{{ asset(replace_image_to_webp($item->image)) }}" >
+                                        <img class="img-fluid border-img-show" width="120" height="120" alt="{{ $item->title }}" loading="lazy" data-lazy="{{ asset(replace_image_to_webp($item->image)) }}" >
                                     </div>
                                     <p class="name-title-studen">{{ $item->title }}</br>{{ $item->creator }}</p>
                                 </div>
@@ -53,7 +53,7 @@
                         @forelse($productsInCategories[$cat->id] as $item)
                         <div class="image-check">
                             <figure class="imghvr-flip-vert">
-                                <img data-lazy="{{ asset(replace_image_to_webp($item->image)) }}" class="img-fluid" width="216px" height="270px" alt="{{ $item->name }}" >
+                                <img data-lazy="{{ asset(replace_image_to_webp($item->image)) }}" loading="lazy" class="img-fluid" width="216px" height="270px" alt="{{ $item->name }}" >
                                 <figcaption>
                                     @if($item->image_after)
                                         <img data-lazy="{{ asset(replace_image_to_webp($item->image_after)) }}" class="img-fluid" width="216px" height="270px" alt="{{ $item->name }}" >
@@ -79,7 +79,7 @@
                         @forelse($partner as $item)
                         <li>
                             <a href="{{ $item->url }}">
-                                <img data-lazy="{{ asset(replace_image_to_webp($item->image)) }}" width="120" height="120" alt="{{ $item->name }}" title="{{ $item->name }}">
+                                <img data-lazy="{{ asset(replace_image_to_webp($item->image)) }}" loading="lazy" width="120" height="120" alt="{{ $item->name }}" title="{{ $item->name }}">
                             </a>
                         </li>
                         @empty
@@ -92,7 +92,7 @@
                         @forelse($articles as $item)
                         <li class="">
                             <a href="{{ route('detailArticle',['cat_slug' => $item->category->alias,'slug' => $item->alias]) }}" title="{{ $item->title }}" >
-                                <img data-lazy="{{ asset(replace_image_to_webp($item->image)) }}" alt="{{ $item->title }}" class="img-fluid" width="220px" height="150px">
+                                <img data-lazy="{{ asset(replace_image_to_webp($item->image)) }}" loading="lazy" alt="{{ $item->title }}" class="img-fluid" width="220px" height="150px">
                                 <h3 title="{{ $item->title }}">{{ $item->title }}</h3>
                             </a>
                         </li>
@@ -112,7 +112,7 @@
     border: none;">
 
                 <button type="button" class="btn-close close" data-bs-dismiss="modal" aria-label="Close">
-                    <img src="{{ asset('images/close-modal.png') }}" height="=43px" width="43px">
+                    <img src="{{ asset('images/close-modal.png') }}" loading="lazy" height="=43px" width="43px">
                 </button>
                 <div class="form-bao-gia">
                     <img class="img-fluid logo-cati-popup" src="{{ asset('images/logo-mk.png') }}" alt="{{ $setting['site_name'] }}" width="90px" height="85px" />
