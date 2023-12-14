@@ -140,6 +140,15 @@
     <script src="{{ asset('/js/web/OwlCarousel2-2.2.1/owl.carousel.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.8/dist/lazyload.min.js"></script>
     <script defer>
+        var lazyLoadInstance = new LazyLoad({
+            callback_enter: callback_enter,
+            callback_exit: callback_exit,
+            callback_cancel: callback_cancel,
+            callback_loading: callback_loading,
+            callback_loaded: callback_loaded,
+            callback_error: callback_error,
+            callback_finish: callback_finish
+        });
         window.onload = function() {
             $("#owl-demo").owlCarousel({
                 autoplay: true, //Set AutoPlay to 3 seconds
