@@ -112,7 +112,7 @@
     border: none;">
 
                 <button type="button" class="btn-close close" data-bs-dismiss="modal" aria-label="Close">
-                    <img src="{{ asset('images/close-modal.png') }}" loading="lazy" height="=43px" width="43px">
+                    <img src="{{ asset('images/close-modal.png') }}" loading="lazy" height="43px" width="43px">
                 </button>
                 <div class="form-bao-gia">
                     <img class="img-fluid logo-cati-popup" src="{{ asset('images/logo-mk.png') }}" alt="{{ $setting['site_name'] }}" width="90px" height="85px" />
