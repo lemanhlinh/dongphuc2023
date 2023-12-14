@@ -52,12 +52,12 @@
                         @forelse($productsInCategories[$cat->id] as $item)
                         <div class="image-check">
                             <figure class="imghvr-flip-vert">
-                                <img data-lazy="{{ asset(replace_image_to_webp($item->image)) }}" loading="lazy" class="img-fluid" width="216px" height="270px" alt="{{ $item->name }}" >
+                                <img data-src="{{ asset(replace_image_to_webp($item->image)) }}" loading="lazy" class="img-fluid lazy" width="216px" height="270px" alt="{{ $item->name }}" >
                                 <figcaption>
                                     @if($item->image_after)
-                                        <img data-lazy="{{ asset(replace_image_to_webp($item->image_after)) }}" class="img-fluid" width="216px" height="270px" alt="{{ $item->name }}" >
+                                        <img data-src="{{ asset(replace_image_to_webp($item->image_after)) }}" class="img-fluid lazy" width="216px" height="270px" alt="{{ $item->name }}" >
                                     @else
-                                        <img data-lazy="{{ asset(replace_image_to_webp($item->image)) }}" class="img-fluid" width="216px" height="270px" alt="{{ $item->name }}" >
+                                        <img data-src="{{ asset(replace_image_to_webp($item->image)) }}" class="img-fluid lazy" width="216px" height="270px" alt="{{ $item->name }}" >
                                     @endif
                                 </figcaption>
                                 <a href="{{ route('detailProduct',['cat_slug'=>$item->category->alias, 'slug' => $item->alias]) }}" title="{{ $item->name }}"></a>
@@ -138,6 +138,7 @@
 @section('script')
     @parent
     <script src="{{ asset('/js/web/OwlCarousel2-2.2.1/owl.carousel.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.8/dist/lazyload.min.js"></script>
     <script defer>
         window.onload = function() {
             $("#owl-demo").owlCarousel({
@@ -192,7 +193,7 @@
                 ]
             });
             $('.sider-slick-add').not('.slick-initialized').slick({
-                lazyLoad: 'ondemand',
+                // lazyLoad: 'ondemand',
                 infinite: true,
                 slidesToShow: 5,
                 slidesToScroll: 5,
