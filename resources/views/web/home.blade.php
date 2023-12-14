@@ -7,13 +7,12 @@
                 <div id="owl-demo" class="owl-carousel">
                     @forelse($slider as $item)
                         <div class="item">
-                            <a href="{{ $item->url }}">
+                            <a href="{{ $item->url }}" title="{{ $item->name }}">
                                 <picture>
                                     <source srcset="{{ asset(replace_image_to_webp($item->image,'small')) }}" media="(max-width: 600px)">
                                     <source srcset="{{ asset(replace_image_to_webp($item->image)) }}">
                                     <img class="img-fluid" width="1920" height="600" src="{{ asset(replace_image_to_webp($item->image)) }}" loading="lazy" alt="{{ $item->name }}"/>
                                 </picture>
-
                             </a>
                         </div>
                     @empty
@@ -61,9 +60,9 @@
                                         <img data-lazy="{{ asset(replace_image_to_webp($item->image)) }}" class="img-fluid" width="216px" height="270px" alt="{{ $item->name }}" >
                                     @endif
                                 </figcaption>
-                                <a href="{{ route('detailProduct',['cat_slug'=>$item->category->alias, 'slug' => $item->alias]) }}"></a>
+                                <a href="{{ route('detailProduct',['cat_slug'=>$item->category->alias, 'slug' => $item->alias]) }}" title="{{ $item->name }}"></a>
                             </figure>
-                            <a href="{{ route('detailProduct',['cat_slug'=>$item->category->alias, 'slug' => $item->alias]) }}">
+                            <a href="{{ route('detailProduct',['cat_slug'=>$item->category->alias, 'slug' => $item->alias]) }}" title="{{ $item->name }}">
                                 <h3 title="{{ $item->name }}>" class="text-center">{{ $item->name }}</h3>
                             </a>
                         </div>
