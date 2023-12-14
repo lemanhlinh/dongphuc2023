@@ -35,7 +35,7 @@
                             <div class="swiper-slide box-partners">
                                 <div class="vn-testimonies-avatar">
                                     <div class="image-student-b">
-                                        <img class="img-fluid border-img-show" width="120" height="120" alt="{{ $item->title }}" loading="lazy" data-lazy="{{ asset(replace_image_to_webp($item->image)) }}" >
+                                        <img class="img-fluid border-img-show lazy" width="120" height="120" alt="{{ $item->title }}" loading="lazy" data-src="{{ asset(replace_image_to_webp($item->image)) }}" >
                                     </div>
                                     <p class="name-title-studen">{{ $item->title }}</br>{{ $item->creator }}</p>
                                 </div>
@@ -78,7 +78,7 @@
                         @forelse($partner as $item)
                         <li>
                             <span>
-                                <img data-lazy="{{ asset(replace_image_to_webp($item->image)) }}" loading="lazy" width="120" height="120" alt="{{ $item->name }}" title="{{ $item->name }}">
+                                <img data-src="{{ asset(replace_image_to_webp($item->image)) }}" class="lazy" loading="lazy" width="120" height="120" alt="{{ $item->name }}" title="{{ $item->name }}">
                             </span>
                         </li>
                         @empty
@@ -91,7 +91,7 @@
                         @forelse($articles as $item)
                         <li class="">
                             <a href="{{ route('detailArticle',['cat_slug' => $item->category->alias,'slug' => $item->alias]) }}" title="{{ $item->title }}" >
-                                <img data-lazy="{{ asset(replace_image_to_webp($item->image)) }}" loading="lazy" alt="{{ $item->title }}" class="img-fluid" width="220px" height="150px">
+                                <img data-src="{{ asset(replace_image_to_webp($item->image)) }}" loading="lazy" alt="{{ $item->title }}" class="img-fluid lazy" width="220px" height="150px">
                                 <h3 title="{{ $item->title }}">{{ $item->title }}</h3>
                             </a>
                         </li>
@@ -169,7 +169,7 @@
             });
 
             $('.swiper-wrapper').slick({
-                lazyLoad: 'ondemand',
+                // lazyLoad: 'ondemand',
                 infinite: true,
                 slidesToShow: 3,
                 slidesToScroll: 1,
@@ -222,7 +222,7 @@
             });
 
             $('.sun-group').slick({
-                lazyLoad: 'ondemand',
+                // lazyLoad: 'ondemand',
                 infinite: true,
                 slidesToShow: 5,
                 slidesToScroll: 5,
@@ -248,7 +248,7 @@
             });
 
             $('.list-contract').slick({
-                lazyLoad: 'ondemand',
+                // lazyLoad: 'ondemand',
                 infinite: true,
                 slidesToShow: 5,
                 slidesToScroll: 5,
