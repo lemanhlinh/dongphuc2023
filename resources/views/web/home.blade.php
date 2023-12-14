@@ -78,9 +78,9 @@
                     <ul class="sun-group">
                         @forelse($partner as $item)
                         <li>
-                            <a href="{{ $item->url }}">
+                            <span>
                                 <img data-lazy="{{ asset(replace_image_to_webp($item->image)) }}" loading="lazy" width="120" height="120" alt="{{ $item->name }}" title="{{ $item->name }}">
-                            </a>
+                            </span>
                         </li>
                         @empty
                         @endforelse
