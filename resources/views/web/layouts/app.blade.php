@@ -13,6 +13,11 @@
     <!-- Fonts -->
 
     <!-- Styles -->
+    <link rel="preload" as="style" media="screen" type="text/css" href="{{ asset('css/app.css') }}" />
+    <link rel="preload" as="style" media="screen" type="text/css" href="{{ asset('css/web/slick.css') }}" />
+    <link rel="preload" as="style" media="screen" type="text/css" href="{{ asset('css/web/slick-theme.css') }}" />
+    <link rel="preload" as="style" media="screen" type="text/css" href="{{ asset('css/web/imagehover.css') }}" />
+    <link rel="preload" as="style" media="screen" type="text/css" href="{{ asset('css/web/jquery.mmenu.all.css') }}" />
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" media="screen">
     <link href="{{ asset('css/web/slick.css') }}" rel="stylesheet" media="screen">
     <link href="{{ asset('css/web/slick-theme.css') }}" rel="stylesheet" media="screen">
