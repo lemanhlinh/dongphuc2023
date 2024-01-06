@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\DataTables\Scopes\ProductDataTableScope;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\ProductsImages;
 use Illuminate\Http\Request;
 use App\Repositories\Contracts\ProductInterface;
 use App\Repositories\Contracts\ProductCategoryInterface;
@@ -74,6 +75,15 @@ class ProductController extends Controller
                 $data['image_after'] = $this->productResponstory->saveFileUpload($data['image_after'],'products');
             }
             $model = $this->productResponstory->create($data);
+            $sortedIds = explode(',', $data['sortedIds']);
+            if (!empty($sortedIds)){
+                foreach ($sortedIds as $item){
+                    ProductsImages::create([
+                        'image' => $item,
+                        'record_id' => $model->id,
+                    ]);
+                }
+            }
             DB::commit();
             Session::flash('success', trans('message.create_product_success'));
             return redirect()->route('admin.product.edit', $model->id);
@@ -143,6 +153,20 @@ class ProductController extends Controller
             if (empty($data['alias'])){
                 $data['alias'] = $data['alias']?\Str::slug($data['alias'], '-'):\Str::slug($data['name'], '-');
             }
+
+            if (!empty($data['sortedIds'])){
+                $sortedIds = explode(',',$data['sortedIds']);
+                if (!empty($sortedIds)){
+                    ProductsImages::where('record_id',$id)->delete();
+                    foreach ($sortedIds as $item){
+                        ProductsImages::create([
+                            'image' => $item,
+                            'record_id' => $id,
+                        ]);
+                    }
+                }
+            }
+
             $product->update($data);
             DB::commit();
             Session::flash('success', trans('message.update_product_success'));
