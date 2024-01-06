@@ -35,6 +35,7 @@ class UpdateProduct extends FormRequest
             'ordering' => 'nullable',
             'image' => 'nullable',
             'image_after' => 'nullable',
+            'sortedIds' => 'nullable',
             'seo_title' => 'nullable',
             'seo_keyword' => 'nullable',
             'seo_description' => 'nullable',
