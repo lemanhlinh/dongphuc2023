@@ -119,8 +119,13 @@ class ProductController extends Controller
     public function edit($id)
     {
         $categories = $this->productCategoryResponstory->getAll();
-        $product = $this->productResponstory->getOneById($id);
-        return view('admin.product.update', compact('product','categories'));
+        $product = $this->productResponstory->getOneById($id,['productsImages']);
+        $images = $product->productsImages;
+        $listImages = [];
+        foreach ($images as $item){
+            $listImages[] = $item->image;
+        }
+        return view('admin.product.update', compact('product','categories','images','listImages'));
     }
 
     /**
