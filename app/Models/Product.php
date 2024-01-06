@@ -31,6 +31,11 @@ class Product extends Model
         return $this->hasMany(ProductOptions::class, 'parent_id', 'id');
     }
 
+    public function productsImages()
+    {
+        return $this->hasMany(ProductsImages::class, 'record_id', 'id');
+    }
+
     public function getSlugCatAttribute()
     {
         $slug_cat = $this->category->alias;
