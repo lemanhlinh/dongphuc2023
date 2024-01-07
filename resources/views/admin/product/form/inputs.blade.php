@@ -293,19 +293,17 @@
             $('#sortedIdsInput').val(imageLinks.join(','));
         }
 
-        function deleteImages() {
-            $('#form-product-option .delete-btn').on('click', function() {
-                var confirmed = confirm('Bạn có chắc chắn muốn xóa?');
+        $('#form-product-option .delete-btn').on('click', function() {
+            var confirmed = confirm('Bạn có chắc chắn muốn xóa?');
 
-                if (confirmed) {
-                    $(this).parent().remove();
-                    var imageElements = $('#sortable-container img');
-                    var imageLinks = imageElements.map(function() {
-                        return this.src.replace(/^.*\/\/[^/]+/, '');
-                    }).get();
-                    $('#sortedIdsInput').val(imageLinks.join(','));
-                }
-            });
-        }
+            if (confirmed) {
+                $(this).parent().remove();
+                var imageElements = $('#sortable-container img');
+                var imageLinks = imageElements.map(function() {
+                    return this.src.replace(/^.*\/\/[^/]+/, '');
+                }).get();
+                $('#sortedIdsInput').val(imageLinks.join(','));
+            }
+        });
     </script>
 @endsection
