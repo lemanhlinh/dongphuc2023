@@ -261,7 +261,6 @@
                             sortableContainer.appendChild(divElement);
                         });
                         updateSortedIdsInput();
-                        deleteImages();
                     });
 
                     finder.on('file:choose:resizedImage', function(evt) {
@@ -279,7 +278,6 @@
                             sortableContainer.appendChild(divElement);
                         });
                         updateSortedIdsInput();
-                        deleteImages();
                     });
                 }
             });
