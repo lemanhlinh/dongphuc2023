@@ -3,9 +3,10 @@ import $ from "jquery";
 window.$ = $;
 import 'bootstrap';
 import swal from 'sweetalert2';
-window.Swal = swal;
 import 'owl.carousel';
 import LazyLoad from "vanilla-lazyload";
+window.Swal = swal;
+
 require('./main');
 
 var lazyLoadInstance = new LazyLoad({
@@ -35,23 +36,17 @@ $("#owl-demo").owlCarousel({
     }
 });
 
-setTimeout(() => {
-    var carouselData = $("#owl-demo").data();
-    var carouselOptions = carouselData['owl.carousel'].options;
-    carouselOptions.autoplayTimeout = 6000;
-    $("#owl-demo").trigger('refresh.owl.carousel');
-}, 1000);
-
 $('.swiper-wrapper').owlCarousel({
     loop: false,
     rewind: true,
     dots:true,
     nav:false,
+    margin: 30,
     responsiveClass:true,
     responsive:{
         0:{
             items:2,
-            nav:true
+            nav:false
         },
         600:{
             items:2,
@@ -59,7 +54,7 @@ $('.swiper-wrapper').owlCarousel({
         },
         1000:{
             items:3,
-            nav:true,
+            nav:false,
             loop:false
         }
     }

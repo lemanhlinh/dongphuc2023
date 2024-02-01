@@ -37,7 +37,7 @@
                 </div>
                 <div id="block_id_34" class="vn-sidebar-widget testimonials-list">
                     <h2 class="sidebar-widget-title text-center"><span>Ý kiến khách hàng</span></h2>
-                    <div class="swiper-wrapper">
+                    <div class="swiper-wrapper owl-carousel">
                         @forelse($students as $item)
                             <div class="swiper-slide box-partners">
                                 <div class="vn-testimonies-avatar">
@@ -55,7 +55,7 @@
                 @forelse($cats as $cat)
                 <div id="block_id_{{ $cat->id }}" class="list_products_cat">
                     <h2 title="{{ $cat->name }}" class="title_block_cat"><span>{{ $cat->name }}</span></h2>
-                    <div class="sider-slick-add">
+                    <div class="sider-slick-add owl-carousel">
                         @forelse($productsInCategories[$cat->id] as $item)
                         <div class="image-check">
                             <figure class="imghvr-flip-vert">
@@ -81,7 +81,7 @@
                 @endforelse
                 <div id="block_id_26" class="fo-top hidden-xs">
                     <h2 class="text-center">ĐỐI TÁC THÂN THIẾT</h2>
-                    <ul class="sun-group">
+                    <ul class="sun-group owl-carousel">
                         @forelse($partner as $item)
                         <li>
                             <span>
@@ -94,7 +94,7 @@
                 </div>
                 <div id="block_id_30" class="newslist-content" >
                     <h2 class="titl-newslist">GÓC CHIA SẺ KINH NGHIỆM</h2>
-                    <ul class="list-contract">
+                    <ul class="list-contract owl-carousel">
                         @forelse($articles as $item)
                         <li class="">
                             <a href="{{ route('detailArticle',['cat_slug' => $item->category->alias,'slug' => $item->alias]) }}" title="{{ $item->title }}" >

@@ -24,16 +24,17 @@ mix.js('resources/js/app.js', 'public/js')
         'mmenu-js',
         'vanilla-lazyload'
     ]).webpackConfig(webpack => {
-    return {
-        plugins: [
-            new webpack.ProvidePlugin({
-                $: 'jquery',
-                jQuery: 'jquery',
-                'window.jQuery': 'jquery'
-            })
-        ]
-    };
-}).sourceMaps().version();
+        return {
+            plugins: [
+                new webpack.ProvidePlugin({
+                    $: 'jquery',
+                    jQuery: 'jquery',
+                    'window.jQuery': 'jquery'
+                })
+            ]
+        };
+    })
+    .copy('node_modules/bootstrap/dist/js/bootstrap.bundle.js', 'public/js').sourceMaps().version();
 mix.sass('resources/sass/home.scss', 'public/css/web')
     .sass('resources/sass/content.scss', 'public/css/web')
     .sass('resources/sass/contact.scss', 'public/css/web')
