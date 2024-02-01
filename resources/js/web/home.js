@@ -90,7 +90,7 @@ $('.sun-group').owlCarousel({
     responsive:{
         0:{
             items:2,
-            nav:true
+            nav:false
         },
         600:{
             items:3,
@@ -98,7 +98,7 @@ $('.sun-group').owlCarousel({
         },
         1000:{
             items:5,
-            nav:true,
+            nav:false,
             loop:false
         }
     }
@@ -112,7 +112,7 @@ $('.list-contract').owlCarousel({
     responsive:{
         0:{
             items:2,
-            nav:true
+            nav:false
         },
         600:{
             items:3,
@@ -120,7 +120,7 @@ $('.list-contract').owlCarousel({
         },
         1000:{
             items:5,
-            nav:true,
+            nav:false,
             loop:false
         }
     }
