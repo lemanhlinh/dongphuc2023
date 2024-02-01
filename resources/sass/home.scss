@@ -185,6 +185,8 @@
     max-width: 1920px;
     margin: 0px auto;
     min-height: 110px;
+    max-height: 450px;
+    overflow: hidden;
     @media (min-width: 768px) {
         min-height: 422px;
     }

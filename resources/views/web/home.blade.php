@@ -29,13 +29,15 @@
         </div> <!-- END: .pos-top -->
     </div>
     <div class="clearfix"></div>
-    <div class="container">
-        <div class="main row-content" id="main">
-            <div class="row-content pos-top">
+    <div class="main row-content" id="main">
+        <div class="row-content pos-top">
+            <div class="container">
                 <div id="block_id_2" class="content-block">
                     {!! $setting['content_under_slide'] !!}
                 </div>
-                <div id="block_id_34" class="vn-sidebar-widget testimonials-list">
+            </div>
+            <div id="block_id_34" class="vn-sidebar-widget testimonials-list">
+                <div class="container">
                     <h2 class="sidebar-widget-title text-center"><span>Ý kiến khách hàng</span></h2>
                     <div class="swiper-wrapper owl-carousel">
                         @forelse($students as $item)
@@ -52,65 +54,70 @@
                         @endforelse
                     </div>
                 </div>
-                @forelse($cats as $cat)
+            </div>
+            @forelse($cats as $cat)
                 <div id="block_id_{{ $cat->id }}" class="list_products_cat">
-                    <h2 title="{{ $cat->name }}" class="title_block_cat"><span>{{ $cat->name }}</span></h2>
-                    <div class="sider-slick-add owl-carousel">
-                        @forelse($productsInCategories[$cat->id] as $item)
-                        <div class="image-check">
-                            <figure class="imghvr-flip-vert">
-                                <img data-src="{{ asset(replace_image_to_webp($item->image)) }}" loading="lazy" class="img-fluid lazy" width="216px" height="270px" alt="{{ $item->name }}" >
-                                <figcaption>
-                                    @if($item->image_after)
-                                        <img data-src="{{ asset(replace_image_to_webp($item->image_after)) }}" class="img-fluid lazy" width="216px" height="270px" alt="{{ $item->name }}" >
-                                    @else
-                                        <img data-src="{{ asset(replace_image_to_webp($item->image)) }}" class="img-fluid lazy" width="216px" height="270px" alt="{{ $item->name }}" >
-                                    @endif
-                                </figcaption>
-                                <a href="{{ route('detailProduct',['cat_slug'=>$item->category->alias, 'slug' => $item->alias]) }}" title="{{ $item->name }}"></a>
-                            </figure>
-                            <a href="{{ route('detailProduct',['cat_slug'=>$item->category->alias, 'slug' => $item->alias]) }}" title="{{ $item->name }}">
-                                <h3 title="{{ $item->name }}>" class="text-center">{{ $item->name }}</h3>
-                            </a>
+                    <div class="container">
+                        <h2 title="{{ $cat->name }}" class="title_block_cat"><span>{{ $cat->name }}</span></h2>
+                        <div class="sider-slick-add owl-carousel">
+                            @forelse($productsInCategories[$cat->id] as $item)
+                                <div class="image-check">
+                                    <figure class="imghvr-flip-vert">
+                                        <img data-src="{{ asset(replace_image_to_webp($item->image)) }}" loading="lazy" class="img-fluid lazy" width="216px" height="270px" alt="{{ $item->name }}" >
+                                        <figcaption>
+                                            @if($item->image_after)
+                                                <img data-src="{{ asset(replace_image_to_webp($item->image_after)) }}" class="img-fluid lazy" width="216px" height="270px" alt="{{ $item->name }}" >
+                                            @else
+                                                <img data-src="{{ asset(replace_image_to_webp($item->image)) }}" class="img-fluid lazy" width="216px" height="270px" alt="{{ $item->name }}" >
+                                            @endif
+                                        </figcaption>
+                                        <a href="{{ route('detailProduct',['cat_slug'=>$item->category->alias, 'slug' => $item->alias]) }}" title="{{ $item->name }}"></a>
+                                    </figure>
+                                    <a href="{{ route('detailProduct',['cat_slug'=>$item->category->alias, 'slug' => $item->alias]) }}" title="{{ $item->name }}">
+                                        <h3 title="{{ $item->name }}>" class="text-center">{{ $item->name }}</h3>
+                                    </a>
+                                </div>
+                            @empty
+                            @endforelse
                         </div>
-                        @empty
-                        @endforelse
                     </div>
                 </div>
-                @empty
-                @endforelse
-                <div id="block_id_26" class="fo-top hidden-xs">
+            @empty
+            @endforelse
+            <div id="block_id_26" class="fo-top hidden-xs">
+                <div class="container">
                     <h2 class="text-center">ĐỐI TÁC THÂN THIẾT</h2>
                     <ul class="sun-group owl-carousel">
                         @forelse($partner as $item)
-                        <li>
+                            <li>
                             <span>
                                 <img data-src="{{ asset(replace_image_to_webp($item->image)) }}" class="lazy" width="120" height="120" alt="{{ $item->name }}" title="{{ $item->name }}">
                             </span>
-                        </li>
+                            </li>
                         @empty
                         @endforelse
                     </ul>
                 </div>
-                <div id="block_id_30" class="newslist-content" >
+            </div>
+            <div id="block_id_30" class="newslist-content" >
+                <div class="container">
                     <h2 class="titl-newslist">GÓC CHIA SẺ KINH NGHIỆM</h2>
                     <ul class="list-contract owl-carousel">
                         @forelse($articles as $item)
-                        <li class="">
-                            <a href="{{ route('detailArticle',['cat_slug' => $item->category->alias,'slug' => $item->alias]) }}" title="{{ $item->title }}" >
-                                <img data-src="{{ asset(replace_image_to_webp($item->image)) }}" alt="{{ $item->title }}" class="img-fluid lazy" width="220px" height="150px">
-                                <h3 title="{{ $item->title }}">{{ $item->title }}</h3>
-                            </a>
-                        </li>
+                            <li class="">
+                                <a href="{{ route('detailArticle',['cat_slug' => $item->category->alias,'slug' => $item->alias]) }}" title="{{ $item->title }}" >
+                                    <img data-src="{{ asset(replace_image_to_webp($item->image)) }}" alt="{{ $item->title }}" class="img-fluid lazy" width="220px" height="150px">
+                                    <h3 title="{{ $item->title }}">{{ $item->title }}</h3>
+                                </a>
+                            </li>
                         @empty
                         @endforelse
                     </ul>
                 </div>
-            </div> <!-- END: .pos-top -->
-            <div class="clearfix"></div>
-        </div><!-- END: main -->
+            </div>
+        </div> <!-- END: .pos-top -->
         <div class="clearfix"></div>
-    </div>
+    </div><!-- END: main -->
     <div class="clearfix"></div>
     <div id="fs-popup-home" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
