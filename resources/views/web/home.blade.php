@@ -85,7 +85,7 @@
                         @forelse($partner as $item)
                         <li>
                             <span>
-                                <img data-src="{{ asset(replace_image_to_webp($item->image)) }}" class="lazy" loading="lazy" width="120" height="120" alt="{{ $item->name }}" title="{{ $item->name }}">
+                                <img data-src="{{ asset(replace_image_to_webp($item->image)) }}" class="lazy" width="120" height="120" alt="{{ $item->name }}" title="{{ $item->name }}">
                             </span>
                         </li>
                         @empty
@@ -98,7 +98,7 @@
                         @forelse($articles as $item)
                         <li class="">
                             <a href="{{ route('detailArticle',['cat_slug' => $item->category->alias,'slug' => $item->alias]) }}" title="{{ $item->title }}" >
-                                <img data-src="{{ asset(replace_image_to_webp($item->image)) }}" loading="lazy" alt="{{ $item->title }}" class="img-fluid lazy" width="220px" height="150px">
+                                <img data-src="{{ asset(replace_image_to_webp($item->image)) }}" alt="{{ $item->title }}" class="img-fluid lazy" width="220px" height="150px">
                                 <h3 title="{{ $item->title }}">{{ $item->title }}</h3>
                             </a>
                         </li>
@@ -138,7 +138,6 @@
 
 @section('link')
     @parent
-{{--    <link href="{{ asset('js/web/OwlCarousel2-2.2.1/assets/owl.carousel.min.css') }}" rel="stylesheet" media="screen">--}}
     <link href="{{ mix('css/web/home.css') }}" rel="stylesheet" media="screen">
 @endsection
 

@@ -145,11 +145,13 @@
 @section('link')
     @parent
     <link rel="stylesheet" href="{{ asset('/js/web/magiczoomplus/magiczoomplus.css') }}" media="screen">
-    <link rel="stylesheet" href="{{ asset('/css/web/product-detail.css') }}" media="screen">
+    <link rel="stylesheet" href="{{ mix('/css/web/product-detail.css') }}" media="screen">
 @endsection
 
 @section('script')
     @parent
+    <script src="{{ mix('/js/app.js') }}"></script>
+    @include('web.components.extend')
     <script src="{{ asset('/js/web/magiczoomplus/magiczoomplus.js') }}"></script>
     <script>
         $('.sider-slick-add').slick({

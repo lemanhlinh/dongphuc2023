@@ -1,3 +1,5 @@
+@use 'app';
+/* purgecss start ignore */
 .new-contents{
     .title-module{
         padding: 10px;
@@ -245,3 +247,4 @@
         }
     }
 }
+/* purgecss end ignore */
