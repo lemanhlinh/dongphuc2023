@@ -131,8 +131,8 @@
 
 @section('link')
     @parent
-    <link href="{{ asset('js/web/OwlCarousel2-2.2.1/assets/owl.carousel.min.css') }}" rel="stylesheet" media="screen">
-    <link href="{{ asset('css/web/home.css') }}" rel="stylesheet" media="screen">
+{{--    <link href="{{ asset('js/web/OwlCarousel2-2.2.1/assets/owl.carousel.min.css') }}" rel="stylesheet" media="screen">--}}
+    <link href="{{ mix('css/web/home.css') }}" rel="stylesheet" media="screen">
 @endsection
 
 @section('script')

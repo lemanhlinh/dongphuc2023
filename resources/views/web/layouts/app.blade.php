@@ -13,16 +13,11 @@
     <!-- Fonts -->
 
     <!-- Styles -->
-    <link rel="preload" as="style" media="screen" type="text/css" href="{{ asset('css/app.css') }}" />
-    <link rel="preload" as="style" media="screen" type="text/css" href="{{ asset('css/web/slick.css') }}" />
-    <link rel="preload" as="style" media="screen" type="text/css" href="{{ asset('css/web/slick-theme.css') }}" />
-    <link rel="preload" as="style" media="screen" type="text/css" href="{{ asset('css/web/imagehover.css') }}" />
-    <link rel="preload" as="style" media="screen" type="text/css" href="{{ asset('css/web/jquery.mmenu.all.css') }}" />
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet" media="screen">
-    <link href="{{ asset('css/web/slick.css') }}" rel="stylesheet" media="screen">
-    <link href="{{ asset('css/web/slick-theme.css') }}" rel="stylesheet" media="screen">
-    <link href="{{ asset('css/web/imagehover.css') }}" rel="stylesheet" media="screen">
-    <link href="{{ asset('css/web/jquery.mmenu.all.css') }}" rel="stylesheet" media="screen">
+{{--    <link href="{{ asset('css/app.css') }}" rel="stylesheet" media="screen">--}}
+{{--    <link href="{{ asset('css/web/slick.css') }}" rel="stylesheet" media="screen">--}}
+{{--    <link href="{{ asset('css/web/slick-theme.css') }}" rel="stylesheet" media="screen">--}}
+{{--    <link href="{{ asset('css/web/imagehover.css') }}" rel="stylesheet" media="screen">--}}
+{{--    <link href="{{ asset('css/web/jquery.mmenu.all.css') }}" rel="stylesheet" media="screen">--}}
     @yield('link')
     <script type="application/ld+json">
 {
@@ -104,7 +99,7 @@
     <script src="{{ asset('/js/jquery.min.js') }}"></script>
     <script src="{{ asset('/js/web/bootstrap.min.js') }}"></script>
     <script src="{{ asset('/js/web/slick.min.js') }}"></script>
-    <script src="https://kit.fontawesome.com/6302d443cd.js"></script>
+{{--    <script src="https://kit.fontawesome.com/6302d443cd.js"></script>--}}
     <script src="{{ asset('/js/web/jquery.mmenu.min.all.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('/js/web/main.js') }}"></script>

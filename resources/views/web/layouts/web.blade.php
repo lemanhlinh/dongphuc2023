@@ -24,7 +24,7 @@
 @endsection
 
 @section('link')
-    <link rel="stylesheet" href="{{ asset('/css/web/style.css') }}" media="screen">
+
 @endsection
 
 @section('script')
