@@ -12,10 +12,28 @@ require('laravel-mix-purgecss');
  | file for the application as well as bundling up all the JS files.
  |
  */
-
+mix.js('resources/js/admin/setting.js', 'public/js/admin');
 mix.js('resources/js/app.js', 'public/js')
-    .js('resources/js/web/main.js', 'public/js/web')
-    .js('resources/js/admin/setting.js', 'public/js/admin');
+    .js('resources/js/web/home.js', 'public/js/web')
+    .extract([
+        'jquery',
+        'bootstrap',
+        'sweetalert2',
+        'slick-carousel',
+        'owl.carousel',
+        'mmenu-js',
+        'vanilla-lazyload'
+    ]).webpackConfig(webpack => {
+    return {
+        plugins: [
+            new webpack.ProvidePlugin({
+                $: 'jquery',
+                jQuery: 'jquery',
+                'window.jQuery': 'jquery'
+            })
+        ]
+    };
+}).sourceMaps().version();
 mix.sass('resources/sass/home.scss', 'public/css/web')
     .sass('resources/sass/content.scss', 'public/css/web')
     .sass('resources/sass/contact.scss', 'public/css/web')

@@ -28,6 +28,9 @@
 @endsection
 
 @section('script')
+    @parent
+    <script src="{{ mix('js/web/manifest.js') }}"></script>
+    <script src="{{ mix('js/web/vendor.js') }}"></script>
     <div id="fb-root"></div>
     <script loading="lazy" defer>(function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];

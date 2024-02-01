@@ -1,2 +1,2 @@
-$(document).ready((function(){$("#change_lang").on("change",(function(){window.location=$(this).val()}))}));
+(self.webpackChunk=self.webpackChunk||[]).push([[208],{7991:(n,a,c)=>{var e=c(9755);e(document).ready((function(){e("#change_lang").on("change",(function(){window.location=e(this).val()}))}))},2234:()=>{},7615:()=>{},6114:()=>{},506:()=>{},7816:()=>{},7861:()=>{},9724:()=>{},8452:()=>{}},n=>{var a=a=>n(n.s=a);n.O(0,[173,12,618,895,559,33,191,944,226],(()=>(a(7991),a(506),a(7816),a(7861),a(9724),a(8452),a(2234),a(7615),a(6114))));n.O()}]);
 //# sourceMappingURL=setting.js.map

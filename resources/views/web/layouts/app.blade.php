@@ -13,11 +13,6 @@
     <!-- Fonts -->
 
     <!-- Styles -->
-{{--    <link href="{{ asset('css/app.css') }}" rel="stylesheet" media="screen">--}}
-{{--    <link href="{{ asset('css/web/slick.css') }}" rel="stylesheet" media="screen">--}}
-{{--    <link href="{{ asset('css/web/slick-theme.css') }}" rel="stylesheet" media="screen">--}}
-{{--    <link href="{{ asset('css/web/imagehover.css') }}" rel="stylesheet" media="screen">--}}
-{{--    <link href="{{ asset('css/web/jquery.mmenu.all.css') }}" rel="stylesheet" media="screen">--}}
     @yield('link')
     <script type="application/ld+json">
 {
@@ -95,35 +90,6 @@
                   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
     @yield('page')
-    <!-- jQuery -->
-    <script src="{{ asset('/js/jquery.min.js') }}"></script>
-    <script src="{{ asset('/js/web/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('/js/web/slick.min.js') }}"></script>
-{{--    <script src="https://kit.fontawesome.com/6302d443cd.js"></script>--}}
-    <script src="{{ asset('/js/web/jquery.mmenu.min.all.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="{{ asset('/js/web/main.js') }}"></script>
-    <!-- Scripts -->
-    <script>
-        let toastrSuccsee = "{{ Session::get('success') }}";
-        let toastrDanger = "{{ Session::get('danger') }}";
-        if (toastrDanger.length > 0 || toastrSuccsee.length > 0) {
-            if (toastrDanger.length > 0) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: toastrDanger,
-                });
-                toastr["error"](toastrDanger)
-            } else {
-                Swal.fire(
-                    'Thành công!',
-                    toastrSuccsee,
-                    'success'
-                )
-            }
-        }
-    </script>
     @yield('script')
 </body>
 </html>

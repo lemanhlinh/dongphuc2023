@@ -1,26 +1,33 @@
 @extends('web.layouts.web')
 
 @section('content')
-    <div class="row-content pos-top">
-        <div class="slideshow-home">
-            @if(!empty($slider))
-                <div id="owl-demo" class="owl-carousel">
-                    @forelse($slider as $item)
-                        <div class="item">
-                            <a href="{{ $item->url }}" title="{{ $item->name }}">
-                                <picture>
-                                    <source srcset="{{ asset(replace_image_to_webp($item->image,'small')) }}" media="(max-width: 600px)">
-                                    <source srcset="{{ asset(replace_image_to_webp($item->image)) }}">
-                                    <img class="img-fluid" width="1920" height="600" src="{{ asset(replace_image_to_webp($item->image)) }}" loading="lazy" alt="{{ $item->name }}"/>
-                                </picture>
-                            </a>
-                        </div>
-                    @empty
-                    @endforelse
-                </div>
-            @endif
-        </div>
-    </div> <!-- END: .pos-top -->
+    <div class="container-fluid g-0">
+        <div class="row-content pos-top">
+            <div class="slideshow-home">
+                @if(!empty($slider))
+                    <div id="owl-demo" class="owl-carousel">
+                        @forelse($slider as $item)
+                            <div class="item">
+                                <a href="{{ $item->url }}" title="{{ $item->name }}">
+                                    <img
+                                        src="{{ asset(replace_image_to_webp($item->image,'small')) }}"
+                                        srcset="
+                                            {{ asset(replace_image_to_webp($item->image,'small')) }} 400w,
+                                            {{ asset(replace_image_to_webp($item->image)) }} 800w,
+                                            {{ asset(replace_image_to_webp($item->image)) }} 1200w"
+                                        sizes="(max-width: 600px) 400px,
+                                        (max-width: 1024px) 800px,
+                                        1200px"
+                                        alt="{{ $item->name }}" width="1920" height="600" class="img-fluid">
+                                </a>
+                            </div>
+                        @empty
+                        @endforelse
+                    </div>
+                @endif
+            </div>
+        </div> <!-- END: .pos-top -->
+    </div>
     <div class="clearfix"></div>
     <div class="container">
         <div class="main row-content" id="main">
@@ -137,141 +144,6 @@
 
 @section('script')
     @parent
-    <script src="{{ asset('/js/web/OwlCarousel2-2.2.1/owl.carousel.min.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.3.0/dist/lazyload.min.js"></script>
-    <script defer>
-        var lazyLoadInstance = new LazyLoad({
-            // Your custom settings go here
-        });
-        window.onload = function() {
-            $("#owl-demo").owlCarousel({
-                autoplay: true, //Set AutoPlay to 3 seconds
-                autoplaySpeed: 500,
-                autoHeight: true,
-                loop: true,
-                autoplayTimeout: 3000,
-                autoplayHoverPause: true,
-                items: 1,
-                lazyLoad: true,
-                nav: false,
-                dots: true,
-                responsive: {
-                    0: {
-                        autoplay: false
-                    },
-                    480: {
-                        autoplay: false
-                    },
-                    768: {
-                        autoplay: true
-                    }
-                }
-            });
-
-            $('.swiper-wrapper').slick({
-                // lazyLoad: 'ondemand',
-                infinite: true,
-                slidesToShow: 3,
-                slidesToScroll: 1,
-                adaptiveHeight: true,
-                arrows: true,
-                dots: true,
-                responsive: [
-                    {
-                        breakpoint: 767,
-                        settings: {
-                            slidesToShow: 2,
-                            slidesToScroll: 2,
-                            // dots: true,
-                        }
-                    },
-                    {
-                        breakpoint: 900,
-                        settings: {
-                            slidesToShow: 3,
-                            slidesToScroll: 1,
-                            // dots: true,
-                        }
-                    }
-                ]
-            });
-            $('.sider-slick-add').not('.slick-initialized').slick({
-                // lazyLoad: 'ondemand',
-                infinite: true,
-                slidesToShow: 5,
-                slidesToScroll: 5,
-                arrows: true,
-                responsive: [
-                    {
-                        breakpoint: 767,
-                        settings: {
-                            slidesToShow: 2,
-                            slidesToScroll: 2,
-                            // dots: true,
-                        }
-                    },
-                    {
-                        breakpoint: 900,
-                        settings: {
-                            slidesToShow: 3,
-                            slidesToScroll: 3,
-                            // dots: true,
-                        }
-                    }
-                ]
-            });
-
-            $('.sun-group').slick({
-                // lazyLoad: 'ondemand',
-                infinite: true,
-                slidesToShow: 5,
-                slidesToScroll: 5,
-                arrows: true,
-                responsive: [
-                    {
-                        breakpoint: 767,
-                        settings: {
-                            slidesToShow: 2,
-                            slidesToScroll: 2,
-                            // dots: true,
-                        }
-                    },
-                    {
-                        breakpoint: 900,
-                        settings: {
-                            slidesToShow: 3,
-                            slidesToScroll: 3,
-                            // dots: true,
-                        }
-                    }
-                ]
-            });
-
-            $('.list-contract').slick({
-                // lazyLoad: 'ondemand',
-                infinite: true,
-                slidesToShow: 5,
-                slidesToScroll: 5,
-                arrows: true,
-                responsive: [
-                    {
-                        breakpoint: 767,
-                        settings: {
-                            slidesToShow: 2,
-                            slidesToScroll: 2,
-                            // dots: true,
-                        }
-                    },
-                    {
-                        breakpoint: 900,
-                        settings: {
-                            slidesToShow: 3,
-                            slidesToScroll: 3,
-                            // dots: true,
-                        }
-                    }
-                ]
-            });
-        };
-    </script>
+    <script src="{{ mix('js/web/home.js') }}"></script>
+    @include('web.components.extend')
 @endsection

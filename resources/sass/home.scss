@@ -1,6 +1,7 @@
 @use 'app';
 /* purgecss start ignore */
-@import "imagehover.css";
+@import "imagehover.css-master/scss/imagehover";
+
 .owl-carousel {
     display: none;
     width: 100%;
@@ -273,8 +274,8 @@
             }
         }
     }
-    .slick-dots{
-        li{
+    .owl-dots{
+        .owl-dot {
             display: inline-block;
             border-radius: 100%;
             background-color: #fff;
@@ -282,11 +283,11 @@
             width: 12px;
             height: 12px;
             opacity: 1;
-        }
-        .slick-active{
-            opacity: 1;
-            background: #04a5f0;
-            border: 1px solid #04a5f0;
+            &.active {
+                opacity: 1;
+                background: #04a5f0;
+                border: 1px solid #04a5f0;
+            }
         }
     }
 }
