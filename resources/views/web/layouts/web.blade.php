@@ -13,7 +13,7 @@
         @include('web.partials._offcanvas')
     </div>
     <nav id="navigation-menu">
-        <ul>
+        <ul id="panel-menu">
             @if(!empty($menus))
                 @foreach ($menus as $shop)
                     @include('web.components.menu.mobile', ['item'=>$shop])

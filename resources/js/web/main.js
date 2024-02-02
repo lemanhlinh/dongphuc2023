@@ -1,12 +1,6 @@
-import 'mmenu-js';
-document.addEventListener('DOMContentLoaded', () => {
-    new Mmenu("#navigation-menu", {
-        classes: 'mm-white mm-slide',
-        searchfield: false,
-        counters: false,
-        header: false,
-        }, {});
-});
+import Mmenu from 'mmenu-js';
+window.Mmenu = Mmenu;
+
 
 $(document).ready(function() {
     // var fixmeTop = $('.navbar-finalstyle').offset().top;
@@ -25,6 +19,17 @@ $(document).ready(function() {
     //     counters: false,
     //     header: false,
     // });
+
+    new Mmenu("#navigation-menu", {
+        theme: "white",
+        navbars: {
+            content: ["prev", "title"]
+        },
+        setSelected: {
+            hover: true
+        }
+    }, {});
+
     setTimeout(function () {
         $('#fs-popup-home').modal('show');
     }, 7000);

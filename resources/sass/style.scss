@@ -1,3 +1,16 @@
+body{
+    --mm-min-size: 190px;
+    --color-primary: #5888aa;
+    --color-callout: #fad188;
+    --color-text: #fff;
+    --color-dark-bg: #2a6787;
+    --color-dark-border: #2a6787;
+    --color-light-bg: rgb(255 255 255 / 15%);
+    --color-light-border: rgb(255 255 255 / 60%);
+    --color-gold: #ffda71;
+    --color-silver: #ced0ca;
+    --color-bronze: #bba6a2;
+}
 body {
     font-family: "Roboto", sans-serif;
     line-height: 22px;
@@ -23,9 +36,6 @@ body {
         transition: margin-right 0.5s;
     }
 
-    #navigation-menu {
-        display: none;
-    }
     .header_menu a {
         display: block;
         width: 48px;
@@ -679,4 +689,38 @@ body {
 
         }
     }
+}
+
+.mm-wrapper--opened .mm-page {
+    box-shadow: 0 0 10px rgb( 0 0 0 / 20%);
+}
+
+.mm-wrapper__blocker {
+    background: none;
+}
+
+.mm-navbar {
+    --mm-color-background: var(--color-bronze);
+    --mm-color-text-dimmed: #fff;
+    --mm-color-icon: #fff;
+    border-bottom: unset;
+    font-size: 18px;
+}
+
+.mm-panels {
+    --mm-color-background: #fff;
+    --mm-color-text: var(--color-bronze);
+    --mm-color-icon: var(--color-bronze);
+}
+
+.mm-panels > .mm-panel {
+    padding-top: 20px;
+}
+.mm-listitem:after {
+    content: none;
+}
+
+.mm-listitem > a,
+.mm-listitem > span {
+    padding: 15px 10px 15px 35px;
 }
