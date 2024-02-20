@@ -116,6 +116,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
 
     Route::group(['prefix' => 'contact', 'as' => 'contact.', 'middleware' => ['permission:view_contact']], function () {
         Route::get('', 'ContactController@index')->name('index');
+        Route::post('/destroy/{id}', 'ContactController@destroy')->name('destroy');
     });
 
     Route::group(['prefix' => 'article-category', 'as' => 'article-category.', 'middleware' => ['permission:view_article_categories']], function () {
