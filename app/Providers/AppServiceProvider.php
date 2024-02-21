@@ -9,6 +9,7 @@ use App\Repositories\Contracts\MenuInterface;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Schema;
+use Detection\MobileDetect;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -48,6 +49,10 @@ class AppServiceProvider extends ServiceProvider
         View::composer(['web.partials._header', 'web.partials._footer','web.layouts.web'], function ($view) use ($menu) {
             $view->with('menus', $menu);
         });
+
+        $detect = new MobileDetect();
+        $isMobile = $detect->isMobile();
+        View::share('isMobile', $isMobile);
 
     }
 }

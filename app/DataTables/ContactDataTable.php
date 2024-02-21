@@ -25,7 +25,11 @@ class ContactDataTable extends DataTable
             ->editColumn('created_at', function ($q) {
                 return Carbon::parse($q->created_at)->format('H:i:s Y/m/d');
             })
-            ->addColumn('action', 'contact-table.action');
+            ->addColumn('action', function ($q) {
+                $urlDelete = route('admin.contact.destroy', $q->id);
+                $lowerModelName = 'contact';
+                return view('admin.components.buttons.delete', compact('urlDelete', 'lowerModelName'))->render();
+            });
     }
 
     /**
@@ -74,12 +78,12 @@ class ContactDataTable extends DataTable
             Column::make('telephone')->title(trans('form.contact.phone')),
             Column::make('email')->title(trans('form.contact.email')),
             Column::make('content')->title(trans('form.contact.content')),
-            Column::make('created_at')
-//            Column::computed('action')
-//                ->exportable(false)
-//                ->printable(false)
-//                ->width(60)
-//                ->addClass('text-center')
+            Column::make('created_at'),
+            Column::computed('action')
+                ->exportable(false)
+                ->printable(false)
+                ->width(60)
+                ->addClass('text-center')
         ];
     }
 
