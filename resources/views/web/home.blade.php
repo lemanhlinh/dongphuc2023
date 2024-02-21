@@ -25,6 +25,7 @@
     <div class="container">
         <div class="main row-content" id="main">
             <div class="row-content pos-top">
+                @if(!$isMobile)
                 <div id="block_id_2" class="content-block">
                     {!! $setting['content_under_slide'] !!}
                 </div>
@@ -45,6 +46,7 @@
                         @endforelse
                     </div>
                 </div>
+                @endif
                 @forelse($cats as $cat)
                 <div id="block_id_{{ $cat->id }}" class="list_products_cat">
                     <h2 title="{{ $cat->name }}" class="title_block_cat"><span>{{ $cat->name }}</span></h2>
@@ -72,6 +74,28 @@
                 </div>
                 @empty
                 @endforelse
+                @if($isMobile)
+                    <div id="block_id_2" class="content-block">
+                        {!! $setting['content_under_slide'] !!}
+                    </div>
+                    <div id="block_id_34" class="vn-sidebar-widget testimonials-list">
+                        <h2 class="sidebar-widget-title text-center"><span>Ý kiến khách hàng</span></h2>
+                        <div class="swiper-wrapper">
+                            @forelse($students as $item)
+                                <div class="swiper-slide box-partners">
+                                    <div class="vn-testimonies-avatar">
+                                        <div class="image-student-b">
+                                            <img class="img-fluid border-img-show lazy" width="120" height="120" alt="{{ $item->title }}" loading="lazy" data-src="{{ asset(replace_image_to_webp($item->image)) }}" >
+                                        </div>
+                                        <p class="name-title-studen">{{ $item->title }}</br>{{ $item->creator }}</p>
+                                    </div>
+                                    <div class="comment-studen">{!! $item->content !!}</div>
+                                </div>
+                            @empty
+                            @endforelse
+                        </div>
+                    </div>
+                @endif
                 <div id="block_id_26" class="fo-top hidden-xs">
                     <h2 class="text-center">ĐỐI TÁC THÂN THIẾT</h2>
                     <ul class="sun-group">
