@@ -91,7 +91,7 @@
                     </div>
                     <div id="block_id_34" class="vn-sidebar-widget testimonials-list">
                         <h2 class="sidebar-widget-title text-center"><span>Ý kiến khách hàng</span></h2>
-                        <div class="swiper-wrapper">
+                        <div class="swiper-wrapper owl-carousel">
                             @forelse($students as $item)
                                 <div class="swiper-slide box-partners">
                                     <div class="vn-testimonies-avatar">

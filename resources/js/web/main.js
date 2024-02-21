@@ -30,9 +30,9 @@ $(document).ready(function() {
         }
     }, {});
 
-    setTimeout(function () {
-        $('#fs-popup-home').modal('show');
-    }, 7000);
+    // setTimeout(function () {
+    //     $('#fs-popup-home').modal('show');
+    // }, 7000);
 });
 $(window).on('scroll', function(event) {
     if ($(this).scrollTop() > 100) {
