@@ -36,7 +36,7 @@
                 </div>
                 <div id="block_id_34" class="vn-sidebar-widget testimonials-list">
                     <h2 class="sidebar-widget-title text-center"><span>Ý kiến khách hàng</span></h2>
-                    <div class="swiper-wrapper">
+                    <div class="swiper-wrapper owl-carousel">
                         @forelse($students as $item)
                             <div class="swiper-slide box-partners">
                                 <div class="vn-testimonies-avatar">
@@ -55,7 +55,7 @@
                 @forelse($cats as $cat)
                 <div id="block_id_{{ $cat->id }}" class="list_products_cat">
                     <h2 title="{{ $cat->name }}" class="title_block_cat"><span>{{ $cat->name }}</span></h2>
-                    <div class="sider-slick-add">
+                    <div class="sider-slick-add owl-carousel">
                         @forelse($productsInCategories[$cat->id] as $item)
                         <div class="image-check">
                             <figure class="imghvr-flip-vert">
@@ -85,7 +85,7 @@
                     </div>
                     <div id="block_id_34" class="vn-sidebar-widget testimonials-list">
                         <h2 class="sidebar-widget-title text-center"><span>Ý kiến khách hàng</span></h2>
-                        <div class="swiper-wrapper">
+                        <div class="swiper-wrapper owl-carousel">
                             @forelse($students as $item)
                                 <div class="swiper-slide box-partners">
                                     <div class="vn-testimonies-avatar">
@@ -103,7 +103,7 @@
                 @endif
                 <div id="block_id_26" class="fo-top hidden-xs">
                     <h2 class="text-center">ĐỐI TÁC THÂN THIẾT</h2>
-                    <ul class="sun-group">
+                    <ul class="sun-group owl-carousel">
                         @forelse($partner as $item)
                         <li>
                             <span>
@@ -116,7 +116,7 @@
                 </div>
                 <div id="block_id_30" class="newslist-content" >
                     <h2 class="titl-newslist">GÓC CHIA SẺ KINH NGHIỆM</h2>
-                    <ul class="list-contract">
+                    <ul class="list-contract owl-carousel">
                         @forelse($articles as $item)
                         <li class="">
                             <a href="{{ route('detailArticle',['cat_slug' => $item->category->alias,'slug' => $item->alias]) }}" title="{{ $item->title }}" >
@@ -160,13 +160,13 @@
 
 @section('link')
     @parent
-    <link href="{{ asset('js/web/OwlCarousel2-2.2.1/assets/owl.carousel.min.css') }}" rel="stylesheet" media="screen">
+    <link href="{{ asset('js/web/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css') }}" rel="stylesheet" media="screen">
     <link href="{{ asset('css/web/home.css') }}" rel="stylesheet" media="screen">
 @endsection
 
 @section('script')
     @parent
-    <script src="{{ asset('/js/web/OwlCarousel2-2.2.1/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('/js/web/OwlCarousel2-2.3.4/dist/owl.carousel.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.3.0/dist/lazyload.min.js"></script>
     <script defer>
         var lazyLoadInstance = new LazyLoad({
@@ -197,110 +197,201 @@
                 }
             });
 
-            $('.swiper-wrapper').slick({
-                // lazyLoad: 'ondemand',
-                infinite: true,
-                slidesToShow: 3,
-                slidesToScroll: 1,
-                adaptiveHeight: true,
-                arrows: true,
-                dots: true,
-                responsive: [
-                    {
-                        breakpoint: 767,
-                        settings: {
-                            slidesToShow: 2,
-                            slidesToScroll: 2,
-                            // dots: true,
-                        }
+            $('.swiper-wrapper').owlCarousel({
+                loop: false,
+                rewind: true,
+                dots:true,
+                nav:false,
+                margin: 30,
+                responsiveClass:true,
+                responsive:{
+                    0:{
+                        items:2,
+                        nav:false
                     },
-                    {
-                        breakpoint: 900,
-                        settings: {
-                            slidesToShow: 3,
-                            slidesToScroll: 1,
-                            // dots: true,
-                        }
-                    }
-                ]
-            });
-            $('.sider-slick-add').not('.slick-initialized').slick({
-                // lazyLoad: 'ondemand',
-                infinite: true,
-                slidesToShow: 5,
-                slidesToScroll: 5,
-                arrows: true,
-                responsive: [
-                    {
-                        breakpoint: 767,
-                        settings: {
-                            slidesToShow: 2,
-                            slidesToScroll: 2,
-                            // dots: true,
-                        }
+                    600:{
+                        items:2,
+                        nav:false
                     },
-                    {
-                        breakpoint: 900,
-                        settings: {
-                            slidesToShow: 3,
-                            slidesToScroll: 3,
-                            // dots: true,
-                        }
+                    1000:{
+                        items:3,
+                        nav:false,
+                        loop:false
                     }
-                ]
+                }
             });
 
-            $('.sun-group').slick({
-                // lazyLoad: 'ondemand',
-                infinite: true,
-                slidesToShow: 5,
-                slidesToScroll: 5,
-                arrows: true,
-                responsive: [
-                    {
-                        breakpoint: 767,
-                        settings: {
-                            slidesToShow: 2,
-                            slidesToScroll: 2,
-                            // dots: true,
-                        }
+            // $('.swiper-wrapper').slick({
+            //     // lazyLoad: 'ondemand',
+            //     infinite: true,
+            //     slidesToShow: 3,
+            //     slidesToScroll: 1,
+            //     adaptiveHeight: true,
+            //     arrows: true,
+            //     dots: true,
+            //     responsive: [
+            //         {
+            //             breakpoint: 767,
+            //             settings: {
+            //                 slidesToShow: 2,
+            //                 slidesToScroll: 2,
+            //                 // dots: true,
+            //             }
+            //         },
+            //         {
+            //             breakpoint: 900,
+            //             settings: {
+            //                 slidesToShow: 3,
+            //                 slidesToScroll: 1,
+            //                 // dots: true,
+            //             }
+            //         }
+            //     ]
+            // });
+
+            $('.sider-slick-add').owlCarousel({
+                loop: false,
+                rewind: true,
+                dots:false,
+                responsiveClass:true,
+                responsive:{
+                    0:{
+                        items:2,
+                        nav:true
                     },
-                    {
-                        breakpoint: 900,
-                        settings: {
-                            slidesToShow: 3,
-                            slidesToScroll: 3,
-                            // dots: true,
-                        }
+                    600:{
+                        items:3,
+                        nav:false
+                    },
+                    1000:{
+                        items:5,
+                        nav:true,
+                        loop:false
                     }
-                ]
+                }
             });
 
-            $('.list-contract').slick({
-                // lazyLoad: 'ondemand',
-                infinite: true,
-                slidesToShow: 5,
-                slidesToScroll: 5,
-                arrows: true,
-                responsive: [
-                    {
-                        breakpoint: 767,
-                        settings: {
-                            slidesToShow: 2,
-                            slidesToScroll: 2,
-                            // dots: true,
-                        }
+            $('.sun-group').owlCarousel({
+                loop: false,
+                rewind: true,
+                dots:false,
+                responsiveClass:true,
+                responsive:{
+                    0:{
+                        items:2,
+                        nav:false
                     },
-                    {
-                        breakpoint: 900,
-                        settings: {
-                            slidesToShow: 3,
-                            slidesToScroll: 3,
-                            // dots: true,
-                        }
+                    600:{
+                        items:3,
+                        nav:false
+                    },
+                    1000:{
+                        items:5,
+                        nav:false,
+                        loop:false
                     }
-                ]
+                }
             });
+
+            $('.list-contract').owlCarousel({
+                loop: false,
+                rewind: true,
+                dots:false,
+                responsiveClass:true,
+                responsive:{
+                    0:{
+                        items:2,
+                        nav:false
+                    },
+                    600:{
+                        items:3,
+                        nav:false
+                    },
+                    1000:{
+                        items:5,
+                        nav:false,
+                        loop:false
+                    }
+                }
+            });
+
+            // $('.sider-slick-add').not('.slick-initialized').slick({
+            //     // lazyLoad: 'ondemand',
+            //     infinite: true,
+            //     slidesToShow: 5,
+            //     slidesToScroll: 5,
+            //     arrows: true,
+            //     responsive: [
+            //         {
+            //             breakpoint: 767,
+            //             settings: {
+            //                 slidesToShow: 2,
+            //                 slidesToScroll: 2,
+            //                 // dots: true,
+            //             }
+            //         },
+            //         {
+            //             breakpoint: 900,
+            //             settings: {
+            //                 slidesToShow: 3,
+            //                 slidesToScroll: 3,
+            //                 // dots: true,
+            //             }
+            //         }
+            //     ]
+            // });
+
+            // $('.sun-group').slick({
+            //     // lazyLoad: 'ondemand',
+            //     infinite: true,
+            //     slidesToShow: 5,
+            //     slidesToScroll: 5,
+            //     arrows: true,
+            //     responsive: [
+            //         {
+            //             breakpoint: 767,
+            //             settings: {
+            //                 slidesToShow: 2,
+            //                 slidesToScroll: 2,
+            //                 // dots: true,
+            //             }
+            //         },
+            //         {
+            //             breakpoint: 900,
+            //             settings: {
+            //                 slidesToShow: 3,
+            //                 slidesToScroll: 3,
+            //                 // dots: true,
+            //             }
+            //         }
+            //     ]
+            // });
+            //
+            // $('.list-contract').slick({
+            //     // lazyLoad: 'ondemand',
+            //     infinite: true,
+            //     slidesToShow: 5,
+            //     slidesToScroll: 5,
+            //     arrows: true,
+            //     responsive: [
+            //         {
+            //             breakpoint: 767,
+            //             settings: {
+            //                 slidesToShow: 2,
+            //                 slidesToScroll: 2,
+            //                 // dots: true,
+            //             }
+            //         },
+            //         {
+            //             breakpoint: 900,
+            //             settings: {
+            //                 slidesToShow: 3,
+            //                 slidesToScroll: 3,
+            //                 // dots: true,
+            //             }
+            //         }
+            //     ]
+            // });
         };
     </script>
 @endsection
