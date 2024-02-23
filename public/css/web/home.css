@@ -1,3 +1,19 @@
+.owl-carousel {
+  display: block;
+}
+
+.owl-carousel .slide-owl-wrap:not(:first-child) {
+  display: none;
+}
+
+.owl-carousel img {
+  max-width: 100%;
+}
+
+.owl-carousel .owl-stage {
+  margin: 0 auto;
+}
+
 .slideshow-home {
   max-width: 1920px;
   margin: 0px auto;
@@ -180,6 +196,11 @@
 .list_products_cat .image-check {
   margin-bottom: 45px;
   padding: 15px 12px;
+}
+@media (max-width: 768px) {
+  .list_products_cat .image-check {
+    margin-bottom: 0px;
+  }
 }
 .list_products_cat .image-check .imghvr-flip-vert figcaption {
   padding: 0;

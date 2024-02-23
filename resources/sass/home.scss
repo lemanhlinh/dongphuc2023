@@ -1,3 +1,20 @@
+//important for speed
+.owl-carousel {
+    display: block;
+}
+
+.owl-carousel .slide-owl-wrap:not(:first-child) {
+    display: none;
+}
+
+.owl-carousel img {
+    max-width: 100%;
+}
+
+.owl-carousel .owl-stage{
+    margin: 0 auto;
+}
+//e important for speed
 .slideshow-home{
     max-width: 1920px;
     margin: 0px auto;
@@ -190,6 +207,9 @@
     .image-check{
         margin-bottom: 45px;
         padding: 15px 12px;
+        @media (max-width: 768px){
+            margin-bottom: 0px;
+        }
         .imghvr-flip-vert{
             figcaption{
                 padding: 0;
