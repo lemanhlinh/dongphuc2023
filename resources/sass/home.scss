@@ -204,6 +204,9 @@
             margin: 0 auto;
             display: block;
             box-shadow: 0px 0px 3px 0px #212020;
+            @media (max-width: 768px){
+                max-height: 210px;
+            }
         }
         h3{
             text-align: center;
