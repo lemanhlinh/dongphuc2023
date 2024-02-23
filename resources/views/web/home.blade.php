@@ -8,11 +8,16 @@
                     @forelse($slider as $item)
                         <div class="item">
                             <a href="{{ $item->url }}" title="{{ $item->name }}">
-                                <picture>
-                                    <source srcset="{{ asset(replace_image_to_webp($item->image,'small')) }}" media="(max-width: 600px)">
-                                    <source srcset="{{ asset(replace_image_to_webp($item->image)) }}">
-                                    <img class="img-fluid" width="1920" height="600" src="{{ asset(replace_image_to_webp($item->image)) }}" loading="lazy" alt="{{ $item->name }}"/>
-                                </picture>
+                                <img
+                                    src="{{ asset(replace_image_to_webp($item->image,'small')) }}"
+                                    srcset="
+                                            {{ asset(replace_image_to_webp($item->image,'small')) }} 400w,
+                                            {{ asset(replace_image_to_webp($item->image)) }} 800w,
+                                            {{ asset(replace_image_to_webp($item->image)) }} 1200w"
+                                    sizes="(max-width: 600px) 400px,
+                                        (max-width: 1024px) 800px,
+                                        1200px"
+                                    alt="{{ $item->name }}" width="1920" height="600" class="img-fluid">
                             </a>
                         </div>
                     @empty

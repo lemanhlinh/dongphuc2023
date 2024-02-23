@@ -5,6 +5,10 @@
     @media (min-width: 768px) {
         min-height: 422px;
     }
+    @media (max-width: 768px) {
+        max-height: 130px;
+        overflow: hidden;
+    }
     .info-slider{
         position: absolute;
         color: #fff;
