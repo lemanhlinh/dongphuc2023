@@ -24,6 +24,10 @@
         max-height: 600px;
         overflow: hidden;
     }
+    @media (max-width: 1350px) {
+        height: 418px;
+        overflow: hidden;
+    }
     @media (max-width: 768px) {
         max-height: 130px;
         overflow: hidden;
@@ -240,6 +244,10 @@
             overflow: hidden;
         }
         .imghvr-flip-vert{
+            @media (max-width: 412px){
+                width: 168px;
+                overflow: hidden;
+            }
             figcaption{
                 padding: 0;
             }
