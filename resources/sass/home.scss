@@ -229,6 +229,10 @@
         @media (max-width: 768px){
             margin-bottom: 0px;
         }
+        @media (max-width: 412px){
+            width: 194px;
+            overflow: hidden;
+        }
         .imghvr-flip-vert{
             figcaption{
                 padding: 0;
