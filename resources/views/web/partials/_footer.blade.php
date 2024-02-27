@@ -45,16 +45,16 @@
                     <div class="list-connect">
                         <div class="title-footer">Kết nối với chúng tôi</div>
                         <p class="connect-social">
-                            <a href="{{ $setting['facebook'] }}" target="_blank" class="facebook">
+                            <a href="{{ $setting['facebook'] }}" aria-label="facebook" target="_blank" class="facebook">
                                 <i class="fab fa-facebook"></i>
                             </a>
-                            <a href="{{ $setting['twitter'] }}" target="_blank" class="twitter">
+                            <a href="{{ $setting['twitter'] }}" aria-label="twitter" target="_blank" class="twitter">
                                 <i class="fab fa-twitter"></i>
                             </a>
-                            <a href="{{ $setting['youtube'] }}" target="_blank" class="youtube">
+                            <a href="{{ $setting['youtube'] }}" aria-label="youtube" target="_blank" class="youtube">
                                 <i class="fab fa-youtube"></i>
                             </a>
-                            <a href="{{ $setting['instagram'] }}" target="_blank" class="instagram">
+                            <a href="{{ $setting['instagram'] }}" aria-label="instagram" target="_blank" class="instagram">
                                 <i class="fab fa-instagram"></i>
                             </a>
                         </p>
