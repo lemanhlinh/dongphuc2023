@@ -61,8 +61,8 @@
 }
 </script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-152077928-1"></script>
-    <script async >
+    <script defer src="https://www.googletagmanager.com/gtag/js?id=UA-152077928-1"></script>
+    <script defer >
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
@@ -70,7 +70,7 @@
         gtag('config', 'UA-152077928-1');
     </script>
     <!-- Facebook Pixel Code -->
-    <script async >
+    <script defer >
         !function(f,b,e,v,n,t,s)
         {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
             n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -87,7 +87,7 @@
         /></noscript>
     <!-- End Facebook Pixel Code -->
     <!-- Google Tag Manager -->
-    <script async >(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    <script defer >(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
                 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
             j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
@@ -101,7 +101,7 @@
 <!-- End Google Tag Manager (noscript) -->
     @yield('page')
     <!-- jQuery -->
-    <script src="{{ asset('/js/jquery.min.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="{{ asset('/js/web/bootstrap.min.js') }}"></script>
     <script src="{{ asset('/js/web/slick.min.js') }}"></script>
     <script src="https://kit.fontawesome.com/6302d443cd.js"></script>

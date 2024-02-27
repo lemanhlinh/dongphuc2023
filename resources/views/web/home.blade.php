@@ -17,7 +17,7 @@
                                     sizes="(max-width: 600px) 400px,
                                         (max-width: 1024px) 800px,
                                         1200px"
-                                    alt="{{ $item->name }}" width="1350" height="422" class="img-fluid">
+                                    alt="{{ $item->name }}"  fetchpriority="high" width="1350" height="422" class="img-fluid">
                             </a>
                         </div>
                     @empty
