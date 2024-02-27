@@ -120,7 +120,7 @@
                         @forelse($articles as $item)
                         <li class="">
                             <a href="{{ route('detailArticle',['cat_slug' => $item->category->alias,'slug' => $item->alias]) }}" title="{{ $item->title }}" >
-                                <img data-src="{{ asset(replace_image_to_webp($item->image)) }}" loading="lazy" alt="{{ $item->title }}" class="img-fluid lazy" width="220px" height="150px">
+                                <img data-src="{{ asset(replace_image_to_webp($item->image)) }}" loading="lazy" alt="" class="img-fluid lazy" width="220px" height="150px">
                                 <h3 title="{{ $item->title }}">{{ $item->title }}</h3>
                             </a>
                         </li>
