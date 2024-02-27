@@ -157,12 +157,12 @@ abstract class BaseRepository implements BaseInterface
         $fileName_small = $fileNameWithoutExtension. '_'.time().'-small.webp';
 
         if ($nameModule == 'slider'){
-            $thumbnail = Image::make(public_path($file))->resize(1920, null,function ($constraint) {
+            $thumbnail = Image::make(public_path($file))->resize(1350, null,function ($constraint) {
                 $constraint->aspectRatio();
             })->encode('webp', 75);
             $thumbnailPath = 'storage/'.$img_folder.$fileName;
 
-            $thumbnail_small = Image::make(public_path($file))->resize(600, null,function ($constraint) {
+            $thumbnail_small = Image::make(public_path($file))->resize(412, null,function ($constraint) {
                 $constraint->aspectRatio();
             })->encode('webp', 75);
             $thumbnailPath_small = 'storage/'.$img_folder.$fileName_small;

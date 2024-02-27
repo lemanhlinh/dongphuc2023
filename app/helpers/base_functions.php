@@ -378,7 +378,7 @@ function getCategoriesTree($categories, $parentId = null)
 
 function replace_image_to_webp($image,$small = null) {
     if($small){
-        $img = str_replace(['.jpg', '.jpeg', '.png', '.gif', '.bmp'],'-small.webp',$image);
+        $img = str_replace(['.jpg', '.jpeg', '.png', '.gif', '.bmp','.webp'],'-small.webp',$image);
     }else{
         $img = str_replace(['.jpg', '.jpeg', '.png', '.gif', '.bmp'],'.webp',$image);
     }
