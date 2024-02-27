@@ -11,16 +11,18 @@
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <link type="image/x-icon" href="{{ asset('images/favicon.ico') }}" rel="icon">
     <!-- Fonts -->
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <!-- Styles -->
     <link rel="preload" as="style" media="screen" type="text/css" href="{{ asset('css/app.css') }}" />
-    <link rel="preload" as="style" media="screen" type="text/css" href="{{ asset('css/web/slick.css') }}" />
-    <link rel="preload" as="style" media="screen" type="text/css" href="{{ asset('css/web/slick-theme.css') }}" />
+{{--    <link rel="preload" as="style" media="screen" type="text/css" href="{{ asset('css/web/slick.css') }}" />--}}
+{{--    <link rel="preload" as="style" media="screen" type="text/css" href="{{ asset('css/web/slick-theme.css') }}" />--}}
     <link rel="preload" as="style" media="screen" type="text/css" href="{{ asset('css/web/imagehover.css') }}" />
     <link rel="preload" as="style" media="screen" type="text/css" href="{{ asset('css/web/jquery.mmenu.all.css') }}" />
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" media="screen">
-    <link href="{{ asset('css/web/slick.css') }}" rel="stylesheet" media="screen">
-    <link href="{{ asset('css/web/slick-theme.css') }}" rel="stylesheet" media="screen">
+{{--    <link href="{{ asset('css/web/slick.css') }}" rel="stylesheet" media="screen">--}}
+{{--    <link href="{{ asset('css/web/slick-theme.css') }}" rel="stylesheet" media="screen">--}}
     <link href="{{ asset('css/web/imagehover.css') }}" rel="stylesheet" media="screen">
     <link href="{{ asset('css/web/jquery.mmenu.all.css') }}" rel="stylesheet" media="screen">
     @yield('link')
@@ -103,7 +105,7 @@
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="{{ asset('/js/web/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('/js/web/slick.min.js') }}"></script>
+{{--    <script src="{{ asset('/js/web/slick.min.js') }}"></script>--}}
     <script src="https://kit.fontawesome.com/6302d443cd.js"></script>
     <script src="{{ asset('/js/web/jquery.mmenu.min.all.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
