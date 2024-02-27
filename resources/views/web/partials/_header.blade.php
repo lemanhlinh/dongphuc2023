@@ -6,7 +6,7 @@
                     <div class="col-md-3 col-sm-3 col-3 d-block d-md-none">
                         <div id="page">
                             <div class="header_menu">
-                                <a href="#navigation-menu"><i class="fas fa-bars"></i></a>
+                                <a href="#navigation-menu" aria-label="navigation-menu"><i class="fas fa-bars"></i></a>
                             </div>
                         </div>
                     </div>

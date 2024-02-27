@@ -150,7 +150,7 @@
                         <input type="text" name="phone_contact" id="phone_contact" placeholder="Số điện thoại" aria-label="Số điện thoại" class="form-control" required >
                         <input type="text" name="number_contact" id="number_contact" placeholder="Số lượng dự kiến" aria-label="Số lượng dự kiến" class="form-control" required >
                         <input type="submit" value="Nhận báo giá" class="btn btn-success buttom-contact">
-                        <input type="text" name="contact_me_by_fax_only" style="opacity: 0 !important" tabindex="-1" autocomplete="off">
+                        <input type="text" name="contact_me_by_fax_only" aria-label="contact_me_by_fax_only" style="opacity: 0 !important" tabindex="-1" autocomplete="off">
                     </form>
                 </div>
             </div><!--end: .modal-content-->

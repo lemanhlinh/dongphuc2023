@@ -62,7 +62,7 @@
                     <div class="list-connect chung-nhan mt-5">
                         <div class="title-footer">Chứng nhận</div>
                         <img data-src="{{ asset('images/NoPath.png') }}" loading="lazy" class="lazy img-fluid d-none" alt="" >
-                        <a href="{{ $setting['nopath']}}" target="_blank">
+                        <a href="{{ $setting['nopath']}}" target="_blank" aria-label="NoPath">
                             <img src="{{ asset('images/NoPath.png') }}" loading="lazy" alt="" class="lazy img-fluid" width="200px" height="75px">
                         </a>
                     </div>
