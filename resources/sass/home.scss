@@ -28,10 +28,6 @@
         height: 418px;
         overflow: hidden;
     }
-    @media (max-width: 768px) {
-        max-height: 130px;
-        overflow: hidden;
-    }
     .info-slider{
         position: absolute;
         color: #fff;
@@ -58,6 +54,12 @@
         }
     }
     .owl-carousel{
+        .owl-stage-outer{
+            @media (max-width: 768px) {
+                max-height: 130px;
+                overflow: hidden;
+            }
+        }
         .item{
             img{
                 height: auto;
@@ -70,6 +72,11 @@
         width: 100%;
         bottom: 23px;
         text-align: center;
+        @media (max-width: 768px) {
+            position: relative;
+            bottom: 0;
+            margin-top: 10px;
+        }
         .owl-dot{
             display: inline-block;
             margin-right: 12px;
