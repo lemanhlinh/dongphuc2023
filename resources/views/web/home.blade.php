@@ -221,34 +221,6 @@
                 }
             });
 
-            // $('.swiper-wrapper').slick({
-            //     // lazyLoad: 'ondemand',
-            //     infinite: true,
-            //     slidesToShow: 3,
-            //     slidesToScroll: 1,
-            //     adaptiveHeight: true,
-            //     arrows: true,
-            //     dots: true,
-            //     responsive: [
-            //         {
-            //             breakpoint: 767,
-            //             settings: {
-            //                 slidesToShow: 2,
-            //                 slidesToScroll: 2,
-            //                 // dots: true,
-            //             }
-            //         },
-            //         {
-            //             breakpoint: 900,
-            //             settings: {
-            //                 slidesToShow: 3,
-            //                 slidesToScroll: 1,
-            //                 // dots: true,
-            //             }
-            //         }
-            //     ]
-            // });
-
             $('.sider-slick-add').owlCarousel({
                 loop: false,
                 rewind: true,
@@ -314,84 +286,6 @@
                     }
                 }
             });
-
-            // $('.sider-slick-add').not('.slick-initialized').slick({
-            //     // lazyLoad: 'ondemand',
-            //     infinite: true,
-            //     slidesToShow: 5,
-            //     slidesToScroll: 5,
-            //     arrows: true,
-            //     responsive: [
-            //         {
-            //             breakpoint: 767,
-            //             settings: {
-            //                 slidesToShow: 2,
-            //                 slidesToScroll: 2,
-            //                 // dots: true,
-            //             }
-            //         },
-            //         {
-            //             breakpoint: 900,
-            //             settings: {
-            //                 slidesToShow: 3,
-            //                 slidesToScroll: 3,
-            //                 // dots: true,
-            //             }
-            //         }
-            //     ]
-            // });
-
-            // $('.sun-group').slick({
-            //     // lazyLoad: 'ondemand',
-            //     infinite: true,
-            //     slidesToShow: 5,
-            //     slidesToScroll: 5,
-            //     arrows: true,
-            //     responsive: [
-            //         {
-            //             breakpoint: 767,
-            //             settings: {
-            //                 slidesToShow: 2,
-            //                 slidesToScroll: 2,
-            //                 // dots: true,
-            //             }
-            //         },
-            //         {
-            //             breakpoint: 900,
-            //             settings: {
-            //                 slidesToShow: 3,
-            //                 slidesToScroll: 3,
-            //                 // dots: true,
-            //             }
-            //         }
-            //     ]
-            // });
-            //
-            // $('.list-contract').slick({
-            //     // lazyLoad: 'ondemand',
-            //     infinite: true,
-            //     slidesToShow: 5,
-            //     slidesToScroll: 5,
-            //     arrows: true,
-            //     responsive: [
-            //         {
-            //             breakpoint: 767,
-            //             settings: {
-            //                 slidesToShow: 2,
-            //                 slidesToScroll: 2,
-            //                 // dots: true,
-            //             }
-            //         },
-            //         {
-            //             breakpoint: 900,
-            //             settings: {
-            //                 slidesToShow: 3,
-            //                 slidesToScroll: 3,
-            //                 // dots: true,
-            //             }
-            //         }
-            //     ]
-            // });
         };
     </script>
 @endsection
