@@ -76,6 +76,8 @@
                 </div>
                 <div class="col-md-3 col-sm-12 col-xs-12">
                     {!! $setting['link_fanpage'] !!}
+                    <div class="mb-4"></div>
+                    {!! $setting['map_contact'] !!}
                 </div>
             </div>
         </div>
