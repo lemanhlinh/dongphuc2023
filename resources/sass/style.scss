@@ -494,7 +494,7 @@ body {
     color: #ffffff;
     z-index: 999;
     top: 9px;
-    left: 40px;
+    right: 55px;
     transition: all 0.2s ease-in-out 0s;
     -moz-animation: headerAnimation 0.7s 1;
     -webkit-animation: headerAnimation 0.7s 1;
@@ -510,7 +510,7 @@ body {
     border-width: 10px 10px 10px 0;
     border-color: transparent #11b2ec transparent transparent;
     position: absolute;
-    left: -10px;
+    right: -10px;
     top: 10px;
 }
 .menu-menufocal{
