@@ -7,7 +7,7 @@
             </a>
         </h3>
     </div>
-    <div class="sider-slick-add">
+    <div class="sider-slick-add owl-carousel">
         @forelse($product_related as $item)
         <div class="image-check">
             <figure class="imghvr-flip-vert">
