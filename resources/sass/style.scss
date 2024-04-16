@@ -507,8 +507,8 @@ body {
     width: 0;
     height: 0;
     border-style: solid;
-    border-width: 10px 10px 10px 0;
-    border-color: transparent #11b2ec transparent transparent;
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent #11b2ec;
     position: absolute;
     right: -10px;
     top: 10px;
