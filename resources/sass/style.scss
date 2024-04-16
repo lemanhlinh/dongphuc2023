@@ -271,6 +271,10 @@ body {
     }
 }
 
+.social-button-center{
+    z-index: 10;
+}
+
 /*popup*/
 .full {
     height: 100%;
@@ -716,4 +720,27 @@ body {
 }
 .modal {
     text-align: center;
+}
+@media screen and (min-width: 350px) {
+    .modal:before {
+        display: inline-block;
+        vertical-align: middle;
+        content: " ";
+        height: 100%;
+    }
+}
+
+.modal-dialog {
+    display: inline-flex;
+    text-align: left;
+    vertical-align: middle;
+    button.close{
+        right: -26px;
+        position: absolute;
+        opacity: 1;
+        z-index: 1;
+        top: -16px;
+        width: 43px;
+        height: 43px;
+    }
 }
