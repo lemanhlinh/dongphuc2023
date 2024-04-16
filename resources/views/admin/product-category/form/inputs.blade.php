@@ -164,5 +164,6 @@
     <script src="{{ asset('ckfinder/ckfinder.js') }}"></script>
     <script>
         CKEDITOR.replace( 'content' );
+        CKEDITOR.replace( 'content_top' );
     </script>
 @endsection

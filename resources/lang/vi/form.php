@@ -64,6 +64,7 @@ return [
     'updated_at' => 'Ngày sửa',
     'action' => 'Thao tác',
     'content' => 'Nội dung',
+    'content_top' => 'Nội dung phía trên',
     'permissions' => 'Các quyền',
     'manage_role' => 'Quản lý quyền',
     'home_page' => 'Trang chủ',
