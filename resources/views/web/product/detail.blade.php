@@ -152,31 +152,52 @@
     @parent
     <script src="{{ asset('/js/web/magiczoomplus/magiczoomplus.js') }}"></script>
     <script>
-        $('.sider-slick-add').slick({
-            infinite: true,
-            slidesToShow: 3,
-            slidesToScroll: 3,
-            arrows: true,
-            rows: 2,
-            responsive: [
-                {
-                    breakpoint: 767,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1,
-                        // dots: true,
-                    }
+        $('.sider-slick-add').owlCarousel({
+            loop: false,
+            rewind: true,
+            dots:false,
+            responsiveClass:true,
+            responsive:{
+                0:{
+                    items:1,
+                    nav:false
                 },
-                {
-                    breakpoint: 900,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 2,
-                        // dots: true,
-                    }
+                600:{
+                    items:2,
+                    nav:false
+                },
+                1000:{
+                    items:3,
+                    nav:false,
+                    loop:false
                 }
-            ]
+            }
         });
+        // $('.sider-slick-add').slick({
+        //     infinite: true,
+        //     slidesToShow: 3,
+        //     slidesToScroll: 3,
+        //     arrows: true,
+        //     rows: 2,
+        //     responsive: [
+        //         {
+        //             breakpoint: 767,
+        //             settings: {
+        //                 slidesToShow: 1,
+        //                 slidesToScroll: 1,
+        //                 // dots: true,
+        //             }
+        //         },
+        //         {
+        //             breakpoint: 900,
+        //             settings: {
+        //                 slidesToShow: 2,
+        //                 slidesToScroll: 2,
+        //                 // dots: true,
+        //             }
+        //         }
+        //     ]
+        // });
 
         $(".full").click(function () {
             $(".wrapper-popup-2").hide();
