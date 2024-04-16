@@ -144,6 +144,18 @@
             <div class="editor"></div>
         </div>
     </div>
+    <div class="col-sm-12">
+        <div class="form-group">
+            <label>@lang('form.content_top')</label>
+            <textarea id="content_top" name="content_top" class="form-control" rows="10" >{{ isset($product_category->content_top) ? $product_category->content_top : old('content_top') }}</textarea>
+            @if ($errors->has('content_top'))
+                <span class="help-block text-danger">
+                    <strong>{{ $errors->first('content_top') }}</strong>
+                </span>
+            @endif
+            <div class="editor"></div>
+        </div>
+    </div>
 </div>
 
 @section('script')

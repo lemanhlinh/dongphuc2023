@@ -15,6 +15,11 @@
                 <div class="row">
                     <div class="main-column-content col-lg-9 col-md-9 col-sm-12 col-xs-12 order-md-2">
                         <div class="content-wp clearfix">
+                            @if($cat->content_top)
+                            <div class="content-cat mbl">
+                                {!! $cat->content_top !!}
+                            </div>
+                            @endif
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <aside class="new-contents">
                                     <h1 class="title-module">{{ $cat->name }}</h1>

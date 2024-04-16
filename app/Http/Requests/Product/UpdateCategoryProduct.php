@@ -31,6 +31,7 @@ class UpdateCategoryProduct extends FormRequest
             'active' => 'required|numeric|integer|min:0',
             'is_home' => 'required|numeric|integer|min:0',
             'content' => 'nullable',
+            'content_top' => 'nullable',
             'seo_title' => 'nullable',
             'seo_keyword' => 'nullable',
             'seo_description' => 'nullable',
