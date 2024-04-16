@@ -151,6 +151,7 @@
 @section('script')
     @parent
     <script src="{{ asset('/js/web/magiczoomplus/magiczoomplus.js') }}"></script>
+    <script src="{{ asset('/js/web/OwlCarousel2-2.3.4/dist/owl.carousel.min.js') }}"></script>
     <script>
         $('.sider-slick-add').owlCarousel({
             loop: false,
