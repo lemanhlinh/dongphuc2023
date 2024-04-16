@@ -146,6 +146,7 @@
     @parent
     <link rel="stylesheet" href="{{ asset('/js/web/magiczoomplus/magiczoomplus.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('/css/web/product-detail.css') }}" media="screen">
+    <link href="{{ asset('js/web/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css') }}" rel="stylesheet" media="screen">
 @endsection
 
 @section('script')
