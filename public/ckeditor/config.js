@@ -21,7 +21,7 @@ CKEDITOR.editorConfig = function( config ) {
     config.allowedContent=true;
     config.pasteFromWordRemoveStyle = true;
     config.removeFormatAttributes = '';
-	config.extraPlugins = 'youtube,wordcount';
+	config.extraPlugins = 'youtube,wordcount,lineheight';
     config.height = 400
 
 };
