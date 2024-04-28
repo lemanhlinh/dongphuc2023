@@ -301,7 +301,7 @@ class ProductController extends Controller
             $product = Product::findOrFail($id_product);
         }
         $phone = $request->input('phone_contact');
-        if($phone == '555-666-0606'){
+        if($phone == '555-666-0606' || $id_product == 2435){
             Session::flash('error', trans('message.create_contact_success'));
             return redirect()->back();
         }
