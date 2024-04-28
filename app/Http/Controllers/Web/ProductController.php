@@ -300,6 +300,11 @@ class ProductController extends Controller
         if ($id_product){
             $product = Product::findOrFail($id_product);
         }
+        $phone = $request->input('phone_contact');
+        if($phone == '555-666-0606'){
+            Session::flash('error', trans('message.create_contact_success'));
+            return redirect()->back();
+        }
         DB::beginTransaction();
         try {
             ProductsContacts::create(

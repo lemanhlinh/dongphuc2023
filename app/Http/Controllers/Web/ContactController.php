@@ -55,6 +55,10 @@ class ContactController extends Controller
         DB::beginTransaction();
         try {
             $data = $req->validated();
+            if($data['phone'] == '555-666-0606'){
+                Session::flash('error', trans('message.create_contact_success'));
+                return redirect()->back();
+            }
             Contact::create(
                 [
                     'fullname' => $data['full_name'],
