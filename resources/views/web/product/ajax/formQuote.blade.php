@@ -9,5 +9,6 @@
         <input type="text" name="email_contact" placeholder="Email" class="form-control" >
         <input type="submit" value="Nhận báo giá" class="btn btn-success buttom-contact">
         <input type="hidden" name="id" value="{{ $product_id }}"/>
+        <input type="text" name="contact_me_by_fax_only" aria-label="contact_me_by_fax_only" style="opacity: 0 !important" tabindex="-1" autocomplete="off">
     </form>
 </div>

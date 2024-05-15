@@ -301,8 +301,9 @@ class ProductController extends Controller
             $product = Product::findOrFail($id_product);
         }
         $phone = $request->input('phone_contact');
-        if($phone == '555-666-0606' || $id_product == 2435){
-            Session::flash('error', trans('message.create_contact_success'));
+        $check_spam = request('contact_me_by_fax_only');
+        if($phone == '555-666-0606' || $id_product == 2435 || $check_spam){
+            Session::flash('danger', trans('message.create_contact_success'));
             return redirect()->back();
         }
         DB::beginTransaction();
