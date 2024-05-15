@@ -55,7 +55,8 @@ class ContactController extends Controller
         DB::beginTransaction();
         try {
             $data = $req->validated();
-            if($data['phone'] == '555-666-0606'){
+            $check_spam = request('contact_me_by_fax_only');
+            if($data['phone'] == '555-666-0606' || $check_spam){
                 Session::flash('error', trans('message.create_contact_success'));
                 return redirect()->back();
             }
