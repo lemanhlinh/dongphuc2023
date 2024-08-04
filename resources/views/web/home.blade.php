@@ -28,37 +28,36 @@
             </div>
         </div>
     </div> <!-- END: .pos-top -->
-    <div class="clearfix"></div>
-    <div class="container">
-        <div class="main row-content" id="main">
-            <div class="row-content pos-top">
-                @if(!$isMobile)
-                <div id="block_id_2" class="content-block">
-                    {!! $setting['content_under_slide'] !!}
-                </div>
-                <div id="block_id_34" class="vn-sidebar-widget testimonials-list">
-                    <h2 class="sidebar-widget-title text-center"><span>Ý kiến khách hàng</span></h2>
-                    <div class="swiper-wrapper owl-carousel">
-                        @forelse($students as $item)
-                            <div class="swiper-slide box-partners">
-                                <div class="vn-testimonies-avatar">
-                                    <div class="image-student-b">
-                                        <img class="img-fluid border-img-show lazy" width="120" height="120" alt="{{ $item->title }}" loading="lazy" data-src="{{ asset(replace_image_to_webp($item->image)) }}" >
-                                    </div>
-                                    <p class="name-title-studen">{{ $item->title }}</br>{{ $item->creator }}</p>
+    @if(!$isMobile)
+        <div class="container">
+            <div id="block_id_2" class="content-block">
+                {!! $setting['content_under_slide'] !!}
+            </div>
+            <div id="block_id_34" class="vn-sidebar-widget testimonials-list">
+                <h2 class="sidebar-widget-title text-center"><span>Ý kiến khách hàng</span></h2>
+                <div class="swiper-wrapper owl-carousel">
+                    @forelse($students as $item)
+                        <div class="swiper-slide box-partners">
+                            <div class="vn-testimonies-avatar">
+                                <div class="image-student-b">
+                                    <img class="img-fluid border-img-show lazy" width="120" height="120" alt="{{ $item->title }}" loading="lazy" data-src="{{ asset(replace_image_to_webp($item->image)) }}" >
                                 </div>
-                                <div class="comment-studen">{!! $item->content !!}</div>
+                                <p class="name-title-studen">{{ $item->title }}</br>{{ $item->creator }}</p>
                             </div>
-                        @empty
-                        @endforelse
-                    </div>
+                            <div class="comment-studen">{!! $item->content !!}</div>
+                        </div>
+                    @empty
+                    @endforelse
                 </div>
-                @endif
-                @forelse($cats as $cat)
-                <div id="block_id_{{ $cat->id }}" class="list_products_cat">
-                    <h2 title="{{ $cat->name }}" class="title_block_cat"><span>{{ $cat->name }}</span></h2>
-                    <div class="sider-slick-add owl-carousel">
-                        @forelse($productsInCategories[$cat->id] as $item)
+            </div>
+        </div>
+    @endif
+    @forelse($cats as $cat)
+        <div id="block_id_{{ $cat->id }}" class="list_products_cat">
+            <div class="container">
+                <h2 title="{{ $cat->name }}" class="title_block_cat"><span>{{ $cat->name }}</span></h2>
+                <div class="sider-slick-add owl-carousel">
+                    @forelse($productsInCategories[$cat->id] as $item)
                         <div class="image-check">
                             <figure class="imghvr-flip-vert">
                                 <img data-src="{{ asset(replace_image_to_webp($item->image)) }}" loading="lazy" class="img-fluid lazy" width="216px" height="270px" alt="{{ $item->name }}" >
@@ -75,72 +74,72 @@
                                 <h3 title="{{ $item->name }}>" class="text-center">{{ $item->name }}</h3>
                             </a>
                         </div>
-                        @empty
-                        @endforelse
-                    </div>
+                    @empty
+                    @endforelse
                 </div>
-                @empty
-                @endforelse
-                @if($isMobile)
-                    <div id="block_id_2" class="content-block">
-                        {!! $setting['content_under_slide'] !!}
-                    </div>
-                    <div id="block_id_34" class="vn-sidebar-widget testimonials-list">
-                        <h2 class="sidebar-widget-title text-center"><span>Ý kiến khách hàng</span></h2>
-                        <div class="swiper-wrapper owl-carousel">
-                            @forelse($students as $item)
-                                <div class="swiper-slide box-partners">
-                                    <div class="vn-testimonies-avatar">
-                                        <div class="image-student-b">
-                                            <img class="img-fluid border-img-show lazy" width="120" height="120" alt="{{ $item->title }}" loading="lazy" data-src="{{ asset(replace_image_to_webp($item->image)) }}" >
-                                        </div>
-                                        <p class="name-title-studen">{{ $item->title }}</br>{{ $item->creator }}</p>
-                                    </div>
-                                    <div class="comment-studen">{!! $item->content !!}</div>
+            </div>
+        </div>
+    @empty
+    @endforelse
+    @if($isMobile)
+        <div class="container">
+            <div id="block_id_2" class="content-block">
+                {!! $setting['content_under_slide'] !!}
+            </div>
+            <div id="block_id_34" class="vn-sidebar-widget testimonials-list">
+                <h2 class="sidebar-widget-title text-center"><span>Ý kiến khách hàng</span></h2>
+                <div class="swiper-wrapper owl-carousel">
+                    @forelse($students as $item)
+                        <div class="swiper-slide box-partners">
+                            <div class="vn-testimonies-avatar">
+                                <div class="image-student-b">
+                                    <img class="img-fluid border-img-show lazy" width="120" height="120" alt="{{ $item->title }}" loading="lazy" data-src="{{ asset(replace_image_to_webp($item->image)) }}" >
                                 </div>
-                            @empty
-                            @endforelse
+                                <p class="name-title-studen">{{ $item->title }}</br>{{ $item->creator }}</p>
+                            </div>
+                            <div class="comment-studen">{!! $item->content !!}</div>
                         </div>
-                    </div>
-                @endif
-                <div id="block_id_26" class="fo-top hidden-xs">
-                    <h2 class="text-center">ĐỐI TÁC THÂN THIẾT</h2>
-                    <ul class="sun-group owl-carousel">
-                        @forelse($partner as $item)
-                        <li>
+                    @empty
+                    @endforelse
+                </div>
+            </div>
+        </div>
+    @endif
+    <div id="block_id_26" class="fo-top hidden-xs">
+        <div class="container">
+            <h2 class="text-center">ĐỐI TÁC THÂN THIẾT</h2>
+            <ul class="sun-group owl-carousel">
+                @forelse($partner as $item)
+                    <li>
                             <span>
                                 <img data-src="{{ asset(replace_image_to_webp($item->image)) }}" class="lazy" loading="lazy" width="120" height="120" alt="{{ $item->name }}" title="{{ $item->name }}">
                             </span>
-                        </li>
-                        @empty
-                        @endforelse
-                    </ul>
-                </div>
-                <div id="block_id_30" class="newslist-content" >
-                    <h2 class="titl-newslist">GÓC CHIA SẺ KINH NGHIỆM</h2>
-                    <ul class="list-contract owl-carousel list-unstyled">
-                        @forelse($articles as $item)
-                        <li class="">
-                            <a href="{{ route('detailArticle',['cat_slug' => $item->category->alias,'slug' => $item->alias]) }}" title="{{ $item->title }}" >
-                                <img data-src="{{ asset(replace_image_to_webp($item->image)) }}" loading="lazy" alt="" class="img-fluid lazy" width="220px" height="150px">
-                                <h3 title="{{ $item->title }}">{{ $item->title }}</h3>
-                            </a>
-                        </li>
-                        @empty
-                        @endforelse
-                    </ul>
-                </div>
-            </div> <!-- END: .pos-top -->
-            <div class="clearfix"></div>
-        </div><!-- END: main -->
-        <div class="clearfix"></div>
+                    </li>
+                @empty
+                @endforelse
+            </ul>
+        </div>
     </div>
-    <div class="clearfix"></div>
+    <div id="block_id_30" class="newslist-content" >
+        <div class="container">
+            <h2 class="titl-newslist">GÓC CHIA SẺ KINH NGHIỆM</h2>
+            <ul class="list-contract owl-carousel list-unstyled">
+                @forelse($articles as $item)
+                    <li class="">
+                        <a href="{{ route('detailArticle',['cat_slug' => $item->category->alias,'slug' => $item->alias]) }}" title="{{ $item->title }}" >
+                            <img data-src="{{ asset(replace_image_to_webp($item->image)) }}" loading="lazy" alt="" class="img-fluid lazy" width="220px" height="150px">
+                            <h3 title="{{ $item->title }}">{{ $item->title }}</h3>
+                        </a>
+                    </li>
+                @empty
+                @endforelse
+            </ul>
+        </div>
+    </div>
 @endsection
 
 @section('link')
     @parent
-{{--    <link href="{{ asset('js/web/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css') }}" rel="stylesheet" media="screen">--}}
     <link href="{{ mix('css/web/home.css') }}" rel="stylesheet" media="screen">
 @endsection
 
