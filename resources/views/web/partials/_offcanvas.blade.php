@@ -17,10 +17,10 @@
 <div class="d-none d-md-block social-button-center position-fixed bottom-0 start-50 translate-middle-x mb-2">
     <div class="d-flex">
         <a href="tel:0889979886" class="call-icon" rel="nofollow" data-original-title="" title="">
-            <img src="{{ asset('images/HOTLINE-02.png') }}" aria-label="hotline" alt="hotline" class="img-fluid me-3" width="240" height="60">
+            <img data-src="{{ asset('images/HOTLINE-02.png') }}" aria-label="hotline" alt="hotline" class="img-fluid me-3 lazy" width="240" height="60">
         </a>
         <a href="http://zalo.me/0889979886" class="" data-original-title="" title="">
-            <img src="{{ asset('images/ZALO-02.png') }}" aria-label="zalo" alt="zalo" class="img-fluid" width="240" height="60">
+            <img data-src="{{ asset('images/ZALO-02.png') }}" aria-label="zalo" alt="zalo" class="img-fluid lazy" width="240" height="60">
         </a>
     </div>
 </div>

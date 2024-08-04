@@ -65,7 +65,10 @@
                             <img data-src="{{ asset('images/NoPath.png') }}" loading="lazy" alt="" class="lazy img-fluid" width="200px" height="75px">
                         </a>
                     </div>
-                    <a href="//www.dmca.com/Protection/Status.aspx?ID=11584654-1c05-4fe1-bdc8-04ef11f3005d" title="DMCA.com Protection Status" class="dmca-badge"> <img src ="https://images.dmca.com/Badges/_dmca_premi_badge_5.png?ID=11584654-1c05-4fe1-bdc8-04ef11f3005d" width="135px" height="28px" alt="DMCA.com Protection Status" /></a>  <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js" defer> </script>
+                    <a href="//www.dmca.com/Protection/Status.aspx?ID=11584654-1c05-4fe1-bdc8-04ef11f3005d" title="DMCA.com Protection Status" class="dmca-badge">
+                        <img class="lazy" data-src="https://images.dmca.com/Badges/_dmca_premi_badge_5.png?ID=11584654-1c05-4fe1-bdc8-04ef11f3005d" width="135px" height="28px" alt="DMCA.com Protection Status" />
+                    </a>
+                    <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js" defer> </script>
                 </div>
                 <div class="col-md-4 col-sm-12 col-xs-12">
                     <div class="list-connect">
