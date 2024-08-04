@@ -4,7 +4,7 @@
     "/js/web/products/detail.js": "/js/web/products/detail.js?id=56d253701f2ec1b20cbecfd38007ee4d",
     "/js/web/articles/detail.js": "/js/web/articles/detail.js?id=411e02ccbce6d94ff9e36cef36e196b6",
     "/js/admin/setting.js": "/js/admin/setting.js?id=73d4db30e4d19a589a78ea026cb3b2b9",
-    "/js/web/main.js": "/js/web/main.js?id=c07f3ae9420dc6a9f8d4ad24b5ab30a9",
+    "/js/web/main.js": "/js/web/main.js?id=5b2a154ca39a334450335324ba030430",
     "/js/web/manifest.js": "/js/web/manifest.js?id=40b07b56f4e8eb97c38bf41ed4534708",
     "/css/web/contact.css": "/css/web/contact.css?id=344ac9b427d0c84eef0fb13e4867a237",
     "/css/web/content.css": "/css/web/content.css?id=55c41a703b88bf97b073cf8908b33553",
@@ -16,5 +16,5 @@
     "/css/web/product-cat.css": "/css/web/product-cat.css?id=4b76665293b716a3b033c89bfa17dea7",
     "/css/web/article-detail.css": "/css/web/article-detail.css?id=18c496c7af4d17ba1c3a9a832d5d2382",
     "/css/web/article-list.css": "/css/web/article-list.css?id=aadc4179c92975e3e15aa05f93b4e2d5",
-    "/js/web/vendor.js": "/js/web/vendor.js?id=73986cc7c55dcdee0f1423891f9f694e"
+    "/js/web/vendor.js": "/js/web/vendor.js?id=d76513e9b27ed7f2a40d3f26d4bd772f"
 }

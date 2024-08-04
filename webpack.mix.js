@@ -20,6 +20,7 @@ mix.js('resources/js/app.js', 'public/js')
     .extract([
         'jquery',
         'bootstrap',
+        'mmenu-js',
         'sweetalert2',
         'font-awesome',
         'vanilla-lazyload'
