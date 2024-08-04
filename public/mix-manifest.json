@@ -1,11 +1,11 @@
 {
-    "/js/app.js": "/js/app.js?id=64910cf8b1c5907bf2bd261b6c9d2073",
-    "/js/web/main.js": "/js/web/main.js?id=203ea33e03269d1bdd0dbf8372196ff0",
-    "/js/web/home.js": "/js/web/home.js?id=2189feb7314aeb6928c2ce1f393646ae",
-    "/js/web/products/detail.js": "/js/web/products/detail.js?id=0dd24e317af9f9f7b40317806edb858c",
-    "/js/web/articles/detail.js": "/js/web/articles/detail.js?id=a58df955424e57ac96a6d0cc0c98707a",
-    "/js/admin/setting.js": "/js/admin/setting.js?id=e2ef9ba1a774a6919566fcceaafe7b0e",
-    "/js/admin/manifest.js": "/js/admin/manifest.js?id=31c32d6c9b086b1caf1ec2b116d3ca03",
+    "/js/app.js": "/js/app.js?id=86e916a785b25f5282b26b13dbc9751b",
+    "/js/web/home.js": "/js/web/home.js?id=6cc53118be15b0188f8549104896a5d0",
+    "/js/web/products/detail.js": "/js/web/products/detail.js?id=56d253701f2ec1b20cbecfd38007ee4d",
+    "/js/web/articles/detail.js": "/js/web/articles/detail.js?id=411e02ccbce6d94ff9e36cef36e196b6",
+    "/js/admin/setting.js": "/js/admin/setting.js?id=73d4db30e4d19a589a78ea026cb3b2b9",
+    "/js/web/main.js": "/js/web/main.js?id=c07f3ae9420dc6a9f8d4ad24b5ab30a9",
+    "/js/web/manifest.js": "/js/web/manifest.js?id=40b07b56f4e8eb97c38bf41ed4534708",
     "/css/web/contact.css": "/css/web/contact.css?id=344ac9b427d0c84eef0fb13e4867a237",
     "/css/web/content.css": "/css/web/content.css?id=55c41a703b88bf97b073cf8908b33553",
     "/css/web/home.css": "/css/web/home.css?id=56d5183d588f40f8ca8837cf3bf76650",
@@ -16,5 +16,5 @@
     "/css/web/product-cat.css": "/css/web/product-cat.css?id=4b76665293b716a3b033c89bfa17dea7",
     "/css/web/article-detail.css": "/css/web/article-detail.css?id=18c496c7af4d17ba1c3a9a832d5d2382",
     "/css/web/article-list.css": "/css/web/article-list.css?id=aadc4179c92975e3e15aa05f93b4e2d5",
-    "/js/admin/vendor.js": "/js/admin/vendor.js?id=3075e95ddd9c1da6169e5906e77eeb0e"
+    "/js/web/vendor.js": "/js/web/vendor.js?id=73986cc7c55dcdee0f1423891f9f694e"
 }
