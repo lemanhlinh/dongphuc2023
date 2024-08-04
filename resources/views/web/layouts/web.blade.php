@@ -6,25 +6,25 @@
         <!-- /.Header -->
         <div class="content">
             @yield('content')
+            <nav id="navigation-menu">
+                <ul id="panel-menu">
+                    @if(!empty($menus))
+                        @foreach ($menus as $shop)
+                            @include('web.components.menu.mobile', ['item'=>$shop])
+                        @endforeach
+                    @endif
+                </ul>
+            </nav>
         </div>
         <!-- Main Footer -->
         @include('web.partials._footer')
         @include('web.partials._notification')
         @include('web.partials._offcanvas')
     </div>
-    <nav id="navigation-menu">
-        <ul>
-            @if(!empty($menus))
-                @foreach ($menus as $shop)
-                    @include('web.components.menu.mobile', ['item'=>$shop])
-                @endforeach
-            @endif
-        </ul>
-    </nav>
+
     <div id="fs-popup-home" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-            <div class="modal-content" style="    background: transparent;    box-shadow: none;
-    border: none;">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content" style="background: transparent; box-shadow: none; border: none;">
 
                 <button type="button" class="btn-close close" data-bs-dismiss="modal" aria-label="Close">
                     <img src="{{ asset('images/close-modal.png') }}" alt="close_modal" loading="lazy" height="43px" width="43px">
@@ -46,10 +46,46 @@
 @endsection
 
 @section('link')
-    <link rel="stylesheet" href="{{ asset('/css/web/style.css') }}" media="screen">
+    <link rel="stylesheet" href="{{ mix('/css/web/style.css') }}" media="screen">
 @endsection
 
 @section('script')
+    <script src="{{ mix('/js/web/main.js') }}"></script>
+    <!-- Scripts -->
+    <script>
+        let toastrSuccsee = "{{ Session::get('success') }}";
+        let toastrDanger = "{{ Session::get('danger') }}";
+        if (toastrDanger.length > 0 || toastrSuccsee.length > 0) {
+            if (toastrDanger.length > 0) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: toastrDanger,
+                });
+                toastr["error"](toastrDanger)
+            } else {
+                Swal.fire(
+                    'Thành công!',
+                    toastrSuccsee,
+                    'success'
+                )
+            }
+        }
+        document.addEventListener(
+            "DOMContentLoaded", () => {
+                new Mmenu( "#navigation-menu", {
+                    // classes: 'mm-white mm-slide',
+                    // searchfield: false,
+                    // counters: false,
+                    // header: false,
+                });
+                document.querySelector('.mm-wrapper').classList.remove('mm-wrapper--position-left');
+            }
+        );
+        setTimeout(function () {
+            $('#fs-popup-home').modal('show');
+        }, 20000);
+    </script>
     <div id="fb-root"></div>
     <script loading="lazy" defer>(function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];

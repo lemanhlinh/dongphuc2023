@@ -80,7 +80,7 @@
 
 @section('link')
     @parent
-    <link rel="stylesheet" href="{{ asset('/css/web/content.css') }}" media="screen">
+    <link rel="stylesheet" href="{{ mix('/css/web/content.css') }}" media="screen">
 @endsection
 
 @section('script')

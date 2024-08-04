@@ -13,7 +13,21 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/web/main.js', 'public/js/web')
+    .js('resources/js/web/home.js', 'public/js/web')
+    .js('resources/js/web/products/detail.js', 'public/js/web/products')
+    .js('resources/js/web/articles/detail.js', 'public/js/web/articles')
     .js('resources/js/admin/setting.js', 'public/js/admin')
+    .webpackConfig(webpack => {
+        return {
+            plugins: [
+                new webpack.ProvidePlugin({
+                    $: 'jquery',
+                    jQuery: 'jquery',
+                    'window.jQuery': 'jquery'
+                }),
+            ],
+        }
+    })
     .sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/style.scss', 'public/css/web')
     .sass('resources/sass/home.scss', 'public/css/web')
@@ -24,4 +38,4 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/product-cat.scss', 'public/css/web')
     .sass('resources/sass/product-detail.scss', 'public/css/web')
     .sass('resources/sass/cart-checkout.scss', 'public/css/web')
-    .sourceMaps();
+    .sourceMaps().version();

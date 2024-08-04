@@ -131,7 +131,7 @@
 
 @section('link')
     @parent
-    <link rel="stylesheet" href="{{ asset('/css/web/article-detail.css') }}" media="screen">
+    <link rel="stylesheet" href="{{ mix('/css/web/article-detail.css') }}" media="screen">
     <style>
         .stacktable { width: 100%; }
         .st-head-row { padding-top: 1em; font-weight: normal;}
@@ -155,15 +155,15 @@
 
 @section('script')
     @parent
-    <script src="{{ asset('/js/web/jquery.toc.js') }}"></script>
-    <script src="{{ asset('/js/web/responsivetables.js') }}"></script>
+    <script src="{{ mix('/js/web/articles/detail.js') }}"></script>
+{{--    <script src="{{ asset('/js/web/responsivetables.js') }}"></script>--}}
     <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-561e00468cbfda8e"></script>
     <script>
         function goBack() {
             window.history.back();
         }
-        $('.responsive').stacktable();
-        $("#toc").toc({content: ".news_detail .description", headings: "h1,h2,h3,h4"});
+        // $('.responsive').stacktable();
+
         $(".button-select").click(function() {
             $('.fa-minus').toggle(  );
             $('.fa-plus').toggle(  );

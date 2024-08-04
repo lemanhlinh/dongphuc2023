@@ -69,7 +69,7 @@
                     </form>
                 </div>
                 <div class="bg-white border p-3 method_payment mb-4">
-                    <ul>
+                    <ul class="list-unstyled">
                         <li>
                             <input id="payment_method_bacs" type="radio" class="input-radio" name="payment_method" value="1" checked="checked" >
                             <label for="payment_method_bacs" class="mb-3">Chuyển khoản ngân hàng</label>
@@ -133,7 +133,7 @@
             <div class="col-md-4">
                 <div class="statistical mb-4 border">
                     <div class="detail-price">
-                        <ul>
+                        <ul class="list-unstyled">
                             <li><span class="title-dettail">Tổng giá sản phẩm</span> <span class="price-total"><b>{{ format_money($total_price) }}</b></span></li>
                             <li><span class="title-dettail">Phí vận chuyển</span> <span>Miễn phí toàn quốc</span></li>
                             <li>
@@ -155,7 +155,7 @@
 
 @section('link')
     @parent
-    <link rel="stylesheet" href="{{ asset('/css/web/cart-checkout.css') }}">
+    <link rel="stylesheet" href="{{ mix('/css/web/cart-checkout.css') }}">
 @endsection
 
 @section('script')

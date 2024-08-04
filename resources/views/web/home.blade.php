@@ -2,28 +2,30 @@
 
 @section('content')
     <div class="row-content pos-top">
-        <div class="slideshow-home">
-            @if(!empty($slider))
-                <div id="owl-demo" class="owl-carousel">
-                    @forelse($slider as $item)
-                        <div class="item">
-                            <a href="{{ $item->url }}" title="{{ $item->name }}">
-                                <img
-                                    src="{{ asset(replace_image_to_webp($item->image,'small')) }}"
-                                    srcset="
+        <div class="container">
+            <div class="slideshow-home">
+                @if(!empty($slider))
+                    <div id="owl-demo" class="owl-carousel">
+                        @forelse($slider as $item)
+                            <div class="item">
+                                <a href="{{ $item->url }}" title="{{ $item->name }}">
+                                    <img
+                                        src="{{ asset(replace_image_to_webp($item->image,'small')) }}"
+                                        srcset="
                                             {{ asset(replace_image_to_webp($item->image,'small')) }} 400w,
                                             {{ asset(replace_image_to_webp($item->image)) }} 800w,
                                             {{ asset(replace_image_to_webp($item->image)) }} 1200w"
-                                    sizes="(max-width: 600px) 400px,
+                                        sizes="(max-width: 600px) 400px,
                                         (max-width: 1024px) 800px,
                                         1200px"
-                                    alt="{{ $item->name }}"  fetchpriority="high" width="1350" height="422" class="img-fluid">
-                            </a>
-                        </div>
-                    @empty
-                    @endforelse
-                </div>
-            @endif
+                                        alt="{{ $item->name }}"  fetchpriority="high" width="1350" height="422" class="img-fluid">
+                                </a>
+                            </div>
+                        @empty
+                        @endforelse
+                    </div>
+                @endif
+            </div>
         </div>
     </div> <!-- END: .pos-top -->
     <div class="clearfix"></div>
@@ -116,7 +118,7 @@
                 </div>
                 <div id="block_id_30" class="newslist-content" >
                     <h2 class="titl-newslist">GÓC CHIA SẺ KINH NGHIỆM</h2>
-                    <ul class="list-contract owl-carousel">
+                    <ul class="list-contract owl-carousel list-unstyled">
                         @forelse($articles as $item)
                         <li class="">
                             <a href="{{ route('detailArticle',['cat_slug' => $item->category->alias,'slug' => $item->alias]) }}" title="{{ $item->title }}" >
@@ -138,132 +140,11 @@
 
 @section('link')
     @parent
-    <link href="{{ asset('js/web/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css') }}" rel="stylesheet" media="screen">
-    <link href="{{ asset('css/web/home.css') }}" rel="stylesheet" media="screen">
+{{--    <link href="{{ asset('js/web/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css') }}" rel="stylesheet" media="screen">--}}
+    <link href="{{ mix('css/web/home.css') }}" rel="stylesheet" media="screen">
 @endsection
 
 @section('script')
     @parent
-    <script src="{{ asset('/js/web/OwlCarousel2-2.3.4/dist/owl.carousel.min.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.3.0/dist/lazyload.min.js"></script>
-    <script defer>
-        var lazyLoadInstance = new LazyLoad({
-            // Your custom settings go here
-        });
-        window.onload = function() {
-            $("#owl-demo").owlCarousel({
-                autoplay: true, //Set AutoPlay to 3 seconds
-                autoplaySpeed: 500,
-                autoHeight: true,
-                loop: true,
-                autoplayTimeout: 3000,
-                autoplayHoverPause: true,
-                items: 1,
-                lazyLoad: true,
-                nav: false,
-                dots: true,
-                responsive: {
-                    0: {
-                        autoplay: false
-                    },
-                    480: {
-                        autoplay: false
-                    },
-                    768: {
-                        autoplay: true
-                    }
-                }
-            });
-
-            $('.swiper-wrapper').owlCarousel({
-                loop: false,
-                rewind: true,
-                dots:true,
-                nav:false,
-                margin: 30,
-                responsiveClass:true,
-                responsive:{
-                    0:{
-                        items:2,
-                        nav:false
-                    },
-                    600:{
-                        items:2,
-                        nav:false
-                    },
-                    1000:{
-                        items:3,
-                        nav:false,
-                        loop:false
-                    }
-                }
-            });
-
-            $('.sider-slick-add').owlCarousel({
-                loop: false,
-                rewind: true,
-                dots:false,
-                responsiveClass:true,
-                responsive:{
-                    0:{
-                        items:2,
-                        nav:true
-                    },
-                    600:{
-                        items:3,
-                        nav:false
-                    },
-                    1000:{
-                        items:5,
-                        nav:true,
-                        loop:false
-                    }
-                }
-            });
-
-            $('.sun-group').owlCarousel({
-                loop: false,
-                rewind: true,
-                dots:false,
-                responsiveClass:true,
-                responsive:{
-                    0:{
-                        items:2,
-                        nav:false
-                    },
-                    600:{
-                        items:3,
-                        nav:false
-                    },
-                    1000:{
-                        items:5,
-                        nav:false,
-                        loop:false
-                    }
-                }
-            });
-
-            $('.list-contract').owlCarousel({
-                loop: false,
-                rewind: true,
-                dots:false,
-                responsiveClass:true,
-                responsive:{
-                    0:{
-                        items:2,
-                        nav:false
-                    },
-                    600:{
-                        items:3,
-                        nav:false
-                    },
-                    1000:{
-                        items:5,
-                        nav:false,
-                        loop:false
-                    }
-                }
-            });
-        };
-    </script>
+    <script src="{{ mix('js/web/home.js') }}"></script>
 @endsection

@@ -146,71 +146,17 @@
     @parent
     <link rel="stylesheet" href="{{ asset('/js/web/magiczoomplus/magiczoomplus.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('/css/web/product-detail.css') }}" media="screen">
-    <link href="{{ asset('js/web/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css') }}" rel="stylesheet" media="screen">
 @endsection
 
 @section('script')
     @parent
+    <script src="{{ mix('js/web/products/detail.js') }}"></script>
     <script src="{{ asset('/js/web/magiczoomplus/magiczoomplus.js') }}"></script>
-    <script src="{{ asset('/js/web/OwlCarousel2-2.3.4/dist/owl.carousel.min.js') }}"></script>
     <script>
-        $('.sider-slick-add').owlCarousel({
-            loop: false,
-            rewind: true,
-            dots:false,
-            responsiveClass:true,
-            responsive:{
-                0:{
-                    items:1,
-                    nav:false
-                },
-                600:{
-                    items:2,
-                    nav:false
-                },
-                1000:{
-                    items:3,
-                    nav:false,
-                    loop:false
-                }
-            }
-        });
-        // $('.sider-slick-add').slick({
-        //     infinite: true,
-        //     slidesToShow: 3,
-        //     slidesToScroll: 3,
-        //     arrows: true,
-        //     rows: 2,
-        //     responsive: [
-        //         {
-        //             breakpoint: 767,
-        //             settings: {
-        //                 slidesToShow: 1,
-        //                 slidesToScroll: 1,
-        //                 // dots: true,
-        //             }
-        //         },
-        //         {
-        //             breakpoint: 900,
-        //             settings: {
-        //                 slidesToShow: 2,
-        //                 slidesToScroll: 2,
-        //                 // dots: true,
-        //             }
-        //         }
-        //     ]
-        // });
-
         $(".full").click(function () {
             $(".wrapper-popup-2").hide();
             $(".full").hide();
         });
-
-        // setTimeout(function() {
-        //     var product_id = $('#product_id').val();
-        //     $.get("/index.php?module=products&view=product&task=update_hits&raw=1",{id: product_id}, function(status){
-        //     });
-        // }, 3000);
 
         function get_info(id){
             $.ajax({

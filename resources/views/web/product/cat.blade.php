@@ -115,7 +115,7 @@
 
 @section('link')
     @parent
-    <link rel="stylesheet" href="{{ asset('/css/web/product-cat.css') }}" media="screen">
+    <link rel="stylesheet" href="{{ mix('/css/web/product-cat.css') }}" media="screen">
 @endsection
 
 @section('script')

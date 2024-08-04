@@ -23,9 +23,9 @@ body {
         transition: margin-right 0.5s;
     }
 
-    #navigation-menu {
-        display: none;
-    }
+    //#navigation-menu {
+    //    display: none;
+    //}
     .header_menu a {
         display: block;
         width: 48px;
@@ -744,5 +744,15 @@ body {
         top: -16px;
         width: 43px;
         height: 43px;
+    }
+}
+.modal-open{
+    padding-right: 0 !important;
+    :where(.mm-slideout) {
+        position: unset;
+        transform: none !important;
+    }
+    :where(#navigation-menu){
+        display: none;
     }
 }
