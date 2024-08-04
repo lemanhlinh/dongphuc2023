@@ -86,7 +86,7 @@
                 @forelse($partner as $item)
                     <li>
                             <span>
-                                <img data-src="{{ asset(replace_image_to_webp($item->image)) }}" class="lazy" loading="lazy" width="120" height="120" alt="{{ $item->name }}" title="{{ $item->name }}">
+                                <img data-src="{{ asset(replace_image_to_webp($item->image)) }}" class="lazy img-fluid" loading="lazy" width="120" height="120" alt="{{ $item->name }}" title="{{ $item->name }}">
                             </span>
                     </li>
                 @empty
