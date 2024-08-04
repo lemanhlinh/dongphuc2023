@@ -4,18 +4,16 @@
         <!-- Header -->
         @include('web.partials._header')
         <!-- /.Header -->
-        <div class="content">
-            @yield('content')
-            <nav id="navigation-menu">
-                <ul id="panel-menu">
-                    @if(!empty($menus))
-                        @foreach ($menus as $shop)
-                            @include('web.components.menu.mobile', ['item'=>$shop])
-                        @endforeach
-                    @endif
-                </ul>
-            </nav>
-        </div>
+        @yield('content')
+        <nav id="navigation-menu">
+            <ul id="panel-menu">
+                @if(!empty($menus))
+                    @foreach ($menus as $shop)
+                        @include('web.components.menu.mobile', ['item'=>$shop])
+                    @endforeach
+                @endif
+            </ul>
+        </nav>
         <!-- Main Footer -->
         @include('web.partials._footer')
         @include('web.partials._notification')
