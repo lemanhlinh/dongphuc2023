@@ -25,10 +25,10 @@
             <div class="modal-content" style="background: transparent; box-shadow: none; border: none;">
 
                 <button type="button" class="btn-close close" data-bs-dismiss="modal" aria-label="Close">
-                    <img src="{{ asset('images/close-modal.png') }}" alt="close_modal" loading="lazy" height="43px" width="43px">
+                    <img data-src="{{ asset('images/close-modal.png') }}" alt="close_modal" loading="lazy" height="43px" width="43px" class="img-fluid lazy">
                 </button>
                 <div class="form-bao-gia">
-                    <img class="img-fluid logo-cati-popup" src="{{ asset('images/logo-mk.png') }}" alt="{{ $setting['site_name'] }}" width="90px" height="85px" />
+                    <img class="img-fluid logo-cati-popup lazy" data-src="{{ asset('images/logo-mk.png') }}" alt="{{ $setting['site_name'] }}" width="90px" height="85px" />
                     <div class="text-center">Báo giá trong 5 phút</div>
                     <form method="post" action="{{ route('saveQuote') }}" name="contact_home" class="form">
                         @csrf

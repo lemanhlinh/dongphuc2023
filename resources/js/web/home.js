@@ -1,12 +1,5 @@
-import LazyLoad from "vanilla-lazyload";
-import Swal from 'sweetalert2';
-window.Swal = Swal;
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel';
-
-var lazyLoadInstance = new LazyLoad({
-    // Your custom settings go here
-});
 
 $("#owl-demo").owlCarousel({
     autoplay: true, //Set AutoPlay to 3 seconds
