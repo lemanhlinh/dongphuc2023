@@ -48,7 +48,9 @@
 @endsection
 
 @section('script')
-    <script src="{{ mix('/js/web/main.js') }}"></script>
+{{--    <script src="{{ mix('/js/web/main.js') }}"></script>--}}
+    <script src="{{ mix('js/web/manifest.js') }}"></script>
+    <script src="{{ mix('js/web/vendor.js') }}"></script>
     <!-- Scripts -->
     <script>
         let toastrSuccsee = "{{ Session::get('success') }}";

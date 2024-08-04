@@ -17,6 +17,13 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/web/products/detail.js', 'public/js/web/products')
     .js('resources/js/web/articles/detail.js', 'public/js/web/articles')
     .js('resources/js/admin/setting.js', 'public/js/admin')
+    .extract([
+        'jquery',
+        'bootstrap',
+        'sweetalert2',
+        'font-awesome',
+        'vanilla-lazyload'
+    ])
     .webpackConfig(webpack => {
         return {
             plugins: [
