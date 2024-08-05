@@ -1,13 +1,9 @@
-//$form-floating-padding-y:         .5rem !default;
-//@import "bootstraps/bootstrap";
-//@import "common";
-//@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import "~bootstrap/scss/bootstrap";
 @import "~@fortawesome/fontawesome-free/scss/fontawesome";
 @import "~@fortawesome/fontawesome-free/scss/brands";
 @import "~@fortawesome/fontawesome-free/scss/regular";
 @import "~@fortawesome/fontawesome-free/scss/solid";
-//@import "~mmenu-js/src/mmenu";
+
 @import "~mmenu-js/src/core/oncanvas/mmenu.oncanvas";
 @import "~mmenu-js/src/core/offcanvas/mmenu.offcanvas";
 @import "~mmenu-js/src/core/theme/mmenu.theme";

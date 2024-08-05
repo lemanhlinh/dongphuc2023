@@ -1,3 +1,5 @@
+@use "app";
+/* purgecss start ignore */
 body {
     font-family: "Roboto", sans-serif;
     line-height: 22px;
@@ -756,3 +758,4 @@ body {
         display: none;
     }
 }
+/* purgecss end ignore */

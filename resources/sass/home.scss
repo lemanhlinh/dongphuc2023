@@ -1,3 +1,4 @@
+/* purgecss start ignore */
 //important for speed
 .owl-carousel {
     display: block;
@@ -98,24 +99,22 @@
 
 .swiper-wrapper{
     .swiper-slide{
-        .vn-testimonies-avatar {
-            .image-student-b{
-                width: 120px;
-                height: 120px;
-                overflow: hidden;
-                border-radius: 50%;
-                border: 4px solid #0067b8;
+        .image-student-b{
+            width: 120px;
+            height: 120px;
+            overflow: hidden;
+            border-radius: 50%;
+            border: 4px solid #0067b8;
+            display: block;
+            margin: 0 auto;
+            .border-img-show {
                 display: block;
                 margin: 0 auto;
-                .border-img-show {
-                    display: block;
-                    margin: 0 auto;
-                }
             }
-            .comment-studen {
-                height: 100px;
-                overflow: hidden;
-            }
+        }
+        .comment-studen {
+            height: 100px;
+            overflow: hidden;
         }
         .comment-studen {
             &:before {
@@ -422,3 +421,4 @@
         }
     }
 }
+/* purgecss end ignore */

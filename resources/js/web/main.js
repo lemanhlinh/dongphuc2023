@@ -8,9 +8,7 @@ window.Mmenu = Mmenu;
 import Swal from 'sweetalert2';
 window.Swal = Swal;
 
-var lazyLoadInstance = new LazyLoad({
-    // Your custom settings go here
-});
+var lazyLoadInstance = new LazyLoad();
 
 $(window).on('scroll', function(event) {
     if ($(this).scrollTop() > 100) {
